@@ -1,11 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Home – DesignedByMili</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body>
-    
+
+  <!-- fixed hero background layer -->
+  <div class="hero-bg"></div>
+
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <!-- <li><a href="gallery.html">Gallery</a></li> -->
+        <li><a href="resume.html">Resume</a></li>
+        <!-- <li><a href="projects.html">Projects</a></li> -->
+      </ul>
+      <button class="nav-toggle" aria-label="toggle menu">☰</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content container">
+      <h1>MILI KHATRI</h1>
+      <p>UX/UI Designer &amp; Researcher</p>
+    </div>
+  </section>
+
+  <!-- ABOUT (full-width purple) -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <img src="assets/images/Aboutme.png" alt="Portrait of me"/>
+      <div class="about-text">
+        <h2>About Me!</h2>
+        <p>I’m a UI/UX designer passionate about crafting intuitive, user-first digital experiences…</p>
+        <p>This is a great space to share what drives my work — collaboration, empathy…</p>
+        <a href="resume.html" class="btn">See Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY PREVIEW (white background full-width) -->
+  <section class="projects">
+    <div class="container">
+      <h2>Some Recent Works</h2>
+      <div class="project-grid">
+        <!-- example thumbnails -->
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <a href="projects.html#angeles" class="project">
+          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <div class="overlay">Angeles de Medellin</div>
+        </a>
+        <!-- repeat .project blocks -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (full-width purple) -->
+  <section class="contact" id="contact">
+    <h2>Get In Touch!</h2>
+    <div class="contact-inner container">
+      <div class="contact-info">
+        <h3>Contact</h3>
+        <p>
+          Tel: 201-637-4875<br/>
+          DesignedByMiliK@gmail.com
+        </p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-vimeo-v"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <form class="contact-form">
+        <label for="first">First Name *</label>
+        <input id="first" type="text" required/>
+        <label for="last">Last Name *</label>
+        <input id="last" type="text" required/>
+        <label for="email">Email *</label>
+        <input id="email" type="email" required/>
+        <label for="subject">Subject</label>
+        <input id="subject" type="text"/>
+        <label for="message">Message</label>
+        <textarea id="message" rows="5"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>© 2035 by Actor &amp; Model. Powered and secured by Wix</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
