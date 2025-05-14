@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Home – DesignedByMili</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome (for the social icons) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
 
   <!-- fixed hero background layer -->
@@ -22,11 +27,8 @@
       <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
-        <!-- <li><a href="gallery.html">Gallery</a></li> -->
         <li><a href="resume.html">Resume</a></li>
-        <!-- <li><a href="projects.html">Projects</a></li> -->
       </ul>
-      <button class="nav-toggle" aria-label="toggle menu">☰</button>
     </nav>
   </header>
 
@@ -38,101 +40,131 @@
     </div>
   </section>
 
-  <!-- ABOUT (full-width purple) -->
+  <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-inner">
-      <img src="assets/images/Aboutme.png" alt="Portrait of me"/>
+      <img src="assets/images/Aboutme.png" alt="Portrait of me" />
       <div class="about-text">
         <h2>About Me!</h2>
-        <p>I’m a UI/UX designer passionate about crafting intuitive, user-first digital experiences…</p>
-        <p>This is a great space to share what drives my work — collaboration, empathy…</p>
+        <p>
+          I’m a UI/UX designer passionate about crafting intuitive, user-first
+          digital experiences. I blend creativity with strategy to design interfaces
+          that look great and feel effortless, focusing on thoughtful solutions that
+          solve real problems.
+        </p>
+        <p>
+          This is a great space to share what drives my work — collaboration,
+          empathy, and a love for clean, functional design. From wireframes to
+          final visuals, I create seamless experiences that connect users and technology.
+        </p>
         <a href="resume.html" class="btn">See Resume</a>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY PREVIEW (white background full-width) -->
+  <!-- PROJECTS -->
   <section class="projects">
     <div class="container">
       <h2>Some Recent Works</h2>
       <div class="project-grid">
-        <!-- example thumbnails -->
         <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
+          <img src="assets/images/ADMFoundation.png" alt="Angeles de Medellin" />
           <div class="overlay">Angeles de Medellin</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project2" class="project">
+          <img src="assets/images/FoodDistribution.png" alt="Food Distribution" />
+          <div class="overlay">Food Distribution</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project7" class="project">
+          <img src="assets/images/AllBakedUp.png" alt="AllBakedUp" />
+          <div class="overlay">All Baked Up</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project3" class="project">
+          <img src="assets/images/Harmonize.jpeg" alt="Harmonize" />
+          <div class="overlay">Harmonize</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project4" class="project">
+          <img src="assets/images/Riva.png" alt="Riva" />
+          <div class="overlay">Riva</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project6" class="project">
+          <img src="assets/images/SpringVoyage.png" alt="SpringVoyage" />
+          <div class="overlay">Spring Voyage</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
+        <a href="projects.html#project5" class="project">
+          <img src="assets/images/Wanderglow.png" alt="WanderGlow" />
+          <div class="overlay">Wander Glow</div>
         </a>
-        <a href="projects.html#angeles" class="project">
-          <img src="assets/images/medellin-thumb.jpg" alt="Angeles de Medellin"/>
-          <div class="overlay">Angeles de Medellin</div>
-        </a>
-        <!-- repeat .project blocks -->
       </div>
     </div>
   </section>
 
-  <!-- CONTACT (full-width purple) -->
+  <!-- CONTACT -->
   <section class="contact" id="contact">
-    <h2>Get In Touch!</h2>
-    <div class="contact-inner container">
-      <div class="contact-info">
-        <h3>Contact</h3>
-        <p>
-          Tel: 201-637-4875<br/>
-          DesignedByMiliK@gmail.com
-        </p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-vimeo-v"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
+    <!-- Heading box (re-used resume-box) -->
+    <div class="container resume-header">
+      <div class="resume-box">
+        <h2>Get In Touch!</h2>
+      </div>
+    </div>
+
+    <!-- Narrowed wrapper under the box -->
+    <div class="contact-inner">
+      <div class="contact-body">
+        <div class="contact-info">
+          <h3 class="contact-title">Contact</h3>
+          <p>
+            Tel: 201-637-4875<br />
+            DesignedByMiliK@gmail.com
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="contact-field">
+              <label for="first">First Name *</label>
+              <input id="first" type="text" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="last">Last Name *</label>
+              <input id="last" type="text" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="email">Email *</label>
+              <input id="email" type="email" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="subject">Subject</label>
+              <input id="subject" type="text" />
+            </div>
+
+            <div class="contact-field message-field">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5"></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
-      <form class="contact-form">
-        <label for="first">First Name *</label>
-        <input id="first" type="text" required/>
-        <label for="last">Last Name *</label>
-        <input id="last" type="text" required/>
-        <label for="email">Email *</label>
-        <input id="email" type="email" required/>
-        <label for="subject">Subject</label>
-        <input id="subject" type="text"/>
-        <label for="message">Message</label>
-        <textarea id="message" rows="5"></textarea>
-        <button type="submit">Submit</button>
-      </form>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <p>© 2035 by Actor &amp; Model. Powered and secured by Wix</p>
+    <p>© 2025 by Mili Khatri</p>
   </footer>
 
   <script src="assets/js/main.js"></script>
 </body>
+
 </html>

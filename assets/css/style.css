@@ -1,8 +1,10 @@
-/* VARIABLES & RESET */
+/* ==================================================
+   VARIABLES & RESET
+   ================================================== */
 :root {
   --purple-bg: #f2e5fc;
-  --black: #000;
-  --white: #fff;
+  --black: #000000;
+  --white: #ffffff;
   --container: 1200px;
   --nav-hover: #b57edc;
   --nav-active: #8a3ab9;
@@ -41,18 +43,18 @@ ul {
   list-style: none;
 }
 
-/* LAYOUT */
+/* ==================================================
+     LAYOUT HELPERS
+     ================================================== */
 .container {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.text-center {
-  text-align: center;
-}
-
-/* NAV */
+/* ==================================================
+     NAVIGATION
+     ================================================== */
 .site-header {
   position: fixed;
   top: 0;
@@ -86,7 +88,7 @@ ul {
 .nav-links a {
   font-size: 1.125rem;
   font-weight: 400;
-  transition: color .2s;
+  transition: color 0.2s;
 }
 
 .nav-links a:hover {
@@ -97,7 +99,9 @@ ul {
   color: var(--nav-active);
 }
 
-/* HERO BG */
+/* ==================================================
+     HERO & BACKGROUND LAYER
+     ================================================== */
 .hero-bg {
   position: fixed;
   top: 0;
@@ -106,7 +110,7 @@ ul {
   height: 100vh;
   background: url('../images/Hero.jpg') no-repeat center center;
   background-size: cover;
-  filter: brightness(.8);
+  filter: brightness(0.8);
   z-index: -1;
 }
 
@@ -119,20 +123,26 @@ ul {
   justify-content: center;
 }
 
+.hero-content {
+  text-align: center;
+}
+
 .hero-content h1 {
   font-size: 5rem;
-  letter-spacing: .6rem;
+  letter-spacing: 0.6rem;
   text-transform: uppercase;
   color: var(--white);
 }
 
 .hero-content p {
   font-size: 1.6rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   color: var(--white);
 }
 
-/* ABOUT */
+/* ==================================================
+     ABOUT (FULL-WIDTH PURPLE)
+     ================================================== */
 .about {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -158,8 +168,8 @@ ul {
 .about-text h2 {
   font-size: 2.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
   text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .about-text p+p {
@@ -171,16 +181,18 @@ ul {
   margin-top: 1rem;
   background: var(--black);
   color: var(--white);
-  padding: .75rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  transition: background .2s;
+  transition: background 0.2s;
 }
 
 .btn:hover {
   background: #333;
 }
 
-/* PROJECTS FULL-WIDTH WHITE */
+/* ==================================================
+     PROJECT GRID (FULL-WIDTH WHITE)
+     ================================================== */
 .projects {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -190,8 +202,6 @@ ul {
 }
 
 .projects .container {
-  max-width: var(--container);
-  margin: 0 auto;
   padding: 0 1rem;
 }
 
@@ -214,7 +224,7 @@ ul {
 
 .project img {
   width: 100%;
-  transition: transform .3s;
+  transition: transform 0.3s ease;
 }
 
 .project:hover img {
@@ -224,21 +234,228 @@ ul {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s ease;
 }
 
 .project:hover .overlay {
   opacity: 1;
 }
 
-/* CONTACT */
+/* ==================================================
+     CONTACT (FULL-WIDTH PURPLE)
+     ================================================== */
 .contact {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--purple-bg);
+  padding: 4rem 0;
+}
+
+/* heading box */
+.contact .resume-box {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.contact .resume-box h2 {
+  font-size: 3rem;
+  letter-spacing: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* wrapper under the box */
+.contact-inner {
+  max-width: 55vw;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* title */
+.contact-title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* side-by-side info & form */
+.contact-body {
+  display: flex;
+}
+
+/* info column */
+.contact-info {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-right: 0px;
+}
+
+.social-icons a {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  transition: color 0.2s;
+}
+
+.social-icons a:hover {
+  color: var(--nav-hover);
+}
+
+/* form column with tighter grid */
+.contact-form {
+  flex: 1;
+}
+
+/* now make the <form> the grid container */
+.contact-form form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+/* each field stacks label + input */
+.contact-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-field label {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.contact-field input,
+.contact-field textarea {
+  background-color: var(--purple-bg);
+  padding: 1rem;
+  border: 1px solid var(--black);
+}
+
+/* message spans both columns */
+.message-field {
+  grid-column: 1 / -1;
+}
+
+/* submit button spans both columns */
+.contact-form button {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.contact-form button:hover {
+  background: #333;
+}
+
+/* ==================================================
+     RESUME HERO (FULL-WIDTH PURPLE)
+     ================================================== */
+.resume-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--purple-bg);
+  padding: 6rem 0 4rem;
+}
+
+.resume-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-box {
+  border: 12px solid var(--black);
+  padding: 2rem 6rem;
+  max-width: 55vw;
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.resume-box h1,
+.resume-box h2 {
+  font-size: 3rem;
+  letter-spacing: 0.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ==================================================
+     MAIN RESUME CONTENT (FULL-WIDTH PURPLE)
+     ================================================== */
+.resume-content {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--purple-bg);
+  padding-bottom: 1rem;
+}
+
+.resume-content .container {
+  max-width: 55vw;
+  margin: 0 auto;
+}
+
+.resume-content .section-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.resume-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.resume-content hr {
+  border: none;
+  border-top: 1px solid #666;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+.resume-content .date {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.resume-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.experience-item {
+  margin-bottom: 2rem;
+}
+
+.resume-content h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* ==================================================
+     DOWNLOAD FULL RESUME (FULL-WIDTH PURPLE)
+     ================================================== */
+#download-section {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -247,95 +464,30 @@ ul {
   text-align: center;
 }
 
-.contact>h2 {
-  border: 8px solid var(--black);
-  display: inline-block;
-  padding: 1rem 2rem;
+#download-section .section-title {
   text-transform: uppercase;
-  font-size: 2.5rem;
-  margin: 0 auto 2rem;
-}
-
-.contact-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  max-width: var(--container);
-  margin: 0 auto;
-  text-align: left;
-}
-
-.contact-info {
-  flex: 1;
-  min-width: 250px;
-}
-
-.contact-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: .5rem;
-  text-transform: uppercase;
-}
-
-.social-icons a {
-  margin-right: .5rem;
-  font-size: 1.25rem;
-  transition: color .2s;
-}
-
-.social-icons a:hover {
-  color: var(--nav-hover);
-}
-
-.contact-form {
-  flex: 1;
-  min-width: 250px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.contact-form label {
-  grid-column: span 2;
+  font-size: 2rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: .5rem;
-  border: 1px solid var(--black);
-  border-radius: 4px;
+#download-section .btn {
+  font-size: 1rem;
 }
 
-.contact-form textarea {
-  grid-column: 1/-1;
-}
-
-.contact-form button {
-  grid-column: 1/-1;
-  background: var(--black);
-  color: var(--white);
-  border: none;
-  padding: .75rem;
-  cursor: pointer;
-  transition: background .2s;
-  max-width: 200px;
-  justify-self: center;
-}
-
-.contact-form button:hover {
-  background: #333;
-}
-
-/* FOOTER */
+/* ==================================================
+     FOOTER
+     ================================================== */
 .site-footer {
   text-align: center;
   padding: 2rem 0;
-  font-size: .875rem;
+  font-size: 0.875rem;
   background: var(--white);
 }
 
-/* TYPOGRAPHY */
+/* ==================================================
+     TYPOGRAPHY
+     ================================================== */
 h1,
 h2,
 h3 {
