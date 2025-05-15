@@ -1,100 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projects – DesignedByMili</title>
 
-  <!-- Google Fonts & Font Awesome -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- Main site CSS -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Page-specific tweaks -->
-  <style>
-    /* full-width purple header for this page */
-    .project-header {
-      background: var(--purple-bg);
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      padding: 4rem 0;
-    }
-    /* the thin black box around the project title */
-    .project-header .title-box {
-      border: 6px solid var(--black);
-      display: inline-block;
-      padding: 1rem 2rem;
-    }
-    .project-header .title-box h2 {
-      margin: 0;
-      font-size: 2.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.4rem;
-    }
-
-    /* main content wrapper */
-    .project-content {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      color: var(--black);
-      line-height: 1.5;
-    }
-    .project-content h3 {
-      margin-top: 2rem;
-      font-size: 1.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    .project-content ol,
-    .project-content ul {
-      margin-left: 1.5rem;
-    }
-    .project-content ol li + li {
-      margin-top: 0.5rem;
-    }
-    .project-content ul li {
-      margin-top: 0.25rem;
-      list-style-type: disc;
-    }
-
-    /* three-column “About Project” row */
-    .about-project {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: 1rem 0 2rem;
-      flex-wrap: wrap;
-    }
-    .about-project > div {
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-    }
-    .about-project h4 {
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    /* simple horizontal-scroll gallery */
-    .gallery-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-    .gallery-container img {
-      flex: 0 0 300px;
-      border-radius: 4px;
-    }
-  </style>
 </head>
+
 <body>
 
-  <!-- NAVIGATION (same as index.html) -->
+  <!-- HEADER / NAV -->
   <header class="site-header">
     <nav class="navbar container">
       <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
@@ -106,86 +28,112 @@
     </nav>
   </header>
 
-  <main>
-    <!-- Project Title Box -->
-    <section class="project-header">
-      <div class="title-box">
-        <h2>Food Waste Structural Inequality</h2>
+  <!-- PROJECT HERO (reusing resume-hero) -->
+  <section class="resume-hero">
+    <div class="container resume-header">
+      <div class="resume-box" style="border-width:8px; padding:2rem 4rem;">
+        <h1>Food Waste Structural Inequality</h1>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Project Body -->
-    <section class="project-content">
-      <p>
-        This project addressed the dual challenge of food waste and food insecurity at NJIT and in the surrounding Newark community.  
-        The initiative proposed a pilot program to repurpose surplus food from the NJIT Gourmet Dining Services (GDS) to support the campus food pantry and local food banks.  
-        The effort combined sustainability, community impact, and logistical innovation.
-      </p>
+  <!-- PROJECT CONTENT (full-width purple) -->
+  <main class="resume-content">
+    <div class="container">
 
-      <p>
-        <strong>Figma Link:</strong> <a href="#">Reducing Food Waste</a><br>
-        <strong>Research Paper:</strong> <a href="#">Design Specification</a><br>
-        <strong>Video Prototype:</strong> <a href="#">Watch Here</a>
-      </p>
+      <!-- PROJECT DESCRIPTION -->
+      <section id="description">
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:1rem;">Project Description</h2>
+        <p>
+          This project addressed the dual challenge of food waste and food insecurity at NJIT and in the surrounding Newark community.
+          It proposed a pilot program to repurpose surplus food from NJIT’s Gourmet Dining Services (GDS) to support the campus food pantry and
+          local food banks—combining sustainability, community impact, and logistical innovation.
+        </p>
+        <p style="margin-top:1rem;">
+          <strong>Figma Link:</strong> <a href="#">Reducing Food Waste</a><br />
+          <strong>Research Paper:</strong> <a href="#">Design Specification</a><br />
+          <strong>Video Prototype:</strong> <a href="#">Watch Here</a>
+        </p>
+        <hr style="margin:1.5rem 0; width:55vw;" />
+      </section>
 
-      <h3>Key Contributions</h3>
-      <ol>
-        <li>
-          <strong>Research &amp; Data Collection</strong>
-          <ul>
-            <li>Conducted interviews with GDS management and food pantry directors to understand scale of food waste.</li>
-            <li>Identified operational inefficiencies, including lack of waste-tracking tools.</li>
-            <li>Analyzed NJ food insecurity data to highlight need for campus action.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>System Design &amp; Logistics</strong>
-          <ul>
-            <li>Created framework to redistribute GDS leftovers in disposable, single-use containers.</li>
-            <li>Proposed half deliveries to campus pantry and half to local food banks.</li>
-            <li>Scheduled weekly distribution on high-traffic days based on volunteer availability.</li>
-          </ul>
-        </li>
-        <!-- add 3 & 4 similarly -->
-      </ol>
+      <!-- KEY CONTRIBUTIONS -->
+      <section id="contributions">
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:1rem;">Key Contributions</h2>
+        <ol>
+          <li>
+            <strong>Research &amp; Data Collection</strong>
+            <ul>
+              <li>Interviewed GDS management and pantry directors to gauge waste volumes.</li>
+              <li>Identified gaps in waste-tracking and resource allocation.</li>
+              <li>Analyzed NJ food-insecurity data to build the case for campus action.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>System Design &amp; Logistics</strong>
+            <ul>
+              <li>Designed a container-based redistribution workflow for leftovers.</li>
+              <li>Split deliveries between campus pantry and local food banks.</li>
+              <li>Scheduled weekly distributions on high-traffic volunteer days.</li>
+            </ul>
+          </li>
+          <!-- add items 3 & 4 here similarly -->
+        </ol>
+        <hr style="margin:1.5rem 0; width:55vw;" />
+      </section>
 
-      <h3>About Project</h3>
-      <div class="about-project">
-        <div>
-          <h4>Project Type &amp; Date</h4>
-          <p>Reducing Food Waste Initiative / Oct–Dec 2024</p>
+      <!-- ABOUT PROJECT -->
+      <section id="about-project">
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:1rem;">About Project</h2>
+        <div class="about-project">
+          <div>
+            <h4>Project Type &amp; Date</h4>
+            <p>Reducing Food Waste Initiative / Oct–Dec 2024</p>
+          </div>
+          <div>
+            <h4>Role</h4>
+            <p>Co-Researcher</p>
+          </div>
+          <div>
+            <h4>Tools</h4>
+            <p>iMovie, Figma, Voice Memo</p>
+          </div>
         </div>
-        <div>
-          <h4>Role</h4>
-          <p>Co-Researcher</p>
+        <hr style="margin:1.5rem 0; width:55vw;" />
+      </section>
+
+      <!-- OUTCOMES -->
+      <section id="outcomes">
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:1rem;">Outcomes</h2>
+        <p><strong>Impact &amp; Outcomes:</strong></p>
+        <ul>
+          <li>Reduced food waste by repurposing leftovers for students and Newark residents.</li>
+          <li>Built a scalable pilot with metrics for expansion (satisfaction &amp; efficiency).</li>
+        </ul>
+        <p style="margin-top:1rem;"><strong>Key Learnings &amp; Skills Developed:</strong></p>
+        <ul>
+          <li>Project-management across multiple stakeholders.</li>
+          <li>Collaborative problem-solving and cost-effective planning.</li>
+          <li>Deepened understanding of food-safety regulations and logistics.</li>
+        </ul>
+        <hr style="margin:1.5rem 0; width:55vw;" />
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery">
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:1rem;">Gallery</h2>
+        <div class="gallery-wrapper">
+          <button class="arrow prev">&lt;</button>
+          <div class="gallery-container">
+            <img src="assets/images/projects/flowchart1.png" alt="Flowchart 1">
+            <img src="assets/images/projects/flowchart2.png" alt="Flowchart 2">
+            <img src="assets/images/projects/flowchart3.png" alt="Flowchart 3">
+          </div>
+          <button class="arrow next">&gt;</button>
         </div>
-        <div>
-          <h4>Tools</h4>
-          <p>iMovie, Figma, Voice Memo</p>
-        </div>
-      </div>
+      </section>
 
-      <h3>Outcomes</h3>
-      <p><strong>Impact &amp; Outcomes:</strong></p>
-      <ul>
-        <li>Reduced food waste by repurposing leftovers for students and Newark residents.</li>
-        <li>Built a scalable model with metrics for expansion based on satisfaction and efficiency.</li>
-      </ul>
-
-      <p><strong>Key Learnings &amp; Skills Developed:</strong></p>
-      <ul>
-        <li>Applied project-management principles across multiple stakeholders.</li>
-        <li>Enhanced collaborative problem-solving and cost-effective planning skills.</li>
-        <li>Strengthened understanding of food-safety regulations and logistics.</li>
-      </ul>
-
-      <h3>Gallery</h3>
-      <div class="gallery-container">
-        <img src="assets/images/projects/flowchart1.png" alt="Step 1 Flowchart">
-        <img src="assets/images/projects/flowchart2.png" alt="Step 2 Flowchart">
-        <img src="assets/images/projects/flowchart3.png" alt="Step 3 Flowchart">
-      </div>
-    </section>
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -193,5 +141,14 @@
     <p>© 2025 by Mili Khatri</p>
   </footer>
 
+  <!-- simple JS to make the arrows scroll the gallery -->
+  <script>
+    const gallery = document.querySelector('.gallery-container');
+    document.querySelector('.prev').onclick = () =>
+      gallery.scrollBy({ left: -300, behavior: 'smooth' });
+    document.querySelector('.next').onclick = () =>
+      gallery.scrollBy({ left: +300, behavior: 'smooth' });
+  </script>
 </body>
+
 </html>
