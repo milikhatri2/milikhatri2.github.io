@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Project Detail – DesignedByMili</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="site-header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="projectgallery.html">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="project-hero">
+        <img id="mainImage" src="" alt="" />
+        <a id="learnMoreBtn" href="#">Learn More</a>
+        <div class="detail-content container">
+            <h1 id="projectTitle">Loading…</h1>
+            <p id="projectDesc">Please wait…</p>
+        </div>
+    </section>
+
+    <!-- SCROLLABLE CAROUSEL -->
+    <section class="project-carousel">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- JS will inject thumbnails here -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>© 2025 by Mili Khatri</p>
+    </footer>
+
+    <script>
+        const projectData = {
+            angeles: {
+                title: 'Angeles de Medellin',
+                image: 'assets/images/AngelesDeMeddlin/ADMFoundation.png',
+                desc: 'A quick overview description of what this project is about.',
+                link: 'projectpages/angeles.html'
+            },
+            fooddistribution: {
+                title: 'Food Distribution',
+                image: 'assets/images/FoodDistribution/FoodDistribution.png',
+                desc: 'Short teaser description for Food Distribution project.',
+                link: 'projectpages/fooddistribution.html'
+            },
+            allbakedup: {
+                title: 'All Baked Up',
+                image: 'assets/images/AllBakedUp/AllBakedUp.png',
+                desc: 'Short teaser for All Baked Up.',
+                link: 'projectpages/allbakedup.html'
+            },
+            harmonize: {
+                title: 'Harmonize',
+                image: 'assets/images/Harmonize/Harmonize.jpeg',
+                desc: 'Short teaser for Harmonize.',
+                link: 'projectpages/harmonize.html'
+            },
+            riva: {
+                title: 'Riva',
+                image: 'assets/images/Riva/Riva.png',
+                desc: 'Short teaser for Riva.',
+                link: 'projectpages/riva.html'
+            },
+            springvoyage: {
+                title: 'Spring Voyage',
+                image: 'assets/images/SpringVoyage/SpringVoyage.png',
+                desc: 'Short teaser for Spring Voyage.',
+                link: 'projectpages/springvoyage.html'
+            },
+            wanderglow: {
+                title: 'Wander Glow',
+                image: 'assets/images/WanderGlow/Wanderglow.png',
+                desc: 'Short teaser for Wander Glow.',
+                link: 'projectpages/wanderglow.html'
+            },
+            bizinc: {
+                title: 'Bizinc',
+                image: 'assets/images/Bizinc/Battaualogo.jpg',
+                desc: 'Short teaser for Bizinc.',
+                link: 'projectpages/bizinc.html'
+            }
+        };
+
+        function getProjectId() {
+            return location.hash.replace(/^#/, '') || Object.keys(projectData)[0];
+        }
+
+        function loadHero(id) {
+            const p = projectData[id];
+            if (!p) return;
+            document.getElementById('mainImage').src = p.image;
+            document.getElementById('mainImage').alt = p.title;
+            document.getElementById('projectTitle').textContent = p.title;
+            document.getElementById('projectDesc').textContent = p.desc;
+            document.getElementById('learnMoreBtn').href = p.link;
+
+            document.querySelectorAll('.thumbnail')
+                .forEach(el => el.classList.toggle('active', el.dataset.id === id));
+        }
+
+        function initCarousel() {
+            const track = document.getElementById('carouselTrack');
+            track.innerHTML = '';
+            for (let [id, p] of Object.entries(projectData)) {
+                const d = document.createElement('div');
+                d.className = 'thumbnail';
+                d.dataset.id = id;
+                d.innerHTML = `<img src="${p.image}" alt="${p.title}">`;
+                d.addEventListener('click', _ => {
+                    location.hash = id;
+                    loadHero(id);
+                });
+                track.appendChild(d);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            initCarousel();
+            loadHero(getProjectId());
+        });
+        window.addEventListener('hashchange', () => {
+            loadHero(getProjectId());
+        });
+    </script>
+</body>
+
+</html>

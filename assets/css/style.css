@@ -100,7 +100,7 @@ ul {
 }
 
 /* ==================================================
-     HERO & BACKGROUND LAYER
+     HERO (homepage)
      ================================================== */
 .hero-bg {
   position: fixed;
@@ -129,19 +129,19 @@ ul {
 
 .hero-content h1 {
   font-size: 5rem;
-  letter-spacing: 0.6rem;
+  letter-spacing: .6rem;
   text-transform: uppercase;
   color: var(--white);
 }
 
 .hero-content p {
   font-size: 1.6rem;
-  margin-top: 0.5rem;
+  margin-top: .5rem;
   color: var(--white);
 }
 
 /* ==================================================
-     ABOUT (FULL-WIDTH PURPLE)
+     ABOUT
      ================================================== */
 .about {
   width: 100vw;
@@ -181,9 +181,9 @@ ul {
   margin-top: 1rem;
   background: var(--black);
   color: var(--white);
-  padding: 0.75rem 1.5rem;
+  padding: .75rem 1.5rem;
   border-radius: 4px;
-  transition: background 0.2s;
+  transition: background .2s;
 }
 
 .btn:hover {
@@ -191,7 +191,7 @@ ul {
 }
 
 /* ==================================================
-     PROJECT GRID (FULL-WIDTH WHITE)
+     PROJECT GRID (homepage)
      ================================================== */
 .projects {
   width: 100vw;
@@ -224,7 +224,7 @@ ul {
 
 .project img {
   width: 100%;
-  transition: transform 0.3s ease;
+  transition: transform .3s ease;
 }
 
 .project:hover img {
@@ -240,7 +240,7 @@ ul {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease;
 }
 
 .project:hover .overlay {
@@ -248,7 +248,7 @@ ul {
 }
 
 /* ==================================================
-     CONTACT (FULL-WIDTH PURPLE)
+     CONTACT
      ================================================== */
 .contact {
   width: 100vw;
@@ -258,105 +258,92 @@ ul {
   padding: 4rem 0;
 }
 
-/* heading box */
 .contact .resume-box {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
 }
 
 .contact .resume-box h2 {
   font-size: 3rem;
-  letter-spacing: 0.6rem;
+  letter-spacing: .6rem;
   font-weight: 700;
   text-transform: uppercase;
-  margin: 0;
 }
 
-/* wrapper under the box */
 .contact-inner {
   max-width: 55vw;
   margin: 2rem auto;
   padding: 0 1rem;
 }
 
-/* title */
 .contact-title {
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: 0.4rem;
+  letter-spacing: .4rem;
   margin-bottom: 1.5rem;
 }
 
-/* side-by-side info & form */
 .contact-body {
   display: flex;
 }
 
-/* info column */
 .contact-info {
   flex: 1;
-  font-size: 0.9rem;
+  font-size: .9rem;
   line-height: 1.6;
-  margin-right: 0px;
 }
 
 .social-icons a {
-  margin-right: 0.5rem;
+  margin-right: .5rem;
   font-size: 1.25rem;
-  transition: color 0.2s;
+  transition: color .2s;
 }
 
 .social-icons a:hover {
   color: var(--nav-hover);
 }
 
-/* form column with tighter grid */
 .contact-form {
   flex: 1;
 }
 
-/* now make the <form> the grid container */
 .contact-form form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem 1rem;
-  font-size: 0.8rem;
+  gap: .5rem 1rem;
+  font-size: .8rem;
 }
 
-/* each field stacks label + input */
 .contact-field {
   display: flex;
   flex-direction: column;
 }
 
 .contact-field label {
-  margin-bottom: 0.25rem;
+  margin-bottom: .25rem;
   font-weight: 600;
 }
 
 .contact-field input,
 .contact-field textarea {
-  background-color: var(--purple-bg);
+  background: var(--purple-bg);
   padding: 1rem;
   border: 1px solid var(--black);
 }
 
-/* message spans both columns */
 .message-field {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
 }
 
-/* submit button spans both columns */
 .contact-form button {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
   padding: 1rem;
   background: var(--black);
   color: var(--white);
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 0.5rem;
+  transition: background .2s;
+  margin-top: .5rem;
   font-size: 1rem;
 }
 
@@ -365,115 +352,115 @@ ul {
 }
 
 /* ==================================================
-     RESUME HERO (FULL-WIDTH PURPLE)
+     RESUME PAGES
      ================================================== */
-.resume-hero {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: var(--purple-bg);
-  padding: 6rem 0 4rem;
-}
-
-.resume-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.resume-box {
-  border: 12px solid var(--black);
-  padding: 2rem 6rem;
-  max-width: 55vw;
-  width: 100%;
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.resume-box h1,
-.resume-box h2 {
-  font-size: 3rem;
-  letter-spacing: 0.6rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-/* ==================================================
-     MAIN RESUME CONTENT (FULL-WIDTH PURPLE)
-     ================================================== */
-.resume-content {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: var(--purple-bg);
-  padding-bottom: 1rem;
-}
-
-.resume-content .container {
-  max-width: 55vw;
-  margin: 0 auto;
-}
-
-.resume-content .section-title {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.resume-content p {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.resume-content hr {
-  border: none;
-  border-top: 1px solid #666;
-  width: 80%;
-  margin: 2rem auto;
-}
-
-.resume-content .date {
-  font-style: italic;
-  margin-bottom: 0.5rem;
-}
-
-.resume-content ul {
-  margin-left: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.experience-item {
-  margin-bottom: 2rem;
-}
-
-.resume-content h3 {
-  margin-bottom: 0.5rem;
-}
-
-/* ==================================================
-     DOWNLOAD FULL RESUME (FULL-WIDTH PURPLE)
-     ================================================== */
-#download-section {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background: var(--purple-bg);
-  padding: 4rem 0;
-  text-align: center;
-}
-
-#download-section .section-title {
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-#download-section .btn {
-  font-size: 1rem;
-}
+     .resume-hero {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      background: var(--purple-bg);
+      padding: 6rem 0 4rem;
+    }
+    
+    .resume-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .resume-box {
+      border: 12px solid var(--black);
+      padding: 2rem 6rem;
+      max-width: 55vw;
+      width: 100%;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .resume-box h1,
+    .resume-box h2 {
+      font-size: 3rem;
+      letter-spacing: 0.6rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    /* ==================================================
+       MAIN RESUME CONTENT (FULL-WIDTH PURPLE)
+       ================================================== */
+    .resume-content {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      background: var(--purple-bg);
+      padding: 4rem 1rem;
+    }
+    
+    .resume-content .container {
+      max-width: 55vw;
+      margin: 0 auto;
+    }
+    
+    .resume-content .section-title {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .resume-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .resume-content hr {
+      border: none;
+      border-top: 1px solid #666;
+      width: 80%;
+      margin: 2rem auto;
+    }
+    
+    .resume-content .date {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    
+    .resume-content ul {
+      margin-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .experience-item {
+      margin-bottom: 2rem;
+    }
+    
+    .resume-content h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* ==================================================
+       DOWNLOAD FULL RESUME (FULL-WIDTH PURPLE)
+       ================================================== */
+    #download-section {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      background: var(--purple-bg);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    #download-section .section-title {
+      text-transform: uppercase;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    #download-section .btn {
+      font-size: 1rem;
+    }
 
 /* ==================================================
      FOOTER
@@ -481,15 +468,121 @@ ul {
 .site-footer {
   text-align: center;
   padding: 2rem 0;
-  font-size: 0.875rem;
+  font-size: .875rem;
   background: var(--white);
 }
 
 /* ==================================================
-     TYPOGRAPHY
+     PROJECT DETAIL
      ================================================== */
-h1,
-h2,
-h3 {
+.project-hero {
+  position: relative;
+  width: 40vw;
+  height: 60vh;
+  max-height: 800px;
+  /* optional cap so it never gets *too* tall */
+  margin: 6rem auto 2rem;
+  /* keep your spacing from nav & below */
+  overflow: hidden;
+  background: none;
+}
+
+.project-hero img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* never crop — letterbox as needed */
+  object-position: center center;
+  transform: translate(-50%, -50%);
+}
+
+.project-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 30%,
+      transparent 60%);
+  pointer-events: none;
+}
+
+#learnMoreBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #e15d56;
+  color: #000;
+  padding: .5rem 1rem;
+  border-radius: 4px;
   font-weight: 600;
+  z-index: 2;
+}
+
+.detail-content {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  max-width: 40%;
+  background: none;
+  padding: 0;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+.detail-content h1 {
+  margin: 0 0 .5rem;
+  font-size: 2rem;
+}
+
+.detail-content p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* SCROLLABLE CAROUSEL */
+.project-carousel {
+  max-width: var(--container);
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.thumbnail {
+  flex: 0 0 auto;
+  width: 200px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 4px;
+}
+
+.thumbnail.active {
+  border-color: var(--nav-active);
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  /* also never crop thumbnails */
+  border-radius: 2px;
 }
