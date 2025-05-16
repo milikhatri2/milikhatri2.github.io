@@ -13,20 +13,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
   });
-  
-// // Smooth parallax for hero background
-// const hero = document.querySelector('.hero');
-// let latestScroll = 0;
-// let ticking = false;
-
-// window.addEventListener('scroll', () => {
-//   latestScroll = window.pageYOffset;
-//   if (!ticking) {
-//     window.requestAnimationFrame(() => {
-//       // half speed = subtle effect
-//       hero.style.backgroundPositionY = `${latestScroll * 0.1}px`;
-//       ticking = false;
-//     });
-//     ticking = true;
-//   }
-// });
