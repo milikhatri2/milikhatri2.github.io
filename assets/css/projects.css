@@ -57,7 +57,7 @@
 
 .detail-project-content h1 {
   margin: 0 0 1rem;
-  font-size: 5rem;
+  font-size: 4rem;
   /* bigger & bolder */
   font-weight: 700;
 }
@@ -179,6 +179,11 @@
 }
 
 .gallery-container img {
-  flex: 0 0 300px;
-  border-radius: 4px;
+  width: 100%;
+  max-width: 400px; /* or whatever fits your design */
+  aspect-ratio: 4/3; /* or 16/9, 1/1 for square, etc. */
+  object-fit: cover; /* crops image to fit the box, no stretching */
+  border-radius: 0.5rem; /* optional: for rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* optional: soft shadow */
+  margin: 0.5rem;
 }
