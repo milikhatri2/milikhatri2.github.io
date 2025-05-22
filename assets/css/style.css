@@ -47,9 +47,10 @@ ul {
      LAYOUT HELPERS
      ================================================== */
 .container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* ==================================================
@@ -59,7 +60,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   background: var(--white);
   z-index: 1000;
 }
@@ -68,7 +69,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1.25rem 3vw;
 }
 
 .logo {
@@ -202,6 +203,8 @@ ul {
 }
 
 .projects .container {
+  max-width: var(--container);
+  margin: 0 auto;
   padding: 0 1rem;
 }
 
