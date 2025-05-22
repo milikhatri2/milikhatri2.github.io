@@ -77,7 +77,7 @@ ul {
 }
 
 .logo span {
-  color: #2fa67a;
+  color: var(--nav-hover);
 }
 
 .nav-links {
@@ -538,6 +538,7 @@ ul {
 .detail-content h1 {
   margin: 0 0 .5rem;
   font-size: 2rem;
+  width: 200%;
 }
 
 .detail-content p {
