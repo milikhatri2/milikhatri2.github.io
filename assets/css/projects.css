@@ -44,6 +44,10 @@
   pointer-events: none;
 }
 
+#about {
+  text-align: center;
+}
+
 /* ——— DETAIL CONTENT “PANEL” ——— */
 .detail-project-content {
   position: absolute;
