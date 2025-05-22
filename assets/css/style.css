@@ -591,3 +591,8 @@ ul {
   /* also never crop thumbnails */
   border-radius: 2px;
 }
+
+.site-header, .navbar {
+  min-height: 12vh;
+  height: 12vh;
+}

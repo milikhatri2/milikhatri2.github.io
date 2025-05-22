@@ -187,3 +187,8 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* optional: soft shadow */
   margin: 0.5rem;
 }
+
+.site-header, .navbar {
+  min-height: 12vh;
+  height: 12vh;
+}
