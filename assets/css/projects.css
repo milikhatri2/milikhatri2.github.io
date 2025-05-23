@@ -37,6 +37,17 @@
   text-align: center;
 }
 
+.contributions {
+  text-align: left;
+}
+
+.contributions strong {
+  list-style: none;
+}
+
+
+
+
 /* ——— DETAIL CONTENT “PANEL” ——— */
 .detail-project-content {
   position: absolute;
@@ -173,10 +184,15 @@
 
 .gallery-container img {
   width: 100%;
-  max-width: 400px; /* or whatever fits your design */
-  aspect-ratio: 4/3; /* or 16/9, 1/1 for square, etc. */
-  object-fit: cover; /* crops image to fit the box, no stretching */
-  border-radius: 0.5rem; /* optional: for rounded corners */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* optional: soft shadow */
+  max-width: 400px;
+  /* or whatever fits your design */
+  aspect-ratio: 4/3;
+  /* or 16/9, 1/1 for square, etc. */
+  object-fit: cover;
+  /* crops image to fit the box, no stretching */
+  border-radius: 0.5rem;
+  /* optional: for rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  /* optional: soft shadow */
   margin: 0.5rem;
 }
