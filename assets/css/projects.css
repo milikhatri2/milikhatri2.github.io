@@ -2,21 +2,11 @@
    PROJECT DETAIL STYLES
    (projects.css)
    ================================================== */
-
-:root {
-  --purple-bg: #f2e5fc;
-  --black: #000000;
-  --white: #ffffff;
-  --container: 1200px;
-  --nav-hover: #b57edc;
-  --nav-active: #8a3ab9;
-}
-
 /* ——— HERO (fixed 70vh) ——— */
 .project-hero {
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
 }
 
