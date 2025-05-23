@@ -481,12 +481,6 @@ ul {
      ================================================== */
 .project-hero {
   position: relative;
-  width: 40vw;
-  height: 60vh;
-  max-height: 800px;
-  /* optional cap so it never gets *too* tall */
-  margin: 6rem auto 2rem;
-  /* keep your spacing from nav & below */
   overflow: hidden;
   background: none;
 }
