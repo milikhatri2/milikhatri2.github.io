@@ -70,6 +70,7 @@ ul {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 3vw;
+  max-height: 12vh;
 }
 
 .logo {
@@ -590,9 +591,4 @@ ul {
   object-fit: contain;
   /* also never crop thumbnails */
   border-radius: 2px;
-}
-
-.site-header, .navbar {
-  min-height: 12vh;
-  height: 12vh;
 }

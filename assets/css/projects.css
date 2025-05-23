@@ -17,8 +17,6 @@
   position: relative;
   width: 100%;
   height: 90vh;
-  margin: 6rem auto 2rem;
-  /* clear fixed nav */
   overflow: hidden;
 }
 
@@ -190,9 +188,4 @@
   border-radius: 0.5rem; /* optional: for rounded corners */
   box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* optional: soft shadow */
   margin: 0.5rem;
-}
-
-.site-header, .navbar {
-  min-height: 12vh;
-  height: 12vh;
 }
