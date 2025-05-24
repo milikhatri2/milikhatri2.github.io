@@ -228,7 +228,9 @@ a {
 
 .project img {
   width: 100%;
+  height: auto; /* Added height: auto */
   transition: transform .3s ease;
+  display: block; /* Ensured display: block, though global exists */
 }
 
 .project:hover img {
@@ -363,7 +365,7 @@ a {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: var(--purple-bg);
-  padding-top: 6rem;
+  padding-top: 4rem; /* Reduced padding-top for mobile */
 }
 
 .resume-header {
@@ -374,8 +376,8 @@ a {
 
 .resume-box {
   border: 12px solid var(--black);
-  padding: 2rem 6rem;
-  max-width: 55vw;
+  padding: 1.5rem 3rem; /* Reduced padding */
+  max-width: 90%; /* Adjusted max-width */
   width: 100%;
   text-align: center;
   margin-top: 3rem;
@@ -412,6 +414,7 @@ a {
 .resume-content .container {
   max-width: 55vw;
   margin: 0 auto;
+  padding: 0 1rem; /* Added padding */
 }
 
 .resume-content .section-title {
@@ -528,9 +531,10 @@ a {
 .project-hero-gallery {
   position: relative;
   overflow: hidden;
-  width: 40vw;
-  height: 60vh;
-
+  width: 100%; /* Changed width */
+  max-width: 800px; /* Added max-width */
+  height: auto; /* Changed height to auto */
+  aspect-ratio: 16/9; /* Added aspect-ratio */
   /* optional cap so it never gets *too* tall */
   margin: 6rem auto 2rem;
   /* keep your spacing from nav & below */
@@ -541,8 +545,8 @@ a {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
-  height: 100%;
+  width: 100%; /* Ensured width is 100% */
+  height: 100%; /* Ensured height is 100% to respect parent aspect-ratio */
   object-fit: contain;
   /* never crop — letterbox as needed */
   object-position: center center;
@@ -664,13 +668,17 @@ a {
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
 }
 
 @media (max-width: 900px) {
 
   .project-hero-gallery {
-    position: static;
+    position: static; /* This was already here and is fine */
+    width: 90%; /* Set width for 900px */
+    height: auto; /* Set height to auto for 900px */
+    aspect-ratio: 16/9; /* Set aspect-ratio for 900px */
+    margin: 2rem auto 1rem; /* Adjusted margin for 900px */
   }
 
   .container {
@@ -682,17 +690,23 @@ body {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem 2vw;
+    padding: 0.75rem 2vw; /* Adjusted padding */
     gap: 0.5rem;
     width: 100vw;
     box-sizing: border-box;
+    max-height: 10vh; /* Reduced max-height */
   }
 
   .nav-links {
     gap: 1rem;
-    font-size: 1rem;
+    font-size: 1rem; /* Adjusted font size for 900px */
     width: 100vw;
     flex-wrap: wrap;
+  }
+
+  /* Added .logo font size for 900px */
+  .logo {
+    font-size: 1.5rem;
   }
 
   .hero-content h1 {
@@ -709,7 +723,9 @@ body {
     flex-direction: column;
     gap: 1.2rem;
     text-align: center;
-    width: 100vw;
+    width: 90%; /* Changed width */
+    margin: 0 auto; /* Added margin auto */
+    padding: 0 1rem; /* Adjusted padding */
     box-sizing: border-box;
   }
 
@@ -725,8 +741,9 @@ body {
   }
 
   .projects .container {
-    padding: 0 0.5rem;
-    max-width: 100vw;
+    width: 90%; /* Changed width */
+    margin: 0 auto; /* Added margin auto */
+    padding: 0 0.5rem; /* Kept padding */
   }
 
   .project-grid {
@@ -737,8 +754,9 @@ body {
   }
 
   .contact-inner {
-    max-width: 100vw;
-    padding: 0 1vw;
+    width: 90%; /* Changed width */
+    margin: 0 auto; /* Added margin auto */
+    padding: 0 1rem; /* Adjusted padding */
     box-sizing: border-box;
   }
 
@@ -764,6 +782,18 @@ body {
     font-size: 1rem;
     word-break: break-word;
   }
+
+  /* Added rules for .resume-content .container at 900px */
+  .resume-content .container {
+    max-width: 90%;
+  }
+
+  /* Added rules for .detail-content h1 at 900px */
+  .detail-content h1 {
+    font-size: 1.5rem; /* Reduced font-size */
+    width: auto; /* Set width to auto */
+    word-break: break-word; /* Ensured word-break */
+  }
 }
 
 @media (max-width: 600px) {
@@ -777,8 +807,13 @@ body {
   }
 
   .logo {
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* Adjusted font size for 600px */
     word-break: break-word;
+  }
+
+  /* Added rule for .nav-links a font size at 600px */
+  .nav-links a {
+    font-size: 0.9rem; /* Adjusted font size for 600px */
   }
 
   .hero {
@@ -840,5 +875,29 @@ body {
   .site-footer p {
     font-size: 0.9rem;
     word-break: break-word;
+  }
+
+  /* Added rules for .resume-box at 600px */
+  .resume-box {
+    padding: 1rem 1.5rem; /* Further reduced padding for 600px */
+    max-width: 95%; /* Further adjusted max-width for 600px */
+  }
+
+  .resume-box h1 {
+    font-size: 2rem; /* Adjusted h1 font size for 600px */
+  }
+
+  .resume-box h2 {
+    font-size: 1.5rem; /* Adjusted h2 font size for 600px */
+  }
+
+  /* Added rules for .resume-content .container at 600px */
+  .resume-content .container {
+    max-width: 95%;
+  }
+
+  /* Added rules for .detail-content h1 at 600px */
+  .detail-content h1 {
+    font-size: 1.2rem; /* Further reduced font-size */
   }
 }
