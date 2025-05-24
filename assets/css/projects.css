@@ -200,3 +200,132 @@
   /* optional: soft shadow */
   margin: 0.5rem;
 }
+
+/* ==================================================
+   MOBILE STYLES
+   ================================================== */
+
+@media (max-width: 900px) {
+  .project-hero {
+    height: 40vh;
+    min-height: 180px;
+  }
+  .project-hero img {
+    object-fit: cover;
+    width: 100vw;
+    height: 100%;
+    left: 0;
+  }
+  .detail-project-content {
+    position: static;
+    width: 100vw;
+    padding: 1rem 2vw;
+    box-sizing: border-box;
+    text-align: center;
+    word-break: break-word;
+  }
+  .detail-project-content h1 {
+    font-size: 2rem;
+    word-break: break-word;
+  }
+  .info-row {
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100vw;
+    box-sizing: border-box;
+    align-items: stretch;
+  }
+  .project-meta {
+    width: 100vw;
+    gap: 0.3rem;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .summary-year {
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100vw;
+    margin-right: 0;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  .project-summary h3, .project-year h3 {
+    font-size: 1.1rem;
+    word-break: break-word;
+  }
+  .project-summary p, .project-year p {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+  .title-content {
+    flex-direction: column;
+    margin-right: 0;
+    gap: 0.5rem;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .project-content .container {
+    width: 100vw;
+    padding: 0 2vw;
+    box-sizing: border-box;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    word-break: break-word;
+  }
+  .project-content p {
+    font-size: 1rem;
+    word-break: break-word;
+  }
+  .project-content ul {
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+    word-break: break-word;
+  }
+  .project-content hr {
+    width: 90vw;
+    margin: 1rem auto;
+  }
+  .gallery-wrapper {
+    padding: 0.5rem 0;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .gallery-container {
+    gap: 0.5rem;
+    width: 100vw;
+    box-sizing: border-box;
+  }
+  .gallery-container img {
+    max-width: 90vw;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin: 0.2rem auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-hero {
+    height: 28vh;
+    min-height: 100px;
+  }
+  .detail-project-content h1 {
+    font-size: 1.2rem;
+  }
+  .section-title {
+    font-size: 1rem;
+  }
+  .project-summary h3, .project-year h3 {
+    font-size: 1rem;
+  }
+  .project-summary p, .project-year p, .project-content p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Prevent horizontal scroll everywhere */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}

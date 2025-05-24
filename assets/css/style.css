@@ -658,9 +658,14 @@ a {
 /* =============================
    RESPONSIVE DESIGN (Mobile)
    ============================= */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
 @media (max-width: 900px) {
   .container {
-    max-width: 95vw;
+    max-width: 100vw;
     padding: 0 2vw;
   }
   .navbar {
@@ -668,22 +673,29 @@ a {
     align-items: flex-start;
     padding: 1rem 2vw;
     gap: 0.5rem;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .nav-links {
     gap: 1rem;
     font-size: 1rem;
+    width: 100vw;
+    flex-wrap: wrap;
   }
   .hero-content h1 {
-    font-size: 2.5rem;
-    letter-spacing: 0.2rem;
+    font-size: 2.2rem;
+    letter-spacing: 0.1rem;
+    word-break: break-word;
   }
   .hero-content p {
     font-size: 1.1rem;
   }
   .about-inner {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
     text-align: center;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .about-inner img {
     width: 90vw;
@@ -691,32 +703,42 @@ a {
     margin: 0 auto;
   }
   .about-text h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    word-break: break-word;
   }
   .projects .container {
     padding: 0 0.5rem;
+    max-width: 100vw;
   }
   .project-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .contact-inner {
-    max-width: 98vw;
+    max-width: 100vw;
     padding: 0 1vw;
+    box-sizing: border-box;
   }
   .contact-body {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .contact-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 1rem;
+    word-break: break-word;
   }
   .contact-form form {
     width: 100%;
+    box-sizing: border-box;
   }
   .site-footer p {
     font-size: 1rem;
+    word-break: break-word;
   }
 }
 
@@ -726,47 +748,63 @@ a {
     align-items: flex-start;
     padding: 0.75rem 1vw;
     gap: 0.25rem;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .logo {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    word-break: break-word;
   }
   .hero {
-    height: 60vh;
-    min-height: 320px;
+    height: 50vh;
+    min-height: 220px;
   }
   .hero-content h1 {
-    font-size: 1.5rem;
-    letter-spacing: 0.1rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+    word-break: break-word;
   }
   .about-inner img {
     width: 100vw;
     max-width: 220px;
   }
   .about-text h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    word-break: break-word;
   }
   .btn {
     padding: 0.5rem 1rem;
     font-size: 1rem;
   }
   .project-grid {
-    gap: 1rem;
+    gap: 0.7rem;
+    width: 100vw;
+    box-sizing: border-box;
   }
   .contact-inner {
     padding: 0 0.5vw;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
   .contact-title {
     font-size: 1rem;
+    word-break: break-word;
   }
   .contact-field label {
     font-size: 0.95rem;
+    word-break: break-word;
   }
   .contact-field input,
   .contact-field textarea {
     font-size: 1rem;
     padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
   .site-footer p {
     font-size: 0.9rem;
+    word-break: break-word;
   }
 }
+
+/* ...existing code... */
