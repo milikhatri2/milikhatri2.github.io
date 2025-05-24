@@ -389,6 +389,15 @@ a {
   margin: 0;
 }
 
+.resume-box-bordered {
+  border-width: 8px;
+  border-style: solid;
+}
+
+.resume-box-padded {
+  padding: 2rem 4rem;
+}
+
 /* ==================================================
        MAIN RESUME CONTENT (FULL-WIDTH PURPLE)
        ================================================== */
@@ -411,6 +420,31 @@ a {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
+}
+
+.section-title-uppercase {
+  text-transform: uppercase;
+}
+
+.section-title-lg {
+  font-size: 2rem;
+}
+
+.section-title-mb {
+  margin-bottom: 1rem;
+}
+
+.section-title-mt {
+  margin-top: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hr-wide {
+  margin: 1.5rem 0;
+  width: 55vw;
 }
 
 .resume-content p {
@@ -436,6 +470,18 @@ a {
 }
 
 .experience-item {
+  margin-bottom: 2rem;
+}
+
+.experience-item-mb {
+  margin-bottom: 2rem;
+}
+
+.mb-1-5 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-2 {
   margin-bottom: 2rem;
 }
 
@@ -591,4 +637,136 @@ a {
   object-fit: contain;
   /* also never crop thumbnails */
   border-radius: 2px;
+}
+
+.flex-col-gap-mb {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin-bottom: 3vh;
+}
+.text-left {
+  text-align: left;
+}
+.mb-1vh {
+  margin-bottom: 1vh;
+}
+.mb-2vh {
+  margin-bottom: 2vh;
+}
+
+/* =============================
+   RESPONSIVE DESIGN (Mobile)
+   ============================= */
+@media (max-width: 900px) {
+  .container {
+    max-width: 95vw;
+    padding: 0 2vw;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2vw;
+    gap: 0.5rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    font-size: 1rem;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  .about-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .about-inner img {
+    width: 90vw;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .about-text h2 {
+    font-size: 2rem;
+  }
+  .projects .container {
+    padding: 0 0.5rem;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .contact-inner {
+    max-width: 98vw;
+    padding: 0 1vw;
+  }
+  .contact-body {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .contact-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .contact-form form {
+    width: 100%;
+  }
+  .site-footer p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem 1vw;
+    gap: 0.25rem;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .hero {
+    height: 60vh;
+    min-height: 320px;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+  }
+  .about-inner img {
+    width: 100vw;
+    max-width: 220px;
+  }
+  .about-text h2 {
+    font-size: 1.2rem;
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  .project-grid {
+    gap: 1rem;
+  }
+  .contact-inner {
+    padding: 0 0.5vw;
+  }
+  .contact-title {
+    font-size: 1rem;
+  }
+  .contact-field label {
+    font-size: 0.95rem;
+  }
+  .contact-field input,
+  .contact-field textarea {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .site-footer p {
+    font-size: 0.9rem;
+  }
 }
