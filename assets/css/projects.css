@@ -207,13 +207,13 @@
 
 @media (max-width: 900px) {
   .project-hero {
-    height: 40vh;
-    min-height: 180px;
+    height: 60vh; /* Changed height */
+    min-height: 300px; /* Added min-height */
   }
   .project-hero img {
-    object-fit: cover;
-    width: 100vw;
-    height: 100%;
+    object-fit: cover; /* Ensured object-fit is cover */
+    width: 100%; /* Ensured width is 100% */
+    height: 100%; /* Ensured height is 100% */
     left: 0;
   }
   .detail-project-content {
@@ -231,12 +231,12 @@
   .info-row {
     flex-direction: column;
     gap: 0.7rem;
-    width: 100vw;
+    width: 100vw; /* Keeping parent as 100vw as per original structure, child will be 100% of this */
     box-sizing: border-box;
     align-items: stretch;
   }
   .project-meta {
-    width: 100vw;
+    width: 100%; /* Changed from 100vw to 100% */
     gap: 0.3rem;
     justify-content: center;
     box-sizing: border-box;
@@ -244,7 +244,7 @@
   .summary-year {
     flex-direction: column;
     gap: 0.7rem;
-    width: 100vw;
+    width: 100%; /* Changed from 100vw to 100% */
     margin-right: 0;
     box-sizing: border-box;
     align-items: center;
@@ -265,8 +265,9 @@
     box-sizing: border-box;
   }
   .project-content .container {
-    width: 100vw;
-    padding: 0 2vw;
+    width: 90%; /* Changed width */
+    padding: 0 2vw; /* Kept padding */
+    margin: 0 auto; /* Added margin auto */
     box-sizing: border-box;
   }
   .section-title {
@@ -307,8 +308,8 @@
 
 @media (max-width: 600px) {
   .project-hero {
-    height: 28vh;
-    min-height: 100px;
+    height: 40vh; /* Further reduced height for 600px */
+    min-height: 250px; /* Adjusted min-height for 600px */
   }
   .detail-project-content h1 {
     font-size: 1.2rem;
@@ -322,10 +323,24 @@
   .project-summary p, .project-year p, .project-content p {
     font-size: 0.95rem;
   }
+
+  /* Added rules for .project-content .container at 600px */
+  .project-content .container {
+    width: 95%; /* Changed width */
+    padding: 0 2vw; /* Kept padding */
+    margin: 0 auto; /* Added margin auto */
+    box-sizing: border-box; /* Ensured box-sizing */
+  }
+
+  /* Added rule for #backProjectButton at 600px */
+  #backProjectButton {
+    padding: .6rem 1.2rem; /* Reduced padding */
+  }
 }
 
 /* Prevent horizontal scroll everywhere */
-html, body {
+html,
+body {
   max-width: 100vw;
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
 }
