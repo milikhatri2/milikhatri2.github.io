@@ -684,7 +684,7 @@ body {
   .container {
     max-width: 100vw;
     padding: 0 2vw;
-    margin-top: 20vh;
+    /*margin-top: 20vh;*/
   }
 
   .navbar {
@@ -719,6 +719,10 @@ body {
     font-size: 1.1rem;
   }
 
+  .about {
+    padding-bottom: 1.4rem;
+  }
+  
   .about-inner {
     flex-direction: column;
     gap: 1.2rem;
@@ -730,13 +734,12 @@ body {
   }
 
   .about-inner img {
-    width: 90vw;
-    max-width: 350px;
-    margin: 0 auto;
+    display: none;
   }
 
   .about-text h2 {
     font-size: 1.5rem;
+    padding-top: 1.4rem;
     word-break: break-word;
   }
 
@@ -817,7 +820,7 @@ body {
   }
 
   .hero {
-    height: 50vh;
+    height: 100vh;
     min-height: 220px;
   }
 
@@ -900,4 +903,13 @@ body {
   .detail-content h1 {
     font-size: 1.2rem; /* Further reduced font-size */
   }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
 }
