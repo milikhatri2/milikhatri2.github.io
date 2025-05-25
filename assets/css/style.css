@@ -377,7 +377,7 @@ a {
 .resume-box {
   border: 12px solid var(--black);
   padding: 1.5rem 3rem; /* Reduced padding */
-  max-width: 90%; /* Adjusted max-width */
+  max-width: 55vw; /* Adjusted max-width */
   width: 100%;
   text-align: center;
   margin-top: 3rem;
@@ -408,7 +408,7 @@ a {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: var(--purple-bg);
-  padding: 4rem 1rem;
+  padding: 4rem 1rem 2rem;
 }
 
 .resume-content .container {
@@ -458,7 +458,7 @@ a {
 .resume-content hr {
   border: none;
   border-top: 1px solid #666;
-  width: 80%;
+  width: 55vw;
   margin: 2rem auto;
 }
 
@@ -500,7 +500,7 @@ a {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: var(--purple-bg);
-  padding: 4rem 0;
+  padding: 0 0 2rem;
   text-align: center;
 }
 
@@ -531,11 +531,8 @@ a {
 .project-hero-gallery {
   position: relative;
   overflow: hidden;
-  width: 100%; /* Changed width */
-  max-width: 800px; /* Added max-width */
-  height: auto; /* Changed height to auto */
-  aspect-ratio: 16/9; /* Added aspect-ratio */
-  /* optional cap so it never gets *too* tall */
+  max-width: 40vw; /* Added max-width */
+  height: 60vh; /* Changed height to auto */
   margin: 6rem auto 2rem;
   /* keep your spacing from nav & below */
   background: none;
@@ -558,8 +555,8 @@ a {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.3) 30%,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.0) 100%,
       transparent 60%);
   pointer-events: none;
 }
@@ -907,9 +904,4 @@ body {
 
 html, body {
   overflow-x: hidden;
-}
-
-* {
-  box-sizing: border-box;
-  max-width: 100%;
 }
