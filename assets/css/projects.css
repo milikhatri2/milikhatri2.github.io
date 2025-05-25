@@ -207,7 +207,7 @@
 
 @media (max-width: 900px) {
   .project-hero {
-    height: 60vh; /* Changed height */
+    /* height: 60vh; Changed height */
     min-height: 300px; /* Added min-height */
   }
   .project-hero img {
@@ -217,7 +217,8 @@
     left: 0;
   }
   .detail-project-content {
-    position: static;
+    /* position: static; */
+    left:0rem;
     width: 100vw;
     padding: 1rem 2vw;
     box-sizing: border-box;
@@ -229,6 +230,7 @@
     word-break: break-word;
   }
   .info-row {
+    display: none;
     flex-direction: column;
     gap: 0.7rem;
     width: 100vw; /* Keeping parent as 100vw as per original structure, child will be 100% of this */
@@ -308,7 +310,7 @@
 
 @media (max-width: 600px) {
   .project-hero {
-    height: 40vh; /* Further reduced height for 600px */
+    /* height: 40vh; /* Further reduced height for 600px */
     min-height: 250px; /* Adjusted min-height for 600px */
   }
   .detail-project-content h1 {
