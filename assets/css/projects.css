@@ -218,7 +218,8 @@
   }
   .detail-project-content {
     /* position: static; */
-    left:0rem;
+    top: 20rem;
+    left: 0rem;
     width: 100vw;
     padding: 1rem 2vw;
     box-sizing: border-box;
@@ -268,7 +269,7 @@
   }
   .project-content .container {
     width: 90%; /* Changed width */
-    padding: 0 2vw; /* Kept padding */
+    padding: 0 3vw; /* Kept padding */
     margin: 0 auto; /* Added margin auto */
     box-sizing: border-box;
   }
@@ -314,7 +315,7 @@
     min-height: 250px; /* Adjusted min-height for 600px */
   }
   .detail-project-content h1 {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
   .section-title {
     font-size: 1rem;
@@ -329,7 +330,7 @@
   /* Added rules for .project-content .container at 600px */
   .project-content .container {
     width: 95%; /* Changed width */
-    padding: 0 2vw; /* Kept padding */
+    padding: 0 4vw; /* Kept padding */
     margin: 0 auto; /* Added margin auto */
     box-sizing: border-box; /* Ensured box-sizing */
   }
