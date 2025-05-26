@@ -684,17 +684,24 @@ body {
     max-width: 100%;
   }
 
+  #learnMoreBtn {
+    top: 0.25rem;
+    z-index: 5;
+  }
+
+  .project-carousel {
+    margin-top: 1.5rem;
+    /* extra space below the hero */
+    display: block;
+    /* ensure it isn’t accidentally hidden */
+
+  }
+
   .project-hero-gallery {
-    position: static;
-    /* This was already here and is fine */
-    width: 90%;
-    /* Set width for 900px */
-    height: auto;
-    /* Set height to auto for 900px */
-    aspect-ratio: 16/9;
-    /* Set aspect-ratio for 900px */
-    margin: 2rem auto 1rem;
-    /* Adjusted margin for 900px */
+    position: relative;
+    /* restore a positioning context so your absolute children sit inside it */
+    margin-top: 10vh;
+    max-width: none;
   }
 
   .container {
@@ -704,9 +711,11 @@ body {
   }
 
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.75rem 2vw;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0.75rem 3vw;
     /* Adjusted padding */
     gap: 0.5rem;
     width: 100vw;
@@ -715,12 +724,32 @@ body {
     /* Reduced max-height */
   }
 
+  .menu-toggle {
+    display: block !important;
+  }
+
   .nav-links {
+    display: none;
+    /* hide by default */
+    position: absolute;
+    /* pull out of flow */
+    top: 100%;
+    /* right under the bar */
+    left: 0;
+    right: 0;
+    /* full width */
+    background: var(--white);
+    flex-direction: column;
     gap: 1rem;
-    font-size: 1rem;
-    /* Adjusted font size for 900px */
-    width: 100vw;
-    flex-wrap: wrap;
+    padding: 1rem 2vw;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    /* above page content */
+  }
+
+  .nav-links.open {
+    display: flex;
+    /* show when JS toggles it */
   }
 
   /* Added .logo font size for 900px */
@@ -840,7 +869,7 @@ body {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 0.75rem 1vw;
+    padding: 0.75rem 3vw;
     gap: 0.25rem;
     width: 100vw;
     box-sizing: border-box;
@@ -944,12 +973,43 @@ body {
 
   /* Added rules for .detail-content h1 at 600px */
   .detail-content h1 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     /* Further reduced font-size */
   }
 }
 
+@media (max-width: 600px) {
+  #learnMoreBtn {
+    text-align: center;
+    top: 20rem;
+    left: 0.5rem;
+    width: auto;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .project-hero-gallery img {
+    width: 100%;
+    height: auto;
+    /* Ensured height is auto for better responsiveness */
+  }
+
+  .project-hero-gallery::after {
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.2) 100%);
+    /* Adjusted gradient for better visibility */
+  }
+}
+
+
 html,
 body {
   overflow-x: hidden;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
