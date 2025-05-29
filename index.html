@@ -146,29 +146,37 @@
         </div>
         <div class="contact-form">
           <form action="https://formspree.io/f/mblonnzn" method="POST">
+            <!-- Honeypot spam trap -->
             <input type="text" name="_gotcha" style="display:none" />
+
             <div class="contact-field">
               <label for="first">First Name *</label>
-              <input id="first" type="text" required />
+              <input id="first" name="first" type="text" required />
             </div>
+
             <div class="contact-field">
               <label for="last">Last Name *</label>
-              <input id="last" type="text" required />
+              <input id="last" name="last" type="text" required />
             </div>
+
             <div class="contact-field">
               <label for="email">Email *</label>
-              <input id="email" type="email" required />
+              <input id="email" name="email" type="email" required />
             </div>
+
             <div class="contact-field">
               <label for="subject">Subject</label>
-              <input id="subject" type="text" />
+              <input id="subject" name="subject" type="text" />
             </div>
+
             <div class="contact-field message-field">
               <label for="message">Message</label>
-              <textarea id="message" rows="5"></textarea>
+              <textarea id="message" name="message" rows="5"></textarea>
             </div>
+
             <button type="submit">Submit</button>
           </form>
+
         </div>
       </div>
     </div>
