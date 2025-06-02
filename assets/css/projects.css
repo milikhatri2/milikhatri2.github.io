@@ -149,6 +149,12 @@
   padding: 0 1rem;
 }
 
+.gallery-wrapper {
+  width: 55vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .section-title {
   text-align: center;
   text-transform: uppercase;
@@ -199,6 +205,11 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   /* optional: soft shadow */
   margin: 0.5rem;
+}
+
+#gallery {
+    background-color: var(--purple-bg);
+    padding: 4vw; /* optional: adds top/bottom space */
 }
 
 /* ==================================================
