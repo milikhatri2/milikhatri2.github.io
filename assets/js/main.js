@@ -15,3 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav-links');
   if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('open'));
 });
+
+// Lightbox functionality for gallery images
+document.querySelectorAll('.gallery-container img').forEach(img => {
+  img.addEventListener('click', function () {
+    document.getElementById('lightboxImg').src = this.src;
+    document.getElementById('lightbox').style.display = 'flex';
+  });
+});
+document.getElementById('lightboxClose').onclick = function () {
+  document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lightboxImg').src = '';
+};
+// Close lightbox when clicking outside the image
+document.getElementById('lightbox').onclick = function (e) {
+  if (e.target === this) {
+    this.style.display = 'none';
+    document.getElementById('lightboxImg').src = '';
+  }
+};
