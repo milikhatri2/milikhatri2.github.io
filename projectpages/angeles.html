@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Angeles de Medellín – DesignedByMili</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Case study of the Angeles de Medellín Foundation website redesign by Mili Khatri, detailing the UX/UI design process, Figma prototyping, and responsive development.">
+    <meta name="keywords"
+        content="Mili Khatri, Angeles de Medellín, website redesign, UX/UI design, Figma, Next.js, non-profit, case study, portfolio">
+    <title>Angeles de Medellín Website Redesign | Mili Khatri Portfolio</title>
+    <link rel="icon" type="image/png" href="../assets/images/Aboutme.png">
 
     <!-- your global styles -->
     <link rel="stylesheet" href="../assets/css/style.css" />
@@ -12,6 +17,7 @@
     <link rel="stylesheet" href="../assets/css/projects.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
@@ -20,6 +26,9 @@
     <header class="site-header">
         <nav class="navbar container">
             <a href="../index.html" class="logo">DesignedBy<span>Mili</span></a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars" aria-label="Open menu"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../resume.html">Resume</a></li>
@@ -30,7 +39,8 @@
 
     <!-- HERO -->
     <section class="project-hero">
-        <img src="../assets/images/AngelesDeMeddlin/ADMFoundation.png" alt="Angeles de Medellín Foundation Logo" />
+        <img src="../assets/images/AngelesDeMeddlin/ADMFoundation.png"
+            alt="Angeles de Medellín Foundation Logo By Mili Khatri" />
         <div class="detail-project-content">
 
             <div class="title-content">
@@ -78,11 +88,13 @@
                     clear information hierarchy. It was not optimized for mobile use and made it difficult for users to
                     engage with the organization, whether through donations, volunteering, or simply learning about
                     their work.</p>
-                <ul>
-                    <li><a href="https://web-angels-zeta.vercel.app/"><u>Angeles de Medellín Foundation Live Link</u></a></li>
-                    <li><a href="https://www.figma.com/design/Egxderbnwbgf05VEyTnB9o/Web-Angels?node-id=97-457&t=RpRSuBnzZjPtW54s-1"><u>Angeles de Medellín Foundation Figma Link</u></a></li>
-                    <li><a href="#"><u>Angeles de Medellín Foundation Presentation</u></a></li>
-                </ul>
+                <div class="flex-col-gap-mb">
+                    <a href="https://web-angels-zeta.vercel.app/"><u>Angeles de Medellín Foundation Live Link</u></a>
+                    <a
+                        href="https://www.figma.com/design/Egxderbnwbgf05VEyTnB9o/Web-Angels?node-id=97-457&t=RpRSuBnzZjPtW54s-1"><u>Angeles
+                            de Medellín Foundation Figma Link</u></a>
+                    <a href="#"><u>Angeles de Medellín Foundation Presentation</u></a>
+                </div>
                 <p>We began by analyzing the original site and identifying pain points in navigation, layout, and user
                     flow. Our team also conducted a comparative review of similar nonprofit websites to define best
                     practices for content organization and call-to-action placement.</p>
@@ -94,20 +106,19 @@
 
             <section id="outcome">
                 <h2 class="section-title">Outcome</h2>
-                <ul>
-                    <li>To address this, I created a new design direction grounded in accessibility, simplicity, and
-                        storytelling. My design process involved:
-                        <ul>
-                            <li>Wireframing key user flows to understand how users would navigate the site</li>
-                            <li>Creating multiple visual iterations of each major page (home, about us, donate, contact,
-                                gallery) to test layout options and content hierarchy</li>
-                            <li>User-testing my Figma prototypes with peers to gather feedback on clarity, navigation,
-                                and visual appeal</li>
-                            <li>Designing a mobile-first interface, ensuring the experience was seamless across all
-                                screen sizes</li>
-                            <li>Building a mini design system with components for buttons, headers, and content blocks
-                                to ensure consistency</li>
-                        </ul>
+                <ul>To address this, I created a new design direction grounded in accessibility, simplicity, and
+                    storytelling. My design process involved:
+                    <ul>
+                        <li>Wireframing key user flows to understand how users would navigate the site</li>
+                        <li>Creating multiple visual iterations of each major page (home, about us, donate, contact,
+                            gallery) to test layout options and content hierarchy</li>
+                        <li>User-testing my Figma prototypes with peers to gather feedback on clarity, navigation,
+                            and visual appeal</li>
+                        <li>Designing a mobile-first interface, ensuring the experience was seamless across all
+                            screen sizes</li>
+                        <li>Building a mini design system with components for buttons, headers, and content blocks
+                            to ensure consistency</li>
+                    </ul>
                     <p>Each page went through several rounds of iteration. For example, I experimented with
                         different homepage hero sections one centered on impact statistics, another focused on a
                         personal story to see which best communicated the foundation’s mission. </p>
@@ -118,20 +129,29 @@
                 </ul>
                 <hr />
             </section>
-
-            <section id="gallery">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-wrapper">
-                    <div class="gallery-container">
-                        <img src="../assets/images/AngelesDeMeddlin/DesktopVIew.png" alt="Flowchart 2" />
-                        <img src="../assets/images/AngelesDeMeddlin/DTVContactUs.png" alt="Flowchart 3" />
-                        <img src="../assets/images/AngelesDeMeddlin/DTVDonatePage.png" alt="Flowchart 1" />
-                        <img src="../assets/images/AngelesDeMeddlin/DTWAboutUs.png" alt="Flowchart 2" />
-                        <img src="../assets/images/AngelesDeMeddlin/MobileView.png" alt="Flowchart 3" />
-                        <img src="../assets/images/AngelesDeMeddlin/MVDonatePage.png" alt="Flowchart 3" />
-                    </div>
+        </div>
+        <section id="gallery">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-wrapper">
+                <div class="gallery-container">
+                    <img src="../assets/images/AngelesDeMeddlin/DesktopVIew.png"
+                        alt="Desktop homepage view of Angeles de Medellín website redesign by Mili Khatri" />
+                    <img src="../assets/images/AngelesDeMeddlin/DTVContactUs.png"
+                        alt="Desktop view of the Contact Us page - Angeles de Medellín redesign by Mili Khatri" />
+                    <img src="../assets/images/AngelesDeMeddlin/DTVDonatePage.png"
+                        alt="Desktop view of the Donate page - Angeles de Medellín redesign by Mili Khatri" />
+                    <img src="../assets/images/AngelesDeMeddlin/DTWAboutUs.png"
+                        alt="Desktop view of the About Us page - Angeles de Medellín redesign by Mili Khatri" />
+                    <img src="../assets/images/AngelesDeMeddlin/MobileView.png"
+                        alt="Mobile homepage view of Angeles de Medellín website redesign by Mili Khatri" />
+                    <img src="../assets/images/AngelesDeMeddlin/MVDonatePage.png"
+                        alt="Mobile view of the Donate page - Angeles de Medellín redesign by Mili Khatri" />
                 </div>
-            </section>
+            </div>
+        </section>
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img class="lightbox-content" id="lightboxImg" src="" alt="Full size gallery image" />
         </div>
     </main>
 
@@ -139,7 +159,7 @@
     <footer class="site-footer">
         <p>© 2025 by Mili Khatri</p>
     </footer>
-
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

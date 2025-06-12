@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Harmonize – DesignedByMili</title>
+    <link rel="icon" type="image/png" href="../assets/images/Aboutme.png">
 
     <!-- your global styles -->
     <link rel="stylesheet" href="../assets/css/style.css" />
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../assets/css/projects.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
@@ -20,6 +22,9 @@
     <header class="site-header">
         <nav class="navbar container">
             <a href="../index.html" class="logo">DesignedBy<span>Mili</span></a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars" aria-label="Open menu"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../resume.html">Resume</a></li>
@@ -30,7 +35,7 @@
 
     <!-- HERO -->
     <section class="project-hero">
-        <img src="../assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize Logo" />
+        <img src="../assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize Logo By Mili Khatri" />
         <div class="detail-project-content">
 
             <div class="title-content">
@@ -76,9 +81,13 @@
                     prototype using Figma, showcasing the app's design, functionality, and user interface. Collaborating
                     with two classmates, we researched music-learning apps, gaming-learning apps, and user preferences
                     to inform our design decisions.</p>
-                <ul>
-                    <li><a href="https://www.figma.com/proto/dkKHHXvepUeg3SSp3MhOdI/Harmonize?node-id=2-2&starting-point-node-id=2%3A2&t=Ehvf98BZt2T8OLA4-1"><u>Figma: Harmonize Prototype</u></a></li>
-                    <li><a href="https://docs.google.com/presentation/d/1NioJc5sVi1-4JsPmKpVOzIFPN0agZM3WHWMH46ii9BE/edit?usp=sharing"><u>Harmonize Presentation</u></a></li>
+                <ul class="list-style-none">
+                    <li><a
+                            href="https://www.figma.com/proto/dkKHHXvepUeg3SSp3MhOdI/Harmonize?node-id=2-2&starting-point-node-id=2%3A2&t=Ehvf98BZt2T8OLA4-1"><u>Figma:
+                                Harmonize Prototype</u></a></li>
+                    <li><a
+                            href="https://docs.google.com/presentation/d/1NioJc5sVi1-4JsPmKpVOzIFPN0agZM3WHWMH46ii9BE/edit?usp=sharing"><u>Harmonize
+                                Presentation</u></a></li>
                 </ul>
                 <p>While I focused on the design aspects, my group members played a crucial role in the research. The
                     project highlights my skills in creating intuitive, visually appealing prototypes and my ability to
@@ -102,21 +111,25 @@
                     challenges in music education.</p>
                 <hr />
             </section>
-
-            <section id="gallery">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-wrapper">
-                    <div class="gallery-container">
-                        <img src="../assets/images/Harmonize/HarmonizeMultiview.png" alt="Flowchart 1" />
-                        <img src="../assets/images/Harmonize/HAccountView.png" alt="Flowchart 2" />
-                        <img src="../assets/images/Harmonize/HCompleteView.png" alt="Flowchart 3" />
-                        <img src="../assets/images/Harmonize/HGameView.png" alt="Flowchart 1" />
-                        <img src="../assets/images/Harmonize/HPlanView.png" alt="Flowchart 2" />
-                        <img src="../assets/images/Harmonize/HRecordView.png" alt="Flowchart 3" />
-                        <img src="../assets/images/Harmonize/HZoomView.png" alt="Flowchart 3" />
-                    </div>
+        </div>
+        <section id="gallery">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-wrapper">
+                <div class="gallery-container">
+                    <img src="../assets/images/Harmonize/HarmonizeMultiview.png"
+                        alt="Harmonize Multiview By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HAccountView.png" alt="H Account View By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HCompleteView.png" alt="H Complete View By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HGameView.png" alt="H Game View By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HPlanView.png" alt="H Plan View By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HRecordView.png" alt="H Record View By Mili Khatri" />
+                    <img src="../assets/images/Harmonize/HZoomView.png" alt="H Zoom View By Mili Khatri" />
                 </div>
-            </section>
+            </div>
+        </section>
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img class="lightbox-content" id="lightboxImg" src="" alt="Full size gallery image" />
         </div>
     </main>
 
@@ -125,6 +138,7 @@
         <p>© 2025 by Mili Khatri</p>
     </footer>
 
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

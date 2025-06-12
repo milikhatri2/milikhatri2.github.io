@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Wander Glow – DesignedByMili</title>
+    <link rel="icon" type="image/png" href="../assets/images/Aboutme.png">
 
     <!-- your global styles -->
     <link rel="stylesheet" href="../assets/css/style.css" />
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../assets/css/projects.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
@@ -20,6 +22,9 @@
     <header class="site-header">
         <nav class="navbar container">
             <a href="../index.html" class="logo">DesignedBy<span>Mili</span></a>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars" aria-label="Open menu"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../resume.html">Resume</a></li>
@@ -30,7 +35,7 @@
 
     <!-- HERO -->
     <section class="project-hero">
-        <img src="../assets/images/WanderGlow/Wanderglow.png" alt="Wander Glow Logo" />
+        <img src="../assets/images/WanderGlow/Wanderglow.png" alt="Wander Glow Logo By Mili Khatri" />
         <div class="detail-project-content">
 
             <div class="title-content">
@@ -76,11 +81,13 @@
                     the aim of designing and launching a fully functional, mobile-responsive online store from scratch
                     using Next.js and Figma. This project showcases my ability to combine visual design and development
                     practices while aligning business strategy with user needs.</p>
-                <ul>
-                    <li><a href="https://www.figma.com/design/PC0UK2XZ1Gp9Kswwpecyxw/Final-Project-IS218?t=l97YF7CJlAz4sa7V-1"><u>Figma: Wander Glow Design</u></a></li>
+                <ul class="list-style-none">
+                    <li><a
+                            href="https://www.figma.com/design/PC0UK2XZ1Gp9Kswwpecyxw/Final-Project-IS218?t=l97YF7CJlAz4sa7V-1"><u>Figma:
+                                Wander Glow Design</u></a></li>
                     <li><a href="https://wander-glow.vercel.app/"><u>Website: Wander Glow Candles</u></a></li>
                 </ul>
-                <ul>
+                <ul class="list-style-none">
                     <li>Design a visually appealing, conversion-focused website for a lifestyle candle brand</li>
                     <li>Ensure the site is fully responsive, accessible, and optimized for both mobile and desktop users
                     </li>
@@ -88,6 +95,7 @@
                         marketing</li>
                     <li>Translate real-world user needs into functional design through research-backed decisions</li>
                 </ul>
+                <hr />
             </section>
 
             <section id="outcome">
@@ -146,18 +154,22 @@
                     front-end knowledge to bring a branded digital product to life.</p>
                 <hr />
             </section>
-            <section id="gallery">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-wrapper">
-                    <div class="gallery-container">
-                        <img src="../assets/images/WanderGlow/WGMobileView.png" alt="Flowchart 1" />
-                        <img src="../assets/images/WanderGlow/WGDesktopView.png" alt="Flowchart 2" />
-                        <img src="../assets/images/WanderGlow/WGMobileView.png" alt="Flowchart 3" />
-                        <img src="../assets/images/WanderGlow/WGShopView.png" alt="Flowchart 1" />
-                        <img src="../assets/images/WanderGlow/WGAlerts.png" alt="Flowchart 2" />
-                    </div>
+        </div>
+        <section id="gallery">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-wrapper">
+                <div class="gallery-container">
+                    <img src="../assets/images/WanderGlow/WGMobileView.png" alt="WG Mobile View By Mili Khatri" />
+                    <img src="../assets/images/WanderGlow/WGDesktopView.png" alt="WG Desktop View By Mili Khatri" />
+                    <img src="../assets/images/WanderGlow/WGMobileView.png" alt="WG Mobile View By Mili Khatri" />
+                    <img src="../assets/images/WanderGlow/WGShopView.png" alt="WG Shop View By Mili Khatri" />
+                    <img src="../assets/images/WanderGlow/WGAlerts.png" alt="WG Alerts By Mili Khatri" />
                 </div>
-            </section>
+            </div>
+        </section>
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img class="lightbox-content" id="lightboxImg" src="" alt="Full size gallery image" />
         </div>
     </main>
 
@@ -165,7 +177,7 @@
     <footer class="site-footer">
         <p>© 2025 by Mili Khatri</p>
     </footer>
-
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

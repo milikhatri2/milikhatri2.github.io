@@ -3,17 +3,36 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Home – DesignedByMili</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio of Mili Khatri, a UX/UI designer with a focus on web and product design. View case studies, design work, and contact info.">
+  <meta name="keywords"
+    content="Mili Khatri, UX/UI Designer, Web Designer, Portfolio, Product Design, New Jersey, NJIT">
+  <meta name="author" content="Mili Khatri">
+  <title>Mili Khatri - UX/UI Designer & Researcher Portfolio | Home</title>
+  <link rel="icon" type="image/png" href="assets/images/Aboutme.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "author": {
+    "@type": "Person",
+    "name": "Mili Khatri",
+    "url": "https://milikhatri.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/milikhatri"
+    ],
+    "jobTitle": "UX/UI Designer"
+  }
+</script>
+
 </head>
 
 <body>
@@ -25,6 +44,10 @@
   <header class="site-header">
     <nav class="navbar container">
       <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
+      <div class="menu-toggle">
+        <i class="fa-solid fa-bars" aria-label="Open menu"></i>
+      </div>
+
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="resume.html">Resume</a></li>
@@ -44,7 +67,7 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-inner">
-      <img src="assets/images/Aboutme.png" alt="Portrait of me" />
+      <img src="assets/images/Aboutme.png" alt="Mili Khatri Portrait" />
       <div class="about-text">
         <h2>About Me!</h2>
         <p>
@@ -65,35 +88,35 @@
 
   <!-- PROJECTS -->
   <section class="projects">
-    <div class="container">
+    <div class="projects-container container">
       <h2>Some Recent Works</h2>
       <div class="project-grid">
         <a href="projectpages/angeles.html" class="project">
-          <img src="assets/images/AngelesDeMeddlin/ADMFoundation.png" alt="Angeles de Medellin" />
+          <img src="assets/images/AngelesDeMeddlin/ADMFoundation.png" alt="Angeles de Medellin By Mili Khatri" />
           <div class="overlay">Angeles de Medellin</div>
         </a>
         <a href="projectpages/fooddistribution.html" class="project">
-          <img src="assets/images/FoodDistribution/FoodDistribution.png" alt="Food Distribution" />
+          <img src="assets/images/FoodDistribution/FoodDistribution.png" alt="Food Distribution By Mili Khatri" />
           <div class="overlay">Food Distribution</div>
         </a>
         <a href="projectpages/allbakedup.html" class="project">
-          <img src="assets/images/AllBakedUp/AllBakedUp.png" alt="AllBakedUp" />
+          <img src="assets/images/AllBakedUp/AllBakedUp.png" alt="AllBakedUp By Mili Khatri" />
           <div class="overlay">All Baked Up</div>
         </a>
         <a href="projectpages/harmonize.html" class="project">
-          <img src="assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize" />
+          <img src="assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize By Mili Khatri" />
           <div class="overlay">Harmonize</div>
         </a>
         <a href="projectpages/riva.html" class="project">
-          <img src="assets/images/Riva/Riva.png" alt="Riva" />
+          <img src="assets/images/Riva/Riva.png" alt="Riva By Mili Khatri" />
           <div class="overlay">Riva</div>
         </a>
         <a href="projectpages/springvoyage.html" class="project">
-          <img src="assets/images/SpringVoyage/SpringVoyage.png" alt="SpringVoyage" />
+          <img src="assets/images/SpringVoyage/SpringVoyage.png" alt="SpringVoyage By Mili Khatri" />
           <div class="overlay">Spring Voyage</div>
         </a>
         <a href="projectpages/wanderglow.html" class="project">
-          <img src="assets/images/WanderGlow/Wanderglow.png" alt="WanderGlow" />
+          <img src="assets/images/WanderGlow/Wanderglow.png" alt="WanderGlow By Mili Khatri" />
           <div class="overlay">Wander Glow</div>
         </a>
       </div>
@@ -108,7 +131,6 @@
         <h2>Get In Touch!</h2>
       </div>
     </div>
-
     <!-- Narrowed wrapper under the box -->
     <div class="contact-inner">
       <div class="contact-body">
@@ -118,7 +140,6 @@
             Tel: 201-637-4875<br>
             DesignedByMiliK@gmail.com
           </p>
-
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -127,37 +148,39 @@
             <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
           </div>
         </div>
-
-
         <div class="contact-form">
-          <form>
+          <form action="https://formspree.io/f/mblonnzn" method="POST">
+            <!-- Honeypot spam trap -->
+            <input type="text" name="_gotcha" style="display:none" />
+
             <div class="contact-field">
               <label for="first">First Name *</label>
-              <input id="first" type="text" required />
+              <input id="first" name="first" type="text" required />
             </div>
 
             <div class="contact-field">
               <label for="last">Last Name *</label>
-              <input id="last" type="text" required />
+              <input id="last" name="last" type="text" required />
             </div>
 
             <div class="contact-field">
               <label for="email">Email *</label>
-              <input id="email" type="email" required />
+              <input id="email" name="email" type="email" required />
             </div>
 
             <div class="contact-field">
               <label for="subject">Subject</label>
-              <input id="subject" type="text" />
+              <input id="subject" name="subject" type="text" />
             </div>
 
             <div class="contact-field message-field">
               <label for="message">Message</label>
-              <textarea id="message" rows="5"></textarea>
+              <textarea id="message" name="message" rows="5"></textarea>
             </div>
 
             <button type="submit">Submit</button>
           </form>
+
         </div>
       </div>
     </div>
@@ -169,6 +192,15 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted || (window.performance && window.performance.getEntriesByType("navigation")[0]?.type === "back_forward")) {
+        // Clear the form on back/forward navigation
+        const form = document.querySelector('form');
+        if (form) form.reset();
+      }
+    });
+  </script>
 </body>
 
 </html>
