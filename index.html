@@ -19,17 +19,18 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "author": {
-    "@type": "Person",
-    "name": "Mili Khatri",
-    "url": "https://milikhatri.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/milikhatri"
-    ],
-    "jobTitle": "UX/UI Designer"
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "author": {
+      "@type": "Person",
+      "name": "Mili Khatri",
+      "url": "https://milikhatri.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/milikhatri"
+      ],
+      "jobTitle": "UX/UI Designer"
+    }
   }
 </script>
 
@@ -43,7 +44,7 @@
   <!-- NAVIGATION -->
   <header class="site-header">
     <nav class="navbar container">
-      <a href="index.html" class="logo">DesignedBy<span>Mili</span></a>
+      <a href="index.html" class="logo">Mili Khatri<span> Design</span></a>
       <div class="menu-toggle">
         <i class="fa-solid fa-bars" aria-label="Open menu"></i>
       </div>
@@ -85,9 +86,33 @@
       </div>
     </div>
   </section>
+  <!-- PROJECTS -->
+  <section class="projects projects--home">
+    <div class="container">
+      <h2 class="projects-title">Some Recent Works</h2>
+
+      <div class="projects-grid">
+        <!-- Angeles de Medellín -->
+        <article class="project-card">
+          <a class="project-media" href="projectpages/angeles.html">
+            <img class="contain" src="assets/images/AngelesDeMeddlin/ADMlogo.png"
+              alt="Angeles de Medellín" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Harmonize -->
+        <article class="project-card">
+          <a class="project-media" href="projectpages/harmonize.html">
+            <img src="assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize"
+              loading="lazy" />
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- PROJECTS -->
-  <section class="projects">
+  <!-- <section class="projects">
     <div class="projects-container container">
       <h2>Some Recent Works</h2>
       <div class="project-grid">
@@ -125,24 +150,82 @@
         </a>
       </div>
     </div>
-  </section>
+  </section> -->
+  <section class="contact contact--modern" id="contact">
+  <div class="container">
+    <header class="contact-head">
+      <h2>Get in touch</h2>
+      <p>Have a project or just want to say hi? I’d love to hear from you.</p>
+    </header>
 
-  <!-- CONTACT -->
+    <div class="contact-grid">
+      <!-- Left: details -->
+      <aside class="contact-card">
+        <h3>Contact</h3>
+        <p>
+          Cell: <a href="tel:12016374875">201-637-4875</a><br>
+          <a href="mailto:mili@milikhatri.com">mili@milikhatri.com</a>
+        </p>
+
+        <!-- Optional socials (uncomment to show)
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/milikhatri" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        -->
+      </aside>
+
+      <!-- Right: form -->
+      <form class="contact-form card" action="https://formspree.io/f/mblonnzn" method="POST" novalidate>
+        <!-- Honeypot -->
+        <input type="text" name="_gotcha" hidden />
+
+        <div class="grid-2">
+          <div class="contact-field">
+            <label for="first">First Name *</label>
+            <input id="first" name="first" type="text" required />
+          </div>
+
+          <div class="contact-field">
+            <label for="last">Last Name *</label>
+            <input id="last" name="last" type="text" required />
+          </div>
+
+          <div class="contact-field">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <div class="contact-field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" />
+          </div>
+
+          <div class="contact-field message-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</section>
+  <!-- CONTACT
   <section class="contact" id="contact">
-    <!-- Heading box (re-used resume-box) -->
     <div class="container resume-header">
       <div class="resume-box">
         <h2>Get In Touch!</h2>
       </div>
     </div>
-    <!-- Narrowed wrapper under the box -->
     <div class="contact-inner">
       <div class="contact-body">
         <div class="contact-info">
           <h3 class="contact-title">Contact</h3>
           <p>
-            Tel: 201-637-4875<br>
-            DesignedByMiliK@gmail.com
+            Cell: 201-637-4875<br>
+            mili@milikhatri.com
           </p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -154,7 +237,6 @@
         </div>
         <div class="contact-form">
           <form action="https://formspree.io/f/mblonnzn" method="POST">
-            <!-- Honeypot spam trap -->
             <input type="text" name="_gotcha" style="display:none" />
 
             <div class="contact-field">
@@ -188,7 +270,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section>-->
 
   <!-- FOOTER -->
   <footer class="site-footer">

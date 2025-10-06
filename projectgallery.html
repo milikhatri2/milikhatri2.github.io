@@ -4,16 +4,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Project Detail – DesignedByMili</title>
+    <title>Projects – DesignedByMili</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="icon" type="image/png" href="assets/images/Aboutme.png">
+    <link rel="icon" type="image/png" href="assets/images/Aboutme.png" />
 
+    <!-- Global styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+        /* Adjust ADM logo to fit nicely in card */
+        .project-media img {
+            object-fit: contain !important;
+            padding: 1rem;
+            background: #fff;
+        }
+    </style>
 </head>
 
 <body>
-
     <!-- NAV -->
     <header class="site-header">
         <nav class="navbar">
@@ -29,8 +38,60 @@
         </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="project-hero-gallery">
+    <main class="container projects-wrap">
+        <h1 class="projects-title">My Projects</h1>
+
+        <section class="projects-grid">
+            <article class="project-card">
+                <a class="project-media" href="projectpages/angeles.html">
+                    <img src="assets/images/AngelesDeMeddlin/ADMlogo.png"
+                        alt="Angeles de Medellín website redesign preview" loading="lazy" />
+                </a>
+                <div class="project-meta">
+                    <span class="project-tag">Web Design</span>
+                    <h2 class="project-name">
+                        <a href="projectpages/angeles.html">Angeles de Medellín Website Redesign</a>
+                    </h2>
+
+                    <div class="link-buttons">
+                        <a class="btn-link btn-ghost" href="projectpages/angeles.html">📖 Case Study</a>
+                        <!-- 
+            <a class="btn-link" href="https://web-angels-zeta.vercel.app/" target="_blank" rel="noopener">🔗 Live Site</a>
+            <a class="btn-link btn-ghost"
+              href="https://www.figma.com/design/Egxderbnwbgf05VEyTnB9o/Web-Angels?node-id=97-457&t=RpRSuBnzZjPtW54s-1"
+              target="_blank" rel="noopener">🎨 Figma</a>
+            -->
+                    </div>
+                </div>
+            </article>
+            <article class="project-card">
+                <a class="project-media" href="projectpages/harmonize.html">
+                    <img src="assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize app prototype preview"
+                        loading="lazy" />
+                </a>
+                <div class="project-meta">
+                    <span class="project-tag">Product / App</span>
+                    <h2 class="project-name">
+                        <a href="projectpages/harmonize.html">Harmonize – Gamified Music Learning</a>
+                    </h2>
+
+                    <div class="link-buttons">
+                        <a class="btn-link btn-ghost" href="projectpages/harmonize.html">📖 Case Study</a>
+                        <!-- 
+            <a class="btn-link btn-ghost" href="#" target="_blank" rel="noopener">🎨 Figma</a>
+            -->
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 by Mili Khatri</p>
+    </footer>
+
+
+    <!-- <section class="project-hero-gallery">
         <img id="mainImage" src="" alt="" />
         <a id="learnMoreBtn" href="#">Learn More</a>
         <div class="detail-content container">
@@ -39,19 +100,12 @@
         </div>
     </section>
 
-    <!-- SCROLLABLE CAROUSEL -->
     <section class="project-carousel">
         <div class="carousel-track" id="carouselTrack">
-            <!-- JS will inject thumbnails here -->
         </div>
-    </section>
+    </section> -->
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <p>© 2025 by Mili Khatri</p>
-    </footer>
-
-    <script>
+    <!-- <script>
         const projectData = {
             angeles: {
                 title: 'Angeles de Medellin',
@@ -110,6 +164,7 @@
         function loadHero(id) {
             const p = projectData[id];
             if (!p) return;
+
             document.getElementById('mainImage').src = p.image;
             document.getElementById('mainImage').alt = p.title;
             document.getElementById('projectTitle').textContent = p.title;
@@ -123,12 +178,13 @@
         function initCarousel() {
             const track = document.getElementById('carouselTrack');
             track.innerHTML = '';
-            for (let [id, p] of Object.entries(projectData)) {
+
+            for (const [id, p] of Object.entries(projectData)) {
                 const d = document.createElement('div');
                 d.className = 'thumbnail';
                 d.dataset.id = id;
                 d.innerHTML = `<img src="${p.image}" alt="${p.title}">`;
-                d.addEventListener('click', _ => {
+                d.addEventListener('click', () => {
                     location.hash = id;
                     loadHero(id);
                 });
@@ -140,10 +196,12 @@
             initCarousel();
             loadHero(getProjectId());
         });
+
         window.addEventListener('hashchange', () => {
             loadHero(getProjectId());
         });
-    </script>
+    </script> -->
+
     <script src="assets/js/main.js"></script>
 </body>
 
