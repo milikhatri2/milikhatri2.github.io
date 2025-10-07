@@ -52,7 +52,7 @@
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="projectgallery.html">Projects</a></li>
+        <!-- <li><a href="projectgallery.html">Projects</a></li> -->
       </ul>
     </nav>
   </header>
@@ -86,30 +86,55 @@
       </div>
     </div>
   </section>
-  <!-- PROJECTS -->
-  <section class="projects projects--home">
-    <div class="container">
-      <h2 class="projects-title">Some Recent Works</h2>
+<!-- PROJECTS -->
+<section class="projects projects--home">
+  <div class="container">
+    <h2 class="projects-title">Some Recent Works</h2>
 
-      <div class="projects-grid">
-        <!-- Angeles de Medellín -->
-        <article class="project-card">
-          <a class="project-media" href="projectpages/angeles.html">
-            <img class="contain" src="assets/images/AngelesDeMeddlin/ADMlogo.png"
-              alt="Angeles de Medellín" loading="lazy" />
-          </a>
-        </article>
+    <div class="projects-grid">
+      <!-- Angeles de Medellín -->
+      <article class="project-card">
+        <a class="project-media" href="projectpages/angeles.html">
+          <img
+            class="contain"
+            src="assets/images/AngelesDeMeddlin/ADMFoundation.png"
+            alt="Angeles de Medellín website redesign"
+            loading="lazy"
+          />
+        </a>
+        <div class="project-meta">
+          <span class="project-tag">Web Design</span>
+          <h3 class="project-name">
+            <a href="projectpages/angeles.html">Angeles de Medellín Website Redesign</a>
+          </h3>
+          <div class="link-buttons">
+            <a class="btn-link btn-ghost" href="projectpages/angeles.html">📖 Case Study</a>
+          </div>
+        </div>
+      </article>
 
-        <!-- Harmonize -->
-        <article class="project-card">
-          <a class="project-media" href="projectpages/harmonize.html">
-            <img src="assets/images/Harmonize/Harmonize.jpeg" alt="Harmonize"
-              loading="lazy" />
-          </a>
-        </article>
-      </div>
+      <!-- Harmonize -->
+      <article class="project-card">
+        <a class="project-media" href="projectpages/harmonize.html">
+          <img
+            src="assets/images/Harmonize/Harmonize.jpeg"
+            alt="Harmonize – gamified music learning"
+            loading="lazy"
+          />
+        </a>
+        <div class="project-meta">
+          <span class="project-tag">Product / App</span>
+          <h3 class="project-name">
+            <a href="projectpages/harmonize.html">Harmonize – Gamified Music Learning</a>
+          </h3>
+          <div class="link-buttons">
+            <a class="btn-link btn-ghost" href="projectpages/harmonize.html">📖 Case Study</a>
+          </div>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- PROJECTS -->
   <!-- <section class="projects">
@@ -151,67 +176,64 @@
       </div>
     </div>
   </section> -->
-  <section class="contact contact--modern" id="contact">
+<!-- CONTACT -->
+<section class="contact contact--modern" id="contact">
   <div class="container">
     <header class="contact-head">
       <h2>Get in touch</h2>
       <p>Have a project or just want to say hi? I’d love to hear from you.</p>
     </header>
 
-    <div class="contact-grid">
-      <!-- Left: details -->
-      <aside class="contact-card">
-        <h3>Contact</h3>
-        <p>
-          Cell: <a href="tel:12016374875">201-637-4875</a><br>
-          <a href="mailto:mili@milikhatri.com">mili@milikhatri.com</a>
-        </p>
+    <!-- ONE unified white panel -->
+    <div class="contact-panel">
+      <div class="panel-grid">
+        <!-- Left: info -->
+        <aside class="contact-info-block">
+          <h3>Contact</h3>
+          <p>
+            Cell: <a href="tel:12016374875">201-637-4875</a><br>
+            <a href="mailto:mili@milikhatri.com">mili@milikhatri.com</a>
+          </p>
+        </aside>
 
-        <!-- Optional socials (uncomment to show)
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/in/milikhatri" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-        -->
-      </aside>
+        <!-- Right: form -->
+        <form class="contact-form" action="https://formspree.io/f/mblonnzn" method="POST" novalidate>
+          <input type="text" name="_gotcha" hidden />
 
-      <!-- Right: form -->
-      <form class="contact-form card" action="https://formspree.io/f/mblonnzn" method="POST" novalidate>
-        <!-- Honeypot -->
-        <input type="text" name="_gotcha" hidden />
+          <div class="grid-2">
+            <div class="contact-field">
+              <label for="first">First Name *</label>
+              <input id="first" name="first" type="text" required />
+            </div>
 
-        <div class="grid-2">
-          <div class="contact-field">
-            <label for="first">First Name *</label>
-            <input id="first" name="first" type="text" required />
+            <div class="contact-field">
+              <label for="last">Last Name *</label>
+              <input id="last" name="last" type="text" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" />
+            </div>
+
+            <div class="contact-field message-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6"></textarea>
+            </div>
           </div>
 
-          <div class="contact-field">
-            <label for="last">Last Name *</label>
-            <input id="last" name="last" type="text" required />
-          </div>
-
-          <div class="contact-field">
-            <label for="email">Email *</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <div class="contact-field">
-            <label for="subject">Subject</label>
-            <input id="subject" name="subject" type="text" />
-          </div>
-
-          <div class="contact-field message-field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="6"></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
+
   <!-- CONTACT
   <section class="contact" id="contact">
     <div class="container resume-header">
