@@ -172,11 +172,22 @@ body {
   background-color: var(--purple-bg);
 }
 
+.hero--ad{
+  /* update path to your image; path is relative to the CSS file */
+  background: url("../../Project_page/Untitled_design-5.png") center / cover no-repeat;
+  background-color: var(--purple-bg);
+}
+
+#before{
+  width: 90%;
+  height: auto;
+}
+
 .title {
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -.02em;
-  font-size: clamp(56px, 10vw, 110px);
+  font-size: clamp(56px, 8vw, 90px);
 }
 
 .subtitle {
@@ -193,7 +204,7 @@ body {
 }
 
 .pill {
-  padding: 14px 18px;
+  padding: 10px 18px;
   border-radius: 999px;
   background: #f6f6f6;
   color: #111;
@@ -203,7 +214,7 @@ body {
 }
 
 section {
-  padding: 15vh 10vw;
+  padding: 10vh 10vw;
 }
 
 .problem {
@@ -216,10 +227,15 @@ section {
   margin-bottom: 22px;
 }
 
+.section h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
 .problem p {
   max-width: 850px;
   margin-inline: auto;
-  color: var(--muted);
   line-height: 1.9;
   font-size: 22px;
 }
@@ -330,7 +346,6 @@ section {
 }
 
 .process-item p {
-  color: var(--muted);
   line-height: 1.8;
   margin: 0 auto;
 }
