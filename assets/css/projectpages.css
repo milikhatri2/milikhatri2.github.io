@@ -187,7 +187,7 @@ body {
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -.02em;
-  font-size: clamp(56px, 8vw, 90px);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
 
 .subtitle {
@@ -204,7 +204,7 @@ body {
 }
 
 .pill {
-  padding: 10px 18px;
+  padding: 5px 10px;
   border-radius: 999px;
   background: #f6f6f6;
   color: #111;
@@ -222,13 +222,13 @@ section {
 }
 
 .problem h2 {
-  font-size: 48px;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
 }
 
 .section h2 {
-  font-size: 48px;
+font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
 }
@@ -237,7 +237,6 @@ section {
   max-width: 850px;
   margin-inline: auto;
   line-height: 1.9;
-  font-size: 22px;
 }
 
 .two-col {
@@ -249,7 +248,7 @@ section {
 }
 
 .two-col h2 {
-  font-size: 48px;
+  font-size: 2.4rem;
   margin-bottom: 16px;
 }
 
@@ -258,7 +257,7 @@ section {
 }
 
 .user-needs h2 {
-  font-size: 48px;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
 }
@@ -268,7 +267,7 @@ section {
 }
 
 .outcome h2 {
-  font-size: 48px;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
 }
@@ -282,7 +281,6 @@ section {
   padding-left: 22px;
   margin: 18px 0;
   line-height: 1.9;
-  font-size: 22px;
 }
 
 .bullets li::before {
@@ -354,7 +352,6 @@ section {
 .screens-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
 }
 
 .screen {
@@ -448,7 +445,7 @@ section {
   }
 
   .title {
-    font-size: clamp(48px, 12vw, 72px);
+  font-size: clamp(32px, 12vw, 55px);
   }
 
   .process-grid,
