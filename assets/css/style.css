@@ -1197,6 +1197,7 @@ a {
   border: 1px solid var(--black);
   font-weight: 600;
   transition: transform .06s ease, opacity .2s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* responsive stack */

@@ -166,21 +166,29 @@ body {
 }
 
 /* Image background for this page's hero */
-.hero--adm{
+.hero--adm {
   /* update path to your image; path is relative to the CSS file */
   background: url("../images/AngelesDeMeddlin/AngledHero.png") center / cover no-repeat;
   background-color: var(--purple-bg);
 }
 
-.hero--ad{
+.hero--ad {
   /* update path to your image; path is relative to the CSS file */
   background: url("../../Project_page/Untitled_design-5.png") center / cover no-repeat;
   background-color: var(--purple-bg);
 }
 
-#before{
-  width: 90%;
+#before {
+  display: block;
+  width: 100%;
+  /* fill the right column width */
+  max-width: 520px;
+  /* don't grow beyond this */
   height: auto;
+  justify-self: center;
+  /* center horizontally within the right column */
+  align-self: center;
+  /* center vertically w.r.t. the text */
 }
 
 .title {
@@ -193,7 +201,7 @@ body {
 .subtitle {
   color: var(--muted);
   margin-top: 12px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .pills {
@@ -201,6 +209,7 @@ body {
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 28px;
+  max-width: 60vw;
 }
 
 .pill {
@@ -228,9 +237,13 @@ section {
 }
 
 .section h2 {
-font-size: 2.4rem;
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
+}
+
+p, li {
+  font-size: 1.2rem;
 }
 
 .problem p {
@@ -241,10 +254,16 @@ font-size: 2.4rem;
 
 .two-col {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1.1fr minmax(340px, 1fr);
+  /* text | image */
   gap: 80px;
-  align-items: start;
+  align-items: center;
+  /* vertically center both columns */
   background-color: var(--purple-bg);
+}
+
+.two-col>div {
+  align-self: center;
 }
 
 .two-col h2 {
@@ -348,14 +367,16 @@ font-size: 2.4rem;
   margin: 0 auto;
 }
 
-/* Screens */
 .screens-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  gap: 10vw;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .screen {
-  aspect-ratio: 1/2;
+  aspect-ratio: 1 / 2;
   background: #F3F4F6;
   border: 1px dashed var(--line);
   border-radius: 18px;
@@ -423,6 +444,13 @@ font-size: 2.4rem;
 
 /* Responsive tweaks */
 @media(max-width:1100px) {
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60vw;
+  font-size: clamp(32px, 12vw, 55px);
+}
   .hero-phones {
     width: 70vw;
     max-width: none;
@@ -441,15 +469,50 @@ font-size: 2.4rem;
 @media(max-width:700px) {
   .hero {
     padding-left: 5vw;
-    padding-bottom: 12vh;
   }
 
   .title {
-  font-size: clamp(32px, 12vw, 55px);
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 60vw;
+    font-size: clamp(32px, 12vw, 55px);
   }
 
   .process-grid,
   .screens-grid {
     grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 3vh 5vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    /* single column */
+    gap: 24px;
+  }
+
+  #before {
+    justify-self: center;
+    width: min(680px, 90vw);
+    /* nice large size on phones/tablets */
+    max-width: 100%;
+  }
+
+  .screens-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    /* smaller gap between stacked screens */
+  }
+
+  .screen {
+    width: 50vw;
+    /* larger, readable size */
+    max-width: 360px;
+    /* optional limit so it doesn’t grow too wide on tablets */
   }
 }
