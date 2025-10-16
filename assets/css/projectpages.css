@@ -242,10 +242,6 @@ section {
   margin-bottom: 22px;
 }
 
-p, li {
-  font-size: 1.2rem;
-}
-
 .problem p {
   max-width: 850px;
   margin-inline: auto;
