@@ -512,3 +512,9 @@ section {
     /* optional limit so it doesn’t grow too wide on tablets */
   }
 }
+.site-footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: .875rem;
+  background: var(--white);
+}
