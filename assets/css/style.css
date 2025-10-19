@@ -123,7 +123,7 @@ a {
 .hero-bg {
   position: fixed;
   inset: 0;
-  background: url('../images/Hero.jpg') no-repeat center/cover;
+  background: url('../images/HeroImage.jpg') no-repeat center/cover;
   filter: brightness(.8);
   z-index: -1;
 }
