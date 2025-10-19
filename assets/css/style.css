@@ -126,6 +126,13 @@ a {
   background: url('../images/HeroImage.jpg') no-repeat center/cover;
   filter: brightness(.8);
   z-index: -1;
+  background-position: 50% 0%;
+}
+@media (max-width: 900px){
+  .hero-bg{ background-position: 82% 38%; }
+}
+@media (max-width: 600px){
+  .hero-bg{ background-position: 82% 44%; }
 }
 
 .hero {
@@ -162,7 +169,7 @@ a {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: var(--purple-bg);
-  padding-bottom: 4rem;
+  padding: 3rem 0 4rem;
 }
 
 .about-inner {
