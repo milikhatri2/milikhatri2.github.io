@@ -66,25 +66,33 @@
     </section>
 
     <section class="problem">
-      <h2>Problem Statement</h2>
+      <h2>Challenges</h2>
       <p>The Angeles de Medellín Foundation’s website was built on a basic template with poor navigation, unclear
-        information hierarchy, and no mobile optimization. These issues made it difficult for users to donate,
-        volunteer, or learn about the organization, directly limiting engagement and support.</p>
+        information hierarchy, and no mobile optimization. These issues made it difficult for users primarily potential
+        donors, volunteers, and community members to donate, volunteer, or learn about the organization, directly
+        limiting engagement and community support (meaning financial contributions, volunteer participation, and overall
+        involvement with the foundation’s mission).</p>
     </section>
 
     <section class="two-col">
       <div>
         <h2>Objectives & Goals</h2>
         <ul class="bullets">
-          <li>Redesign the website to improve usability, accessibility, and engagement.</li>
-          <li>Simplify navigation and content structure to help users quickly find key actions (donate,
-            volunteer, learn).</li>
-          <li>Create a modern, mobile-friendly experience that communicates the foundation’s mission more
-            effectively.</li>
-          <li>Implement a mobile-first design approach, ensuring an optimized experience on smaller screens before scaling up for tablets and desktops.</li>
+          <p>This redesign project began when the Angeles de Medellín Foundation requested an updated website to better
+            communicate their mission and encourage community involvement. As part of a college capstone project, a
+            group of us were assigned to lead the redesign effort.</p>
+          <br>
+          <p>Our main goals were to:</p>
+          <li>Redesign the website to improve overall usability and accessibility, ensuring that people of all ages and
+            abilities can easily navigate and engage with the site. These aspects were identified as essential to
+            creating a more inclusive and effective user experience.</li>
+          <li>Simplify navigation and content structure so users can quickly find key actions such as donating,
+            volunteering, or learning about the foundation.</li>
+          <li>Develop a visually engaging, up-to-date, and responsive website that reflects current web design standards
+            and provides a seamless experience across devices, including mobile, tablet, and desktop</li>
         </ul>
       </div>
-          <img src="../Project_page/before.png" alt="Objectives & Goals" class="img-fluid rounded-2" id="before">
+      <img src="../Project_page/before.png" alt="Objectives & Goals" class="img-fluid rounded-2" id="before">
     </section>
 
     <section class="section process" aria-labelledby="process-heading">
@@ -93,7 +101,8 @@
         <article class="process-item">
           <div class="process-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm3.9 6.1-3.2 7.9a1 1 0 0 1-1.3.56l-3.9-1.6a1 1 0 0 1-.56-1.3l3.2-7.9a1 1 0 0 1 1.3-.56l3.9 1.6a1 1 0 0 1 .56 1.3Z" />
+              <path
+                d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm3.9 6.1-3.2 7.9a1 1 0 0 1-1.3.56l-3.9-1.6a1 1 0 0 1-.56-1.3l3.2-7.9a1 1 0 0 1 1.3-.56l3.9 1.6a1 1 0 0 1 .56 1.3Z" />
             </svg>
           </div>
           <h3>Discover</h3>
@@ -114,7 +123,8 @@
         <article class="process-item">
           <div class="process-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 3a6.5 6.5 0 0 0-3.7 12L8.3 18A2 2 0 0 0 10 20h4a2 2 0 0 0 1.7-1.1l0-3.9A6.5 6.5 0 0 0 12 3Z" />
+              <path
+                d="M12 3a6.5 6.5 0 0 0-3.7 12L8.3 18A2 2 0 0 0 10 20h4a2 2 0 0 0 1.7-1.1l0-3.9A6.5 6.5 0 0 0 12 3Z" />
               <path d="M9 22h6" />
             </svg>
           </div>
@@ -130,18 +140,36 @@
             </svg>
           </div>
           <h3>Design</h3>
-          <p>Built a cohesive design system in Figma and prototyped responsive pages for testing.</p>
+          <p>Created and prototyped responsive pages in Figma for testing and user feedback.</p>
         </article>
       </div>
     </section>
 
     <section class="user-needs" aria-labelledby="needs-heading">
-      <h2 id="needs-heading">User Needs</h2>
+      <h2 id="needs-heading">Discover & Define</h2>
       <ul class="bullets">
-        <li>Clear, intuitive navigation - Users needed a simple way to find key actions like donating or volunteering without extra steps or confusion.</li>
-        <li>Consistent visual hierarchy - Information should be organized and scannable, helping users quickly understand the foundation’s purpose and credibility.</li>
-        <li>Mobile-first accessibility - Since many visitors browse on their phones, the design prioritizes smaller screens first, ensuring a seamless experience that scales up to larger devices.</li>
-        <li>Emotional storytelling - Real stories, photos, and impact highlights help users connect emotionally with the foundation’s mission and feel inspired to take action.</li>
+        <p>To understand the foundation’s existing website and identify improvement areas, I conducted a heuristic
+          evaluation and task-based walkthroughs with four participants representing different age groups and tech
+          familiarity levels. These methods helped uncover usability issues that directly affected engagement and trust.
+        </p>
+        <br>
+        <p><b>Key Insights:</b></p>
+        <li>Navigation Confusion: 3 of 4 users struggled to find Donate or Volunteer (avg. task time: 45+ seconds).</li>
+        <li>Weak Information Hierarchy: Important actions blended with general content.</li>
+        <li>Visual Inconsistency: Mixed fonts, colors, and button styles lowered credibility.</li>
+        <li>Mobile & Accessibility Gaps: Layouts didn’t scale on small screens; several pages failed basic WCAG 2.1
+          checks.</li>
+        <p>To define clear goals for the redesign, I analyzed five nonprofit websites (e.g., UNICEF, Charity: Water,
+          Habitat for Humanity) to benchmark design patterns and usability standards.</p>
+        <br>
+        <p><b>Key Takeaways:</b></p>
+        <li>Keep navigation simple with ≤5 main categories.</li>
+        <li>Make Donate and Get Involved highly visible.</li>
+        <li>Use impactful visuals and concise storytelling to build connection.</li>
+        <li>Apply consistent typography, color, and button styles.</li>
+        <li>Design mobile-first and ensure accessibility compliance (WCAG 2.1 AA).</li>
+        <p>These insights shaped the redesign strategy. Prioritizing clarity, inclusivity, and a trustworthy digital
+          presence aligned with current web standards.</p>
       </ul>
     </section>
 
@@ -156,12 +184,28 @@
 
     <section class="outcome" aria-labelledby="outcome-heading">
       <h2>Outcome</h2>
-      <p class="problem-text" style="line-height:1.9;">
-        The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user
-        testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility,
-        aligning with the foundation’s mission. Stakeholders reported that the new site better communicates their goals
-        and encourages donations and volunteer sign-ups.
-      </p>
+      <ul class="bullets">
+        <p>The redesign was built using <strong>Next.js</strong> and <strong>Tailwind CSS</strong>, ensuring
+          performance,
+          scalability, and responsiveness across devices.</p>
+        <p>We conducted two rounds of user testing with <strong>6 participants</strong> representing a mix of ages and
+          tech familiarity. Success was evaluated by task completion rates, time on key actions (Donate, Volunteer), and
+          overall satisfaction ratings.</p>
+        <br>
+        <p><b>Key Results & Feedback</b></p>
+        <li><strong>Navigation & Clarity:</strong> 100% of participants completed core tasks without assistance.</li>
+        <li><strong>Storytelling & Engagement:</strong> Users noted that the site “feels more welcoming and easier to
+          understand” and “makes it clear how to get involved.”</li>
+        <li><strong>Accessibility:</strong> Participants appreciated larger buttons, clear labels, and readable text on
+          mobile.</li>
+        <p><b>Lesson Learned</b></p>
+        <p>Iterating based on real user feedback highlighted the importance of testing early and often, even with a
+          small
+          group, to catch usability and accessibility issues before full-scale development. Stakeholder feedback
+          confirmed
+          that the new site better communicates the foundation’s mission and effectively encourages donations and
+          volunteer sign-ups.</p>
+      </ul>
       <br>
       <div class="screens-grid">
         <figure class="screen"><img alt="Screen 1" src="\assets\images\5.png" /></figure>
@@ -254,4 +298,5 @@
     })();
   </script>
 </body>
+
 </html>
