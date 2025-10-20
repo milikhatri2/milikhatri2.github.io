@@ -256,6 +256,16 @@ section {
   align-items: center;
   /* vertically center both columns */
   background-color: var(--purple-bg);
+  padding: 10vh 5vw 10vh 10vw;
+}
+
+.two-col img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* optional: adds soft rounding to match your theme */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .two-col>div {
@@ -285,6 +295,16 @@ section {
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 22px;
+}
+
+.outcome-gif img {
+  width: 100%;
+  max-width: 720px;   /* adjust based on how wide you want it */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 .bullets {
@@ -363,12 +383,26 @@ section {
   margin: 0 auto;
 }
 
+.screens-grid img {
+  width: 100%;
+  max-width: 720px;   /* adjust based on how wide you want it */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 12px; /* optional: matches top image style */
+}
+
+/* Ensure its parent container doesn’t cause horizontal overflow */
 .screens-grid {
   display: flex;
   justify-content: center;
-  gap: 10vw;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 3rem;
   margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .screen {
@@ -379,8 +413,10 @@ section {
   overflow: hidden;
   display: grid;
   place-items: center;
-  width: 16vw;
+  width: 14vw;         /* smaller default size */
+  max-width: 260px;    /* cap the width */
 }
+
 
 .screen img {
   width: 100%;
@@ -461,6 +497,34 @@ section {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media (max-width: 900px) and (min-width: 701px) {
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 2rem;
+  }
+
+  .screen {
+    width: 36vw; /* keep them nicely sized */
+    max-width: 300px;
+  }
+}
+
+/* Under 700px: stack single column */
+@media (max-width: 700px) {
+  .screens-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2.5rem;
+  }
+
+  .screen {
+    width: 70vw;
+    max-width: 340px;
+  }
+}
 
 @media(max-width:700px) {
   .hero {
@@ -503,13 +567,6 @@ section {
     align-items: center;
     gap: 3rem;
     /* smaller gap between stacked screens */
-  }
-
-  .screen {
-    width: 50vw;
-    /* larger, readable size */
-    max-width: 360px;
-    /* optional limit so it doesn’t grow too wide on tablets */
   }
 }
 .site-footer {
