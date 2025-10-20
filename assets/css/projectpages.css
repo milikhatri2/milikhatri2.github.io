@@ -298,6 +298,12 @@ section {
   font-style: italic;
 }
 
+@media (min-width: 901px) {
+  .objectives-gif figcaption {
+    font-size: 0.85rem;
+  }
+}
+
 .user-needs {
   background-color: var(--purple-bg);
 }
@@ -484,6 +490,7 @@ section {
   gap: 3rem;
   margin-top: 2rem;
   align-items: start;
+  margin-bottom: 4vh;
 }
 
 .key-column h3 {
