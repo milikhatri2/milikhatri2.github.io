@@ -339,22 +339,11 @@ section {
 }
 
 .bullets li {
-  position: relative;
-  padding-left: 22px;
-  margin: 18px 0;
-  line-height: 1.9;
+  position: static;     /* no absolute pseudo-dot math */
+  padding-left: 0;      /* remove space reserved for the pseudo-dot */
 }
-
 .bullets li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .75em;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #111;
-  opacity: .6;
+  content: none !important;  /* kill the extra dot */
 }
 
 .img-box {
@@ -482,6 +471,31 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.bullets {
+  list-style: disc;
+  padding-left: 1.5rem;   /* indent */
+}
+.bullets > li {
+  margin: 0.35rem 0;
+}
+
+/* Secondary list (nested) */
+.bullets .sub-bullets,
+.bullets > li > ul {
+  list-style: circle;     /* secondary bullet style */
+  padding-left: 1.25rem;  /* nested indent */
+  margin-top: 0.35rem;
+}
+.bullets .sub-bullets > li {
+  margin: 0.25rem 0;
+}
+
+/* (Optional) tertiary bullets if you ever go one level deeper */
+.bullets .sub-bullets ul {
+  list-style: square;
+  padding-left: 1.25rem;
 }
 
 .key-columns {
