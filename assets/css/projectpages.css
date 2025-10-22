@@ -316,6 +316,11 @@ section {
 
 .outcome {
   background-color: var(--purple-bg);
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr; /* keeps text more dominant */
+  align-items: start; /* align top with heading */
+  gap: 3rem;
+  padding: 8vh 10vw;
 }
 
 .outcome h2 {
@@ -324,14 +329,39 @@ section {
   margin-bottom: 22px;
 }
 
+.outcome p,
+.outcome li {
+  font-size: 1.05rem; /* restores normal readable text size */
+  line-height: 1.9;
+}
+
+.outcome-gif {
+  text-align: center;
+}
+
 .outcome-gif img {
   width: 100%;
-  max-width: 720px;   /* adjust based on how wide you want it */
+  max-width: 13vw;  /* smaller, proportional */
   height: auto;
   display: block;
   margin: 0 auto;
-  object-fit: contain;
   border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* subtle depth */
+}
+
+/* ===== Mobile (stack vertically) ===== */
+@media (max-width: 900px) {
+  .outcome {
+    grid-template-columns: 1fr;
+    text-align: left;
+    padding: 6vh 8vw;
+  }
+
+  .outcome-gif img {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
 }
 
 .bullets {
@@ -425,6 +455,15 @@ section {
 .screens-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 3rem;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+#harmonize-screens{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   gap: 3rem;
   margin: 0 auto;
@@ -602,6 +641,13 @@ section {
     gap: 2rem;
   }
 
+  #harmonize-screens {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 2rem;
+  }
+
   .screen {
     width: 36vw; /* keep them nicely sized */
     max-width: 300px;
@@ -611,6 +657,13 @@ section {
 /* Under 700px: stack single column */
 @media (max-width: 700px) {
   .screens-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2.5rem;
+  }
+
+  #harmonize-screens {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
