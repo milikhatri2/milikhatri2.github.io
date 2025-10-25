@@ -352,31 +352,55 @@ section {
 }
 
 .outcome-gif {
-  text-align: center;
+  text-align: center;               /* keep centered on wide screens too */
 }
-
 .outcome-gif img {
-  width: 100%;
-  max-width: 13vw;  /* smaller, proportional */
-  height: auto;
   display: block;
+  height: auto;
+  /* min 240px, prefer 20vw, cap at 380px on wide screens */
+  width: clamp(300px, 13vw, 350px);
   margin: 0 auto;
   border-radius: 12px;
   object-fit: contain;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* subtle depth */
 }
 
-/* ===== Mobile (stack vertically) ===== */
+/* Stack layout + bigger clamp on mobile to keep presence */
 @media (max-width: 900px) {
   .outcome {
     grid-template-columns: 1fr;
+    align-items: center;            /* vertically align content */
     text-align: left;
     padding: 6vh 8vw;
   }
-
   .outcome-gif img {
-    max-width: 100%;
+    /* min 280px, prefer 60vw, cap at 350px on phones/tablets */
+    width: clamp(220px, 60vw, 350px);
     margin-top: 2rem;
+    place-self: center;             /* make sure the grid item centers */
+  }
+}
+/* ADM (bottom laptop GIF) — make it big and hero-like */
+.outcome-ADM .outcome-gif {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+.outcome-ADM .outcome-gif img {
+  display: block;
+  height: auto;
+  /* min 520px, prefer 64vw, cap 1100px (constrained by section padding) */
+  width: clamp(520px, 64vw, 1100px);
+  max-width: 100%;
+  margin: 1.25rem auto 0;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* Mobile/tablet: keep presence large */
+@media (max-width: 900px) {
+  .outcome-ADM .outcome-gif img {
+    /* min 320px, prefer 90vw, cap 900px */
+    width: clamp(320px, 90vw, 900px);
+    margin-top: 1.5rem;
   }
 }
 
