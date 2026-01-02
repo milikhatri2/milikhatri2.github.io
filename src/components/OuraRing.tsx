@@ -22,7 +22,7 @@ const OuraRing: React.FC = () => {
         "oura-ring",
         "pointer-events-none fixed left-0 top-0 z-[9999]",
         "h-7 w-7 rounded-full border-2",
-        "border-coco-accent",
+        "border-coco-purple-light",
         "bg-transparent",
       ].join(" ")}
     />

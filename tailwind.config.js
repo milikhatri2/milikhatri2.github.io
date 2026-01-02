@@ -10,10 +10,12 @@ export default {
       colors: {
         "coco-bg": "#F7F3FF",     // soft lavender background
         "coco-text": "#232328",   // dark charcoal
-        "coco-accent": "#6D5EF6", // muted purple accent
+        "coco-accent": "#b57edc", // muted purple accent
         "coco-paper": "#FFFFFF",  // cards
         "coco-sand": "#EDE4FF",   // soft purple tint
-        "coco-nav-button": "#6D5EF6",
+        "coco-nav-button": "#b57edc",
+        "coco-purple": "#8a3ab9",
+        "coco-purple-light": "#b57edc",
       },
       animation: {
         float: "float 6s ease-in-out infinite",

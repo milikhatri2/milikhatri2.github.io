@@ -42,26 +42,53 @@ const Testimonials: React.FC = () => {
   );
 
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const isAnimatingRef = useRef(false);
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // refs for wheel-lock behavior (trackpad friendly)
+  const activeIndexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const lastStepAtRef = useRef(0);
+
+  // Optional: unlock after reaching last testimonial (persisted)
+  const completedRef = useRef(false);
   const [completed, setCompleted] = useState(() => {
     return localStorage.getItem("testimonialsCompleted") === "1";
   });
-
-  const activeIndexRef = useRef(0);
-  const completedRef = useRef(completed);
-
-  useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
 
   useEffect(() => {
     completedRef.current = completed;
     if (completed) localStorage.setItem("testimonialsCompleted", "1");
   }, [completed]);
 
-  // Update active testimonial based on scroll position inside this section
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  // Smooth scroll via rAF (more consistent than CSS smooth scroll across browsers)
+  const easeInOutCubic = (t: number) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  const animateScrollTo = (toY: number, duration = 650) => {
+    const fromY = window.scrollY;
+    const diff = toY - fromY;
+    const start = performance.now();
+
+    isAnimatingRef.current = true;
+
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = easeInOutCubic(t);
+      window.scrollTo(0, fromY + diff * eased);
+
+      if (t < 1) requestAnimationFrame(step);
+      else isAnimatingRef.current = false;
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  // Keep active testimonial in sync with scroll position (so it still works if user drags scrollbar)
   useEffect(() => {
     const onScroll = () => {
       const el = sectionRef.current;
@@ -76,7 +103,7 @@ const Testimonials: React.FC = () => {
 
       setActiveIndex(idx);
 
-      // Mark completed once we actually reach the last one (even if we got there by clicking)
+      // mark completed once we actually reach the last one
       if (idx === items.length - 1 && !completedRef.current) {
         setCompleted(true);
       }
@@ -91,23 +118,26 @@ const Testimonials: React.FC = () => {
     const el = sectionRef.current;
     if (!el) return;
 
+    const top = el.offsetTop;
+    const vh = window.innerHeight;
+    const target = top + i * vh;
+
+    // update UI instantly
+    setActiveIndex(i);
+
+    // if jumping to last, mark complete
     if (i === items.length - 1 && !completedRef.current) setCompleted(true);
 
-    window.scrollTo({
-      top: el.offsetTop + i * window.innerHeight,
-      behavior: "smooth",
-    });
+    animateScrollTo(target, 650);
   };
 
+  // Wheel lock: step through each testimonial with smooth easing (no janky snap)
   useEffect(() => {
-    const LOCK_MS = 260; // quicker than 550
-    const SNAP_BEHAVIOR: ScrollBehavior = "auto"; // "auto" feels MUCH faster; change to "smooth" if you prefer
-
     const onWheel = (e: WheelEvent) => {
       const el = sectionRef.current;
       if (!el) return;
 
-      // Once completed, never lock again
+      // If completed, do not lock anymore (like your older version)
       if (completedRef.current) return;
 
       const top = el.offsetTop;
@@ -126,28 +156,35 @@ const Testimonials: React.FC = () => {
       if (current === 0 && e.deltaY < 0) return;
       if (current === items.length - 1 && e.deltaY > 0) return;
 
-      // Lock to step-by-step
+      // Lock inside the steps
       e.preventDefault();
+
+      // Ignore while animating
       if (isAnimatingRef.current) return;
 
-      // Allow "faster scroll" to skip more than 1 if the wheel delta is big
-      const abs = Math.abs(e.deltaY);
-      const step = abs > 180 ? 2 : 1; // tweak: 2 steps if a strong scroll
+      // Cooldown prevents trackpad "one swipe = 3 steps"
+      const now = performance.now();
+      if (now - lastStepAtRef.current < 500) return;
+      lastStepAtRef.current = now;
+
+      // One step per gesture
       const dir = e.deltaY > 0 ? 1 : -1;
+      const next = clamp(current + dir, 0, items.length - 1);
 
-      const next = clamp(current + dir * step, 0, items.length - 1);
+      // Mark complete on final
+      if (next === items.length - 1 && !completedRef.current) setCompleted(true);
 
-      isAnimatingRef.current = true;
-      window.scrollTo({ top: top + next * vh, behavior: SNAP_BEHAVIOR });
+      const target = top + next * vh;
 
-      window.setTimeout(() => {
-        isAnimatingRef.current = false;
-      }, LOCK_MS);
+      setActiveIndex(next);
+      animateScrollTo(target, 650);
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => window.removeEventListener("wheel", onWheel);
   }, [items.length]);
+
+  const active = items[activeIndex];
 
   return (
     <section
@@ -162,106 +199,92 @@ const Testimonials: React.FC = () => {
       <div className="sticky top-0 h-screen flex items-center">
         <div className="max-w-6xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Left title + list */}
+            {/* Left */}
             <div className="lg:col-span-4">
-              <h2 className="font-display italic text-5xl leading-[0.95]">
+              <h2 className="font-display italic text-4xl md:text-5xl leading-[0.95] text-coco-text">
                 What people
                 <br />
                 are saying
               </h2>
 
-              <ul className="mt-10 space-y-5">
-                {items.map((t, i) => {
-                  const active = i === activeIndex;
-                  return (
-                    <li
-                      key={`${t.name}-${i}`}
-                      className="flex items-start gap-4"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => jumpTo(i)}
-                        className={[
-                          "w-full text-left flex items-start gap-4 rounded-xl p-2 -ml-2",
-                          "transition-all duration-200",
-                          "hover:bg-white/40 hover:backdrop-blur-sm",
-                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coco-accent/50",
-                          i === activeIndex ? "opacity-100" : "opacity-55",
-                        ].join(" ")}
-                      >
-                        <span
+              <div className="mt-6 text-xs text-coco-text/50 uppercase tracking-widest">
+                Scroll to read each testimonial
+              </div>
+
+              {/* Tabs (always visible, wraps on desktop; scrolls on mobile) */}
+              <div className="mt-8">
+                <div className="-mx-2 px-2 overflow-x-auto lg:overflow-visible">
+                  <div className="flex lg:flex-wrap gap-2 min-w-max lg:min-w-0 pb-2">
+                    {items.map((t, i) => {
+                      const isActive = i === activeIndex;
+                      return (
+                        <button
+                          key={`${t.name}-${i}`}
+                          type="button"
+                          onClick={() => jumpTo(i)}
                           className={[
-                            "mt-2 h-2.5 w-2.5 rounded-full shrink-0",
-                            i === activeIndex
-                              ? "bg-coco-accent"
-                              : "bg-coco-text/20",
+                            "px-4 py-2 rounded-full text-left whitespace-nowrap",
+                            "transition-all duration-200 border",
+                            isActive
+                              ? "bg-coco-accent text-white border-coco-accent shadow-soft"
+                              : "bg-white/40 border-white/60 text-coco-text/70 hover:text-coco-text hover:bg-white/60",
                           ].join(" ")}
-                        />
-                        <div>
-                          <div
-                            className={[
-                              "text-sm font-semibold",
-                              i === activeIndex
-                                ? "text-coco-text"
-                                : "text-coco-text/70",
-                            ].join(" ")}
-                          >
+                        >
+                          <div className="text-sm font-semibold leading-tight">
                             {t.name}
                           </div>
-                          <div className="text-xs text-coco-text/55">
-                            {t.role}
-                          </div>
-                        </div>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="mt-10 text-xs text-coco-text/50 uppercase tracking-widest">
-                Scroll to read each testimonial
+                          <div className="text-[11px] opacity-80">{t.role}</div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right quote card */}
+            {/* Right */}
             <div className="lg:col-span-8">
-              <div className="glass-panel rounded-3xl p-7 md:p-10">
-                <p className="text-lg md:text-xl text-coco-text/80 leading-relaxed">
-                  {items[activeIndex]?.quote}
-                </p>
+              {/* Plain text, no card */}
+              <p className="text-lg md:text-xl text-coco-text/80 leading-relaxed max-w-2xl">
+                “{active.quote}”
+              </p>
 
-                <div className="mt-10 flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-coco-sand border border-white/60" />
-                  <div>
-                    <div className="text-sm font-semibold text-coco-text">
-                      {items[activeIndex]?.name}
-                    </div>
-                    <div className="text-xs text-coco-text/55">
-                      {items[activeIndex]?.role}
-                    </div>
-                  </div>
-                </div>
-
-                {/* little progress */}
-                <div className="mt-8 flex gap-2">
-                  {items.map((_, i) => (
-                    <span
-                      key={i}
-                      className={[
-                        "h-1.5 rounded-full transition-all duration-300",
-                        i === activeIndex
-                          ? "w-10 bg-coco-accent"
-                          : "w-4 bg-coco-text/15",
-                      ].join(" ")}
-                    />
-                  ))}
-                </div>
+              <div className="mt-6 text-sm text-coco-text/70">
+                <span className="font-semibold text-coco-text">
+                  {active.name}
+                </span>{" "}
+                <span className="text-coco-text/50">— {active.role}</span>
               </div>
 
-              {/* subtle helper */}
+              <div className="mt-8 flex gap-2">
+                {items.map((_, i) => (
+                  <span
+                    key={i}
+                    className={[
+                      "h-1.5 rounded-full transition-all duration-300",
+                      i === activeIndex
+                        ? "w-10 bg-coco-accent"
+                        : "w-4 bg-coco-text/15",
+                    ].join(" ")}
+                  />
+                ))}
+              </div>
+
               <div className="mt-4 text-sm text-coco-text/55">
                 {activeIndex + 1} / {items.length}
               </div>
+
+              {/* Optional: quick reset for dev/testing */}
+              {/* <button
+                type="button"
+                className="mt-8 text-xs underline text-coco-text/50"
+                onClick={() => {
+                  localStorage.removeItem("testimonialsCompleted");
+                  setCompleted(false);
+                }}
+              >
+                Reset testimonials lock
+              </button> */}
             </div>
           </div>
         </div>

@@ -12,35 +12,22 @@ import AboutImage from "./assets/AboutmeImage.jpg";
 const mockProjects: Project[] = [
   {
     id: 1,
-    title: "FinTech Dashboard",
-    category: "Product Design",
+    title: "Angeles De Medellin",
+    category: "Web Design",
     description:
-      "Reimagined the user experience for a complex financial data visualization platform. Increased user retention by 24% through intuitive navigation patterns.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+      "The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility, aligning with the foundation’s mission.",
+    image: "../src/assets/ADMCover.png",
     year: "2023",
     link: "#",
   },
   {
     id: 2,
-    title: "EcoTrack Mobile",
-    category: "UX Research",
+    title: "Harmonize",
+    category: "Product Design",
     description:
       "A comprehensive sustainability tracking application. Conducted extensive user research to identify pain points in carbon footprint calculation.",
-    image:
-      "https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2670&auto=format&fit=crop",
+    image: "../src/assets/HarmonizeCover.png",
     year: "2023",
-    link: "#",
-  },
-  {
-    id: 3,
-    title: "Luxe Commerce",
-    category: "Brand & Web",
-    description:
-      "Designed a bespoke e-commerce experience for a high-end fashion retailer. Focused on minimal aesthetics and high-performance interactions.",
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2670&auto=format&fit=crop",
-    year: "2022",
     link: "#",
   },
 ];
@@ -55,6 +42,7 @@ type ContactFormState = {
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>(Section.HERO);
+  const [showLogo, setShowLogo] = useState(true);
 
   const [contact, setContact] = useState<ContactFormState>({
     firstName: "",
@@ -90,6 +78,19 @@ const App: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const heroEl = document.getElementById(Section.HERO);
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowLogo(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, []);
+
   const onContactChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -111,7 +112,7 @@ const App: React.FC = () => {
       contact.message || "",
     ];
 
-    const mailto = `mailto:hello@milikhatri.com?subject=${encodeURIComponent(
+    const mailto = `mailto:mili@milikhatri.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 
@@ -119,9 +120,28 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pb-32 selection:bg-coco-accent selection:text-white">
+    <div className="min-h-screen pb-20 md:pb-16 selection:bg-coco-accent selection:text-white">
       <OuraRing />
-
+      {/* Centered logo overlay (text wordmark) - only visible on HERO */}
+      <button
+        type="button"
+        onClick={() => scrollToSection(Section.HERO)}
+        aria-label="Back to top"
+        className={[
+          "fixed top-6 left-1/2 -translate-x-1/2 z-[60]",
+          "transition-all duration-500 ease-out",
+          showLogo
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-2 pointer-events-none",
+          // prevents accidental text selection / tap highlight
+          "select-none",
+        ].join(" ")}
+      >
+        <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+          <span className="italic text-2xl md:text-3xl lg:text-4xl">Mili</span>
+          <span className="text-2xl md:text-3xl lg:text-4xl"> Khatri</span>
+        </span>
+      </button>
       <Navigation
         activeSection={activeSection}
         scrollToSection={scrollToSection}
@@ -168,13 +188,13 @@ const App: React.FC = () => {
               </h1>
 
               {/* tagline */}
-              <p className="mt-6 text-white/85 text-lg md:text-xl leading-relaxed max-w-xl">
-                A Product Designer who bridges the gap between{" "}
-                <span className="font-serif italic text-white">
+              <p className="mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-xl">
+                A Designer who bridges the gap between{" "}
+                <span className="font-serif italic text-coco-accent">
                   complex data
                 </span>{" "}
                 and{" "}
-                <span className="font-serif italic text-white">
+                <span className="font-serif italic text-coco-accent">
                   human intuition
                 </span>
                 .
@@ -184,7 +204,7 @@ const App: React.FC = () => {
               <div className="mt-8">
                 <button
                   onClick={() => scrollToSection(Section.WORK)}
-                  className="px-6 py-3 rounded-md bg-white/85 hover:bg-white text-coco-text border border-white/60 transition shadow-soft"
+                  className="px-6 py-3 rounded-full bg-white/85 hover:bg-white text-coco-text border border-white/60 transition shadow-soft"
                 >
                   View Select Work
                 </button>
@@ -195,16 +215,18 @@ const App: React.FC = () => {
       </section>
 
       {/* WORK */}
-      <section id={Section.WORK} className="py-28 px-6">
+      <section
+        id={Section.WORK}
+        className="px-4 sm:px-5 md:px-6 py-[clamp(3rem,6vw,6rem)] pb-28 md:pb-24"
+      >
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20 text-center">
+          <div className="text-center mb-[clamp(2.5rem,5vw,5rem)]">
             <h2 className="text-4xl md:text-5xl font-display italic mb-4">
               Selected Works
             </h2>
             <div className="w-16 h-1 bg-coco-accent mx-auto rounded-full" />
           </div>
-
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-[clamp(2.5rem,5vw,3.5rem)]">
             {mockProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -218,7 +240,7 @@ const App: React.FC = () => {
       </section>
 
       {/* ABOUT */}
-      <section id={Section.ABOUT} className="py-28 px-6">
+      <section id={Section.ABOUT} className="py-16 md:py-24 px-5 md:px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="absolute -inset-4 bg-coco-sand/45 rounded-2xl transform rotate-2 -z-0" />
@@ -230,9 +252,11 @@ const App: React.FC = () => {
           </div>
 
           <div className="space-y-6">
-            <h2 className="text-5xl font-display">More than just pixels.</h2>
+            <h2 className="text-4xl md:text-5xl font-display">
+              More than just pixels.
+            </h2>
 
-            <p className="text-lg text-coco-text/70 leading-relaxed">
+            <p className="text-base md:text-lg text-coco-text/70 leading-relaxed">
               I believe good design is invisible. It removes friction and helps
               users achieve their goals effortlessly. My frontend background
               helps me collaborate tightly with engineering—so the work ships
@@ -262,7 +286,7 @@ const App: React.FC = () => {
             {/* Resume button */}
             <div className="pt-4">
               <a
-                href="/legacy/MKResume.pdf"
+                href="../src/assets/MKResume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/70 hover:bg-white transition-colors border border-white/60 shadow-soft"
@@ -276,7 +300,7 @@ const App: React.FC = () => {
       </section>
       <Testimonials />
       {/* CONTACT (old form style, new aesthetics) */}
-      <section id={Section.CONTACT} className="py-24 px-6">
+      <section id={Section.CONTACT} className="pt-20 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-5xl font-display tracking-tight">
@@ -288,24 +312,39 @@ const App: React.FC = () => {
           </div>
 
           <div className="glass-panel rounded-3xl p-6 md:p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
               {/* Left info card */}
-              <div className="rounded-2xl bg-white/70 border border-white/60 p-6">
-                <div className="text-xs font-bold uppercase tracking-widest text-coco-text/60">
+              <div className="rounded-2xl bg-white border border-coco-text/10 p-6 shadow-soft">
+                <div className="text-lg font-bold uppercase tracking-widest text-coco-text/80">
                   Contact
                 </div>
-                <div className="mt-4 space-y-2 text-coco-text/80">
-                  <div className="text-sm">
-                    <span className="font-semibold">Email:</span>{" "}
-                    hello@milikhatri.com
+                <div className="mt-3 space-y-3 text-coco-text">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-md uppercase tracking-widest text-coco-text/50">
+                      Email
+                    </div>
+                    <div className="text-md text-coco-text text-right">
+                      mili@milikhatri.com
+                    </div>
                   </div>
-                  <div className="text-sm">
-                    <span className="font-semibold">Location:</span> NJ / NYC
-                    (Remote-friendly)
+
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-md uppercase tracking-widest text-coco-text/50">
+                      Location
+                    </div>
+                    <div className="text-md text-coco-text text-right">
+                      NJ / NYC{" "}
+                      <span className="text-coco-text/60">(Remote)</span>
+                    </div>
                   </div>
-                  <div className="text-sm">
-                    <span className="font-semibold">Availability:</span> Open to
-                    new projects
+
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-md uppercase tracking-widest text-coco-text/50">
+                      Status
+                    </div>
+                    <div className="text-md text-coco-text text-right">
+                      Open
+                    </div>
                   </div>
                 </div>
               </div>
@@ -313,7 +352,7 @@ const App: React.FC = () => {
               {/* Form */}
               <form
                 onSubmit={onContactSubmit}
-                className="lg:col-span-2 rounded-2xl bg-white/80 border border-white/60 p-6 md:p-8"
+                className="lg:col-span-2 rounded-2xl bg-white border border-coco-text/10 p-5 md:p-6 shadow-soft"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
@@ -324,7 +363,7 @@ const App: React.FC = () => {
                       name="firstName"
                       value={contact.firstName}
                       onChange={onContactChange}
-                      className="mt-2 w-full rounded-xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
                       required
                     />
                   </div>
@@ -337,7 +376,7 @@ const App: React.FC = () => {
                       name="lastName"
                       value={contact.lastName}
                       onChange={onContactChange}
-                      className="mt-2 w-full rounded-xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
                       required
                     />
                   </div>
@@ -351,7 +390,7 @@ const App: React.FC = () => {
                       type="email"
                       value={contact.email}
                       onChange={onContactChange}
-                      className="mt-2 w-full rounded-xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
                       required
                     />
                   </div>
@@ -364,7 +403,7 @@ const App: React.FC = () => {
                       name="subject"
                       value={contact.subject}
                       onChange={onContactChange}
-                      className="mt-2 w-full rounded-xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
                       placeholder="e.g., Product Design role, Freelance project…"
                     />
                   </div>
@@ -378,7 +417,7 @@ const App: React.FC = () => {
                       value={contact.message}
                       onChange={onContactChange}
                       rows={6}
-                      className="mt-2 w-full rounded-xl border border-coco-text/10 bg-white px-4 py-3 outline-none resize-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none resize-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
                       placeholder="Tell me what you’re working on…"
                     />
                   </div>
@@ -386,7 +425,7 @@ const App: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="mt-6 w-full py-4 rounded-xl bg-coco-accent text-white font-bold shadow-soft hover:opacity-95 transition"
+                  className="mt-6 w-full py-4 rounded-2xl bg-coco-accent text-white font-bold shadow-soft hover:opacity-95 transition"
                 >
                   Submit
                 </button>
@@ -399,7 +438,7 @@ const App: React.FC = () => {
               Mili Khatri.
             </p>
             <p className="text-xs text-coco-text/45 uppercase tracking-widest">
-              &copy; 2025. All Rights Reserved.
+              &copy; 2026. All Rights Reserved.
             </p>
           </footer>
         </div>
