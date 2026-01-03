@@ -25,28 +25,28 @@ const Testimonials: React.FC = () => {
   const items: Testimonial[] = useMemo(
     () => [
       {
-        name: "Alex Chen",
-        role: "Product Lead",
+        name: "Denise S.",
+        role: "Founder of Let Mommy Sleep",
         quote:
-          "The redesign elevated the product instantly. The storytelling is clearer, navigation is smoother, and everything feels more intentional. It made the work feel premium without losing warmth.",
+          "What I liked best about working with Mili is that while I had the 'big picture' of what the website redesign should be, I knew I could depend on Mili’s expertise to turn the big picture into a detailed project and intuitive user experience... The project result exceeded what I envisioned... On some parts of the project, Mili would present several options with a considered explanation of the logic behind each design... I appreciated Mili’s honest communication style and professionalism.",
       },
       {
-        name: "Priya Patel",
-        role: "Founder",
+        name: "President",
+        role: "Be the Cause.org",
         quote:
-          "We finally have a site that communicates our mission in seconds. Stakeholders understood our goals faster, and we saw more people actually complete sign-ups and reach out to collaborate.",
+          "Mili joined Be the Cause.org as a UI/UX Design Intern and quickly became an integral part of our creative process... design thinking and attention to detail, crafting accessible and visually consistent layouts that elevated our digital presence... Mili developed a comprehensive style guide defining typography, color usage, and component behavior, helping the team maintain design consistency and efficiency...eye for interaction and responsive design ensured that every element looked and functioned beautifully across devices.",
       },
       {
-        name: "Jordan Kim",
-        role: "Engineering Manager",
+        name: "Mark D.",
+        role: "Founder of Starside Development",
         quote:
-          "Design + dev handoff was unbelievably clean. The system is consistent, scalable, and easy to build from—so we shipped faster and with fewer iterations.",
+          "Mili is an absolute pleasure to work with. She’s thoughtful, a great communicator, and deeply attuned to client needs. Mili has a rare ability to blend creative design with first-class user experience, consistently delivering beautifully crafted, effective solutions.",
       },
       {
-        name: "Sam Rivera",
-        role: "UX Researcher",
+        name: "Rodney N.",
+        role: "Frontend Software Engineer at HubSpot and Owner of Shoreline Web Studio",
         quote:
-          "The final experience balances elegance and usability. The accessibility choices and hierarchy make it feel effortless to understand—especially for first-time visitors.",
+          "Mili was a fantastic UI/UX designer for Shoreline Web Studio on our project for the Angeles De Medellin Foundation... She was professional, reliable, and took full ownership of the design deliverables... Her ability to translate our vision into tangible assets was truly impressive... Mili has a clear passion for design and delivers high-quality work.",
       },
     ],
     []
