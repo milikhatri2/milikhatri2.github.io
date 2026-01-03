@@ -120,7 +120,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pb-20 md:pb-16 selection:bg-coco-accent selection:text-white">
+    <div className="min-h-screen pb-20 md:pb-16 selection:bg-coco-accent selection:text-white text-[14px] sm:text-[15px]">
       <OuraRing />
       {/* Centered logo overlay (text wordmark) - only visible on HERO */}
       <button
@@ -138,8 +138,8 @@ const App: React.FC = () => {
         ].join(" ")}
       >
         <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
-          <span className="italic text-2xl md:text-3xl lg:text-4xl">Mili</span>
-          <span className="text-2xl md:text-3xl lg:text-4xl"> Khatri</span>
+          <span className="italic text-xl md:text-2xl lg:text-3xl">Mili</span>
+          <span className="text-xl md:text-2xl lg:text-3xl"> Khatri</span>
         </span>
       </button>
       <Navigation
@@ -166,30 +166,30 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-black/10" />
 
         {/* Content */}
-        <div className="relative z-10 min-h-screen flex items-center">
+        <div className="relative z-10 min-h-screen flex items-end pb-[clamp(4.5rem,14vh,8rem)]">
           <div className="w-full max-w-7xl mx-auto px-6">
             <div className="max-w-2xl">
               {/* label line */}
               <div className="flex items-center gap-4 text-white/80 mb-5">
                 <span className="h-px w-16 bg-white/50" />
-                <span className="text-sm tracking-widest uppercase">
+                <span className="text-xs sm:text-sm tracking-[0.18em] uppercase">
                   UI/UX Designer &amp; Researcher
                 </span>
               </div>
 
               {/* name */}
               <h1 className="font-display text-white leading-[0.95] drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
-                <span className="block italic text-6xl md:text-7xl lg:text-8xl">
+                <span className="block italic text-[clamp(3.15rem,7.2vw,6.25rem)]">
                   Mili
                 </span>
-                <span className="block text-6xl md:text-7xl lg:text-8xl">
+                <span className="block text-[clamp(3.15rem,7.2vw,6.25rem)]">
                   Khatri
                 </span>
               </h1>
 
               {/* tagline */}
-              <p className="mt-6 text-white/85 text-base md:text-lg leading-relaxed max-w-xl">
-                A Designer who bridges the gap between{" "}
+              <p className="mt-5 text-white/85 text-[clamp(0.95rem,1.6vw,1.1rem)] leading-relaxed max-w-xl">
+                A designer who bridges the gap between{" "}
                 <span className="font-serif italic text-coco-accent">
                   complex data
                 </span>{" "}
@@ -200,11 +200,20 @@ const App: React.FC = () => {
                 .
               </p>
 
-              {/* button */}
-              <div className="mt-8">
+              {/* button (less “screamy”) */}
+              <div className="mt-7">
                 <button
                   onClick={() => scrollToSection(Section.WORK)}
-                  className="px-6 py-3 rounded-full bg-white/85 hover:bg-white text-coco-text border border-white/60 transition shadow-soft"
+                  className={[
+                    "inline-flex items-center justify-center",
+                    "px-5 py-2.5 rounded-full",
+                    "text-sm font-medium",
+                    "text-white/90 hover:text-white",
+                    "bg-white/10 hover:bg-white/15",
+                    "border border-white/25 hover:border-white/40",
+                    "backdrop-blur-sm",
+                    "transition",
+                  ].join(" ")}
                 >
                   View Select Work
                 </button>
@@ -217,16 +226,17 @@ const App: React.FC = () => {
       {/* WORK */}
       <section
         id={Section.WORK}
-        className="px-4 sm:px-5 md:px-6 py-[clamp(3rem,6vw,6rem)] pb-28 md:pb-24"
+        className="px-[clamp(1.1rem,4vw,1.75rem)] py-[clamp(2.75rem,5.5vw,5rem)] pb-24 md:pb-24"
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-[clamp(2.5rem,5vw,5rem)]">
-            <h2 className="text-4xl md:text-5xl font-display italic mb-4">
+        <div className="max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <div className="text-center mb-[clamp(2rem,4.5vw,3.5rem)]">
+            <h2 className="font-display italic text-[clamp(2rem,4.2vw,3.1rem)] mb-3">
               Selected Works
             </h2>
-            <div className="w-16 h-1 bg-coco-accent mx-auto rounded-full" />
+            <div className="w-14 h-1 bg-coco-accent mx-auto rounded-full" />
           </div>
-          <div className="flex flex-col gap-[clamp(2.5rem,5vw,3.5rem)]">
+
+          <div className="flex flex-col gap-[clamp(5rem,8vw,7rem)]">
             {mockProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -257,28 +267,33 @@ const App: React.FC = () => {
             </h2>
 
             <p className="text-base md:text-lg text-coco-text/70 leading-relaxed">
-              I believe good design is invisible. It removes friction and helps
-              users achieve their goals effortlessly. My frontend background
-              helps me collaborate tightly with engineering—so the work ships
-              beautifully.
+              I design intuitive, experience-driven interfaces where every
+              detail has a purpose. I focus on clarity, flow, and the small
+              details that help users move effortlessly through an interface. My
+              frontend background supports close collaboration with engineering
+              and smooth execution.
             </p>
 
-            <div className="grid grid-cols-2 gap-8 pt-4">
+            <div className="grid grid-cols-2 gap-8 pt-6">
               <div>
-                <h4 className="font-bold text-coco-accent mb-2">Services</h4>
-                <ul className="text-sm space-y-2 text-coco-text/70">
+                <h4 className="md:text-lg font-bold text-coco-accent mb-2">
+                  Services
+                </h4>
+                <ul className="text-md space-y-2 text-coco-text/70">
+                  <li>Product & UX/UI Design</li>
                   <li>Design Systems</li>
-                  <li>SaaS Product Design</li>
-                  <li>Mobile Strategy</li>
+                  <li>Web & Mobile Experience Design</li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-bold text-coco-accent mb-2">Tools</h4>
-                <ul className="text-sm space-y-2 text-coco-text/70">
-                  <li>Figma & Protopie</li>
+                <h4 className="md:text-lg font-bold text-coco-accent mb-2">
+                  Tools
+                </h4>
+                <ul className="text-md space-y-2 text-coco-text/70">
+                  <li>Figma</li>
+                  <li>Adobe Creative Cloud</li>
                   <li>React & Tailwind</li>
-                  <li>UserTesting</li>
                 </ul>
               </div>
             </div>
@@ -300,27 +315,30 @@ const App: React.FC = () => {
       </section>
       <Testimonials />
       {/* CONTACT (old form style, new aesthetics) */}
-      <section id={Section.CONTACT} className="pt-20 pb-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-5xl font-display tracking-tight">
+      <section
+        id={Section.CONTACT}
+        className="pt-[clamp(3rem,6vw,5rem)] pb-[clamp(2.5rem,5vw,4rem)] px-[clamp(1.1rem,4vw,1.75rem)]"
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-[clamp(1.25rem,3vw,2rem)]">
+            <h2 className="font-display tracking-tight text-[clamp(2.1rem,4.2vw,3.1rem)]">
               Get in touch
             </h2>
-            <p className="text-coco-text/65 mt-3">
+            <p className="text-coco-text/65 mt-2 text-[clamp(0.95rem,1.3vw,1.05rem)]">
               Have a project or just want to say hi? I’d love to hear from you.
             </p>
           </div>
 
-          <div className="glass-panel rounded-3xl p-6 md:p-8">
+          <div className="glass-panel rounded-3xl p-4 md:p-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
               {/* Left info card */}
               <div className="rounded-2xl bg-white border border-coco-text/10 p-6 shadow-soft">
-                <div className="text-lg font-bold uppercase tracking-widest text-coco-text/80">
+                <div className="text-md font-bold uppercase tracking-widest text-coco-text/80 text-center">
                   Contact
                 </div>
-                <div className="mt-3 space-y-3 text-coco-text">
+                <div className="mt-4 space-y-3 text-coco-text">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="text-md uppercase tracking-widest text-coco-text/50">
+                    <div className="text-sm uppercase tracking-widest text-coco-text/50">
                       Email
                     </div>
                     <div className="text-md text-coco-text text-right">
@@ -329,21 +347,12 @@ const App: React.FC = () => {
                   </div>
 
                   <div className="flex items-start justify-between gap-4">
-                    <div className="text-md uppercase tracking-widest text-coco-text/50">
+                    <div className="text-sm uppercase tracking-widest text-coco-text/50">
                       Location
                     </div>
                     <div className="text-md text-coco-text text-right">
                       NJ / NYC{" "}
-                      <span className="text-coco-text/60">(Remote)</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="text-md uppercase tracking-widest text-coco-text/50">
-                      Status
-                    </div>
-                    <div className="text-md text-coco-text text-right">
-                      Open
+                      <span className="text-coco-text/60">(Flexible)</span>
                     </div>
                   </div>
                 </div>
@@ -425,7 +434,7 @@ const App: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="mt-6 w-full py-4 rounded-2xl bg-coco-accent text-white font-bold shadow-soft hover:opacity-95 transition"
+                  className="mt-6 w-full py-4 rounded-full bg-coco-purple text-white font-bold shadow-soft hover:opacity-95 transition"
                 >
                   Submit
                 </button>

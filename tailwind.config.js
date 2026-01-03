@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
         display: ["Playfair Display", "serif"],
       },
       colors: {
-        "coco-bg": "#F7F3FF",     // soft lavender background
-        "coco-text": "#232328",   // dark charcoal
+        "coco-bg": "#F7F3FF", // soft lavender background
+        "coco-text": "#232328", // dark charcoal
         "coco-accent": "#b57edc", // muted purple accent
-        "coco-paper": "#FFFFFF",  // cards
-        "coco-sand": "#EDE4FF",   // soft purple tint
+        "coco-paper": "#FFFFFF", // cards
+        "coco-sand": "#EDE4FF", // soft purple tint
         "coco-nav-button": "#b57edc",
         "coco-purple": "#8a3ab9",
         "coco-purple-light": "#b57edc",

@@ -10,6 +10,17 @@ type Testimonial = {
 const clamp = (n: number, min: number, max: number) =>
   Math.max(min, Math.min(max, n));
 
+const EPS = 0.00001;
+
+type Metrics = {
+  top: number;
+  vh: number;
+  // We start locking when you've scrolled HALF a viewport into the section
+  // (feels like it "pauses in the middle", without ever scrolling above section top)
+  startY: number;
+  endY: number;
+};
+
 const Testimonials: React.FC = () => {
   const items: Testimonial[] = useMemo(
     () => [
@@ -44,13 +55,19 @@ const Testimonials: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
-
-  // refs for wheel-lock behavior (trackpad friendly)
   const activeIndexRef = useRef(0);
+
+  // animation + wheel smoothing
+  const rafRef = useRef<number | null>(null);
   const isAnimatingRef = useRef(false);
   const lastStepAtRef = useRef(0);
+  const deltaAccRef = useRef(0);
 
-  // Optional: unlock after reaching last testimonial (persisted)
+  // last-step dwell gating
+  const reachedLastAtRef = useRef<number | null>(null);
+  const LAST_DWELL_MS = 1000; // 800–1400 feels good
+
+  // optional: persist "completed" unlock
   const completedRef = useRef(false);
   const [completed, setCompleted] = useState(() => {
     return localStorage.getItem("testimonialsCompleted") === "1";
@@ -65,11 +82,48 @@ const Testimonials: React.FC = () => {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
 
-  // Smooth scroll via rAF (more consistent than CSS smooth scroll across browsers)
+  // ----- Metrics (stable, recomputed only on resize) -----
+  const metricsRef = useRef<Metrics>({
+    top: 0,
+    vh: 0,
+    startY: 0,
+    endY: 0,
+  });
+
+  const recalcMetrics = () => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const vh = window.innerHeight;
+    const top = el.offsetTop;
+
+    // IMPORTANT:
+    // startY stays INSIDE the section, so we never "jump up" above it.
+    const startY = top + vh * 0.5;
+    const endY = startY + (items.length - 1) * vh;
+
+    metricsRef.current = { top, vh, startY, endY };
+  };
+
+  useEffect(() => {
+    recalcMetrics();
+
+    const onResize = () => {
+      recalcMetrics();
+    };
+
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.length]);
+
+  // ----- Smooth scroll animation (cancel-safe) -----
   const easeInOutCubic = (t: number) =>
     t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
   const animateScrollTo = (toY: number, duration = 650) => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
     const fromY = window.scrollY;
     const diff = toY - fromY;
     const start = performance.now();
@@ -79,33 +133,58 @@ const Testimonials: React.FC = () => {
     const step = (now: number) => {
       const t = Math.min(1, (now - start) / duration);
       const eased = easeInOutCubic(t);
+
       window.scrollTo(0, fromY + diff * eased);
 
-      if (t < 1) requestAnimationFrame(step);
-      else isAnimatingRef.current = false;
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        rafRef.current = null;
+        isAnimatingRef.current = false;
+      }
     };
 
-    requestAnimationFrame(step);
+    rafRef.current = requestAnimationFrame(step);
   };
 
-  // Keep active testimonial in sync with scroll position (so it still works if user drags scrollbar)
+  const goToIndex = (i: number, duration = 650) => {
+    const { startY, vh } = metricsRef.current;
+
+    setActiveIndex(i);
+
+    // start dwell timer if we land on the last one
+    if (i === items.length - 1) {
+      reachedLastAtRef.current = performance.now();
+    } else {
+      reachedLastAtRef.current = null;
+    }
+
+    animateScrollTo(startY + i * vh, duration);
+  };
+
+  // ----- Sync index with scroll (stable mapping, no jitter) -----
   useEffect(() => {
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
 
-      const top = el.offsetTop;
-      const vh = window.innerHeight;
+      const { startY, vh } = metricsRef.current;
       const y = window.scrollY;
 
-      const raw = (y - top) / vh;
-      const idx = clamp(Math.floor(raw + 0.00001), 0, items.length - 1);
+      const raw = (y - startY) / vh;
+      const idx = clamp(Math.floor(raw + EPS), 0, items.length - 1);
 
-      setActiveIndex(idx);
+      if (idx !== activeIndexRef.current) {
+        setActiveIndex(idx);
+        activeIndexRef.current = idx;
+      }
 
-      // mark completed once we actually reach the last one
       if (idx === items.length - 1 && !completedRef.current) {
-        setCompleted(true);
+        if (reachedLastAtRef.current == null) {
+          reachedLastAtRef.current = performance.now();
+        }
+      } else if (idx !== items.length - 1) {
+        reachedLastAtRef.current = null;
       }
     };
 
@@ -114,70 +193,85 @@ const Testimonials: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [items.length]);
 
-  const jumpTo = (i: number) => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const top = el.offsetTop;
-    const vh = window.innerHeight;
-    const target = top + i * vh;
-
-    // update UI instantly
-    setActiveIndex(i);
-
-    // if jumping to last, mark complete
-    if (i === items.length - 1 && !completedRef.current) setCompleted(true);
-
-    animateScrollTo(target, 650);
-  };
-
-  // Wheel lock: step through each testimonial with smooth easing (no janky snap)
+  // ----- Wheel lock (trackpad-friendly, no jitter) -----
   useEffect(() => {
+    const DELTA_THRESHOLD = 50; // higher = less sensitive on trackpads
+    const COOLDOWN_MS = 420; // prevents multi-step on one swipe
+
     const onWheel = (e: WheelEvent) => {
       const el = sectionRef.current;
       if (!el) return;
 
-      // If completed, do not lock anymore (like your older version)
+      // once completed, don't lock anymore
       if (completedRef.current) return;
 
-      const top = el.offsetTop;
-      const vh = window.innerHeight;
+      const { startY, endY, vh } = metricsRef.current;
       const y = window.scrollY;
 
-      const start = top;
-      const end = top + items.length * vh - vh;
-      const inRange = y >= start && y <= end;
+      // Only lock when we're within the stepped region
+      const inLockRange = y >= startY && y <= endY;
 
-      if (!inRange) return;
+      if (!inLockRange) {
+        deltaAccRef.current = 0;
+        return;
+      }
 
       const current = activeIndexRef.current;
+      const last = items.length - 1;
 
-      // Allow leaving the section at edges
-      if (current === 0 && e.deltaY < 0) return;
-      if (current === items.length - 1 && e.deltaY > 0) return;
+      // Allow leaving upward before first step
+      if (current === 0 && e.deltaY < 0) {
+        deltaAccRef.current = 0;
+        return;
+      }
 
-      // Lock inside the steps
+      // LAST STEP: require dwell time before allowing scroll down to contact
+      if (current === last && e.deltaY > 0) {
+        const reachedAt = reachedLastAtRef.current ?? performance.now();
+        reachedLastAtRef.current = reachedAt;
+
+        const waited = performance.now() - reachedAt >= LAST_DWELL_MS;
+
+        if (!waited) {
+          e.preventDefault();
+          return;
+        }
+
+        // unlock after dwell
+        setCompleted(true);
+        // allow normal scroll down (do NOT preventDefault)
+        return;
+      }
+
+      // Otherwise lock and step
       e.preventDefault();
 
-      // Ignore while animating
+      // While animating, keep the lock (prevents "fight" + jitter)
       if (isAnimatingRef.current) return;
 
-      // Cooldown prevents trackpad "one swipe = 3 steps"
+      // cooldown
       const now = performance.now();
-      if (now - lastStepAtRef.current < 500) return;
+      if (now - lastStepAtRef.current < COOLDOWN_MS) return;
+
+      // accumulate delta so tiny trackpad movement doesn't instantly step
+      deltaAccRef.current += e.deltaY;
+
+      if (Math.abs(deltaAccRef.current) < DELTA_THRESHOLD) return;
+
       lastStepAtRef.current = now;
 
-      // One step per gesture
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const next = clamp(current + dir, 0, items.length - 1);
+      const dir = deltaAccRef.current > 0 ? 1 : -1;
+      deltaAccRef.current = 0;
 
-      // Mark complete on final
-      if (next === items.length - 1 && !completedRef.current) setCompleted(true);
+      const next = clamp(current + dir, 0, last);
 
-      const target = top + next * vh;
+      // if we land on last, start dwell timer
+      if (next === last) reachedLastAtRef.current = performance.now();
 
       setActiveIndex(next);
-      animateScrollTo(target, 650);
+      activeIndexRef.current = next;
+
+      animateScrollTo(startY + next * vh, 650);
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -193,15 +287,17 @@ const Testimonials: React.FC = () => {
         sectionRef.current = node;
       }}
       className="relative px-6"
-      style={{ height: `${items.length * 100}vh` }}
+      // Extra 1 viewport total gives: ~0.5vh "lead in" + ~0.5vh "lead out"
+      // (pairs with startY = top + 0.5vh)
+      style={{ height: `${(items.length + 1) * 100}vh` }}
     >
-      {/* Sticky panel that stays while you scroll through steps */}
+      {/* Sticky panel */}
       <div className="sticky top-0 h-screen flex items-center">
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Left */}
+        <div className="w-full max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-start">
+            {/* LEFT */}
             <div className="lg:col-span-4">
-              <h2 className="font-display italic text-4xl md:text-5xl leading-[0.95] text-coco-text">
+              <h2 className="font-display italic text-5xl md:text-6xl leading-[0.95] text-coco-text">
                 What people
                 <br />
                 are saying
@@ -211,70 +307,87 @@ const Testimonials: React.FC = () => {
                 Scroll to read each testimonial
               </div>
 
-              {/* Tabs (always visible, wraps on desktop; scrolls on mobile) */}
-              <div className="mt-8">
-                <div className="-mx-2 px-2 overflow-x-auto lg:overflow-visible">
-                  <div className="flex lg:flex-wrap gap-2 min-w-max lg:min-w-0 pb-2">
-                    {items.map((t, i) => {
-                      const isActive = i === activeIndex;
-                      return (
-                        <button
-                          key={`${t.name}-${i}`}
-                          type="button"
-                          onClick={() => jumpTo(i)}
+              {/* Dot list */}
+              <div className="mt-10 space-y-7">
+                {items.map((t, i) => {
+                  const isActive = i === activeIndex;
+                  return (
+                    <button
+                      key={`${t.name}-${i}`}
+                      type="button"
+                      onClick={() => goToIndex(i, 650)}
+                      className={[
+                        "group flex items-start gap-4 text-left w-full",
+                        "transition-opacity duration-200",
+                        isActive ? "opacity-100" : "opacity-65 hover:opacity-85",
+                      ].join(" ")}
+                    >
+                      <span
+                        className={[
+                          "mt-1.5 h-2.5 w-2.5 rounded-full border transition-all duration-200",
+                          isActive
+                            ? "bg-coco-purple"
+                            : "bg-transparent border-coco-text/20 group-hover:border-coco-text/35",
+                        ].join(" ")}
+                        aria-hidden="true"
+                      />
+                      <span>
+                        <div
                           className={[
-                            "px-4 py-2 rounded-full text-left whitespace-nowrap",
-                            "transition-all duration-200 border",
-                            isActive
-                              ? "bg-coco-accent text-white border-coco-accent shadow-soft"
-                              : "bg-white/40 border-white/60 text-coco-text/70 hover:text-coco-text hover:bg-white/60",
+                            "font-semibold leading-tight",
+                            isActive ? "text-coco-text" : "text-coco-text/70",
                           ].join(" ")}
                         >
-                          <div className="text-sm font-semibold leading-tight">
-                            {t.name}
-                          </div>
-                          <div className="text-[11px] opacity-80">{t.role}</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+                          {t.name}
+                        </div>
+                        <div className="text-sm text-coco-text/45 leading-tight">
+                          {t.role}
+                        </div>
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Right */}
-            <div className="lg:col-span-8">
-              {/* Plain text, no card */}
-              <p className="text-lg md:text-xl text-coco-text/80 leading-relaxed max-w-2xl">
-                “{active.quote}”
+            {/* RIGHT (pushed down more to align bottoms better) */}
+            <div className={["lg:col-span-6", "lg:pt-44", "pb-8"].join(" ")}>
+              <p className="text-xl md:text-2xl text-coco-text/80 leading-relaxed max-w-2xl">
+                {active.quote}
               </p>
 
-              <div className="mt-6 text-sm text-coco-text/70">
-                <span className="font-semibold text-coco-text">
-                  {active.name}
-                </span>{" "}
-                <span className="text-coco-text/50">— {active.role}</span>
+              <div className="mt-10 flex items-center gap-5">
+                <div className="h-14 w-14 rounded-full bg-coco-text/10 border border-white/60 shadow-soft" />
+                <div>
+                  <div className="font-semibold text-coco-text">
+                    {active.name}
+                  </div>
+                  <div className="text-sm text-coco-text/50">{active.role}</div>
+                </div>
               </div>
 
-              <div className="mt-8 flex gap-2">
-                {items.map((_, i) => (
-                  <span
-                    key={i}
-                    className={[
-                      "h-1.5 rounded-full transition-all duration-300",
-                      i === activeIndex
-                        ? "w-10 bg-coco-accent"
-                        : "w-4 bg-coco-text/15",
-                    ].join(" ")}
-                  />
-                ))}
+              <div className="mt-10 flex items-center gap-4">
+                <div className="flex gap-2">
+                  {items.map((_, i) => (
+                    <span
+                      key={i}
+                      className={[
+                        "h-1.5 rounded-full transition-all duration-300",
+                        i === activeIndex
+                          ? "w-10 bg-coco-purple"
+                          : "w-4 bg-coco-text/15",
+                      ].join(" ")}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
+
+                <div className="text-sm text-coco-text/55">
+                  {activeIndex + 1} / {items.length}
+                </div>
               </div>
 
-              <div className="mt-4 text-sm text-coco-text/55">
-                {activeIndex + 1} / {items.length}
-              </div>
-
-              {/* Optional: quick reset for dev/testing */}
+              {/* Dev reset (optional) */}
               {/* <button
                 type="button"
                 className="mt-8 text-xs underline text-coco-text/50"
@@ -283,7 +396,7 @@ const Testimonials: React.FC = () => {
                   setCompleted(false);
                 }}
               >
-                Reset testimonials lock
+                Reset lock
               </button> */}
             </div>
           </div>

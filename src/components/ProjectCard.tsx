@@ -16,18 +16,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const totalLabel = String(totalCount).padStart(2, "0");
 
   return (
-    <div className="group relative w-full mb-16 sm:mb-20 md:mb-24 last:mb-0">
-      <div className="flex flex-col gap-7 md:gap-8">
+    <div
+      className={[
+        "group relative w-full mx-auto",
+        // small/medium: keep that “clean, tighter” look
+        "max-w-[clamp(22rem,92vw,58rem)]",
+        // large screens: expand so it doesn’t feel tiny
+        "lg:max-w-[52rem] 2xl:max-w-[60rem]",
+        "mb-[clamp(2.25rem,4vw,4rem)] last:mb-0",
+      ].join(" ")}
+    >
+      {" "}
+      <div className="flex flex-col gap-[clamp(1.05rem,2.2vw,1.6rem)]">
         {/* Media */}
         <div
           className={[
             "w-full overflow-hidden rounded-2xl relative bg-gray-100",
-            "shadow-sm group-hover:shadow-xl transition-all duration-500",
-            // responsive “same scale” feel:
-            // - aspect ratio keeps consistent shape
-            // - max-h prevents it from getting too tall on short screens
+            "shadow-sm group-hover:shadow-lg transition-all duration-500",
+            // proportional sizing
             "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9]",
-            "max-h-[70vh] min-h-[260px]",
+            // prevents it from getting too tall on big screens, but never “squishes”
+            "max-h-[clamp(320px,70vh,560px)]",
           ].join(" ")}
         >
           <div className="absolute inset-0 bg-coco-text/0 group-hover:bg-coco-text/5 transition-colors duration-500 z-10 mix-blend-multiply" />
@@ -35,41 +44,55 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
             loading="lazy"
           />
 
-          <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20 bg-coco-purple-light/40 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-coco-text shadow-sm">
+          {/* Category pill (smaller + calmer) */}
+          <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-coco-purple-light/35 backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-[0.18em] text-coco-text shadow-sm">
             {project.category}
           </div>
         </div>
 
         {/* Text + CTA */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 px-1 sm:px-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-[clamp(1rem,2.2vw,1.6rem)] px-1 sm:px-2">
           <div className="max-w-2xl space-y-3">
-            <div className="text-coco-accent font-mono text-sm tracking-widest">
+            <div className="text-coco-accent font-mono text-[11px] sm:text-xs tracking-[0.22em]">
               {String(index + 1).padStart(2, "0")} / {totalLabel}
             </div>
 
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-display italic text-coco-text group-hover:text-coco-accent transition-colors duration-300">
+            {/* Title: clamp instead of 3xl→5xl */}
+            <h3 className="font-display italic text-coco-text group-hover:text-coco-accent transition-colors duration-300 text-[clamp(1.55rem,3.1vw,2.5rem)] leading-[1.05]">
               {project.title}
             </h3>
 
-            <p className="text-gray-600 leading-relaxed text-base sm:text-lg max-w-xl">
+            {/* Description: clamp + line clamp to keep projects “one screen-ish” */}
+            <p
+              className={[
+                "text-coco-text/70 leading-relaxed max-w-xl",
+                "text-[clamp(0.95rem,1.25vw,1.05rem)]",
+                // no plugin needed:
+                "[display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden",
+              ].join(" ")}
+            >
               {project.description}
             </p>
           </div>
 
+          {/* CTA: smaller */}
           <a
             href={project.link}
-            className="group/btn flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full
-             border border-coco-purple text-coco-purple
-             hover:bg-coco-purple hover:border-coco-purple hover:text-white
-             transition-all duration-300"
+            className={[
+              "group/btn flex items-center justify-center",
+              "w-12 h-12 sm:w-14 sm:h-14",
+              "rounded-full border border-coco-purple text-coco-purple",
+              "hover:bg-coco-purple hover:border-coco-purple hover:text-white",
+              "transition-all duration-300",
+            ].join(" ")}
             aria-label={`Open ${project.title}`}
           >
             <ArrowUpRight
-              size={22}
+              size={20}
               className="group-hover/btn:rotate-45 transition-transform duration-300"
             />
           </a>
