@@ -257,28 +257,25 @@ const App: React.FC = () => {
             </h2>
 
             <p className="text-base md:text-lg text-coco-text/70 leading-relaxed">
-              I believe good design is invisible. It removes friction and helps
-              users achieve their goals effortlessly. My frontend background
-              helps me collaborate tightly with engineering—so the work ships
-              beautifully.
+              I design intuitive, experience-driven interfaces where every detail has a purpose. I focus on clarity, flow, and the small details that help users move effortlessly through an interface. My frontend background supports close collaboration with engineering and smooth execution.
             </p>
 
             <div className="grid grid-cols-2 gap-8 pt-4">
               <div>
                 <h4 className="font-bold text-coco-accent mb-2">Services</h4>
                 <ul className="text-sm space-y-2 text-coco-text/70">
+                  <li>Product & UX/UI Design</li>
                   <li>Design Systems</li>
-                  <li>SaaS Product Design</li>
-                  <li>Mobile Strategy</li>
+                  <li>Web & Mobile Experience Design</li>
                 </ul>
               </div>
 
               <div>
                 <h4 className="font-bold text-coco-accent mb-2">Tools</h4>
                 <ul className="text-sm space-y-2 text-coco-text/70">
-                  <li>Figma & Protopie</li>
+                  <li>Figma</li>
+                  <li>Adobe Creative Cloud</li>
                   <li>React & Tailwind</li>
-                  <li>UserTesting</li>
                 </ul>
               </div>
             </div>
