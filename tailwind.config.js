@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Montserrat", "sans-serif"],
         display: ["Playfair Display", "serif"],
       },
       colors: {
