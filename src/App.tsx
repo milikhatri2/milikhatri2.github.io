@@ -18,7 +18,7 @@ const mockProjects: Project[] = [
       "The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility, aligning with the foundation’s mission.",
     image: "../src/assets/ADMCover.png",
     year: "2023",
-    link: "#",
+    link: "../angeles.html",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const mockProjects: Project[] = [
       "A comprehensive sustainability tracking application. Conducted extensive user research to identify pain points in carbon footprint calculation.",
     image: "../src/assets/HarmonizeCover.png",
     year: "2023",
-    link: "#",
+    link: "../harmonize.html",
   },
 ];
 

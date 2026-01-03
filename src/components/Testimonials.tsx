@@ -308,7 +308,17 @@ const Testimonials: React.FC = () => {
               </div>
 
               {/* Dot list */}
-              <div className="mt-10 space-y-7">
+              <div
+                className={[
+                  "mt-8 lg:mt-10",
+                  "flex lg:block",
+                  "gap-3 lg:gap-0",
+                  "overflow-x-auto lg:overflow-visible",
+                  "pb-2 lg:pb-0",
+                  "lg:space-y-7",
+                  "[-webkit-overflow-scrolling:touch]",
+                ].join(" ")}
+              >
                 {items.map((t, i) => {
                   const isActive = i === activeIndex;
                   return (
@@ -319,18 +329,21 @@ const Testimonials: React.FC = () => {
                       className={[
                         "group flex items-start gap-4 text-left w-full",
                         "transition-opacity duration-200",
-                        isActive ? "opacity-100" : "opacity-65 hover:opacity-85",
+                        isActive
+                          ? "opacity-100"
+                          : "opacity-65 hover:opacity-85",
                       ].join(" ")}
                     >
                       <span
                         className={[
-                          "mt-1.5 h-2.5 w-2.5 rounded-full border transition-all duration-200",
+                          "mt-1.5 inline-block shrink-0 h-2.5 w-2.5 rounded-full border transition-all duration-200",
                           isActive
-                            ? "bg-coco-purple"
+                            ? "bg-coco-purple border-coco-purple"
                             : "bg-transparent border-coco-text/20 group-hover:border-coco-text/35",
                         ].join(" ")}
                         aria-hidden="true"
                       />
+
                       <span>
                         <div
                           className={[
@@ -351,10 +364,21 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* RIGHT (pushed down more to align bottoms better) */}
-            <div className={["lg:col-span-6", "lg:pt-44", "pb-8"].join(" ")}>
-              <p className="text-xl md:text-2xl text-coco-text/80 leading-relaxed max-w-2xl">
-                {active.quote}
-              </p>
+            <div
+              className={[
+                "lg:col-span-6",
+                "lg:pt-44",
+                "pb-8",
+                "flex flex-col",
+                // holds layout steady so short quotes don't pull everything upward
+                "min-h-[clamp(420px,60vh,560px)]",
+              ].join(" ")}
+            >
+              <div className="flex-1">
+                <p className="text-xl md:text-2xl text-coco-text/80 leading-relaxed max-w-2xl">
+                  {active.quote}
+                </p>
+              </div>
 
               <div className="mt-10 flex items-center gap-5">
                 <div className="h-14 w-14 rounded-full bg-coco-text/10 border border-white/60 shadow-soft" />
