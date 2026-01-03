@@ -281,9 +281,7 @@ const App: React.FC = () => {
                 </h4>
                 <ul className="text-md space-y-2 text-coco-text/70">
                   <li>Product & UX/UI Design</li>
-                  <li>Product & UX/UI Design</li>
                   <li>Design Systems</li>
-                  <li>Web & Mobile Experience Design</li>
                   <li>Web & Mobile Experience Design</li>
                 </ul>
               </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from '../types';
-import { Briefcase, User, Mail, Quote, MessageSquareText } from 'lucide-react';
+import { Briefcase, User, Mail, MessageSquareText } from 'lucide-react';
 
 interface NavigationProps {
   activeSection: Section;
