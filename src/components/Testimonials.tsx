@@ -445,7 +445,7 @@ const Testimonials: React.FC = () => {
               ].join(" ")}
             >
               <div className="flex-1">
-                <p className="text-lg text-coco-text/80 max-w-2xl">
+                <p className="text-[17px] text-coco-text/80 max-w-2xl">
                   {active.quote}
                 </p>
               </div>

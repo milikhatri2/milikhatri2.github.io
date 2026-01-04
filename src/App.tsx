@@ -269,7 +269,7 @@ const App: React.FC = () => {
               More than just pixels.
             </h2>
 
-            <p className="text-coco-text/70">
+            <p className="text-coco-text/70 text-[16px]">
               I design intuitive, experience-driven interfaces where every
               detail has a purpose. I focus on clarity, flow, and the small
               details that help users move effortlessly through an interface. My
