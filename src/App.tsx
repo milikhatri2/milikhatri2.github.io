@@ -190,11 +190,11 @@ const App: React.FC = () => {
               {/* tagline */}
               <p className="mt-5 text-white/85 text-[clamp(0.95rem,1.6vw,1.1rem)] leading-relaxed max-w-xl">
                 A designer who bridges the gap between{" "}
-                <span className="font-serif italic text-coco-accent">
+                <span className="italic text-coco-accent">
                   complex data
                 </span>{" "}
                 and{" "}
-                <span className="font-serif italic text-coco-accent">
+                <span className="italic text-coco-accent">
                   human intuition
                 </span>
                 .
@@ -266,7 +266,7 @@ const App: React.FC = () => {
               More than just pixels.
             </h2>
 
-            <p className="text-base md:text-lg text-coco-text/70 leading-relaxed">
+            <p className="text-coco-text/70">
               I design intuitive, experience-driven interfaces where every
               detail has a purpose. I focus on clarity, flow, and the small
               details that help users move effortlessly through an interface. My

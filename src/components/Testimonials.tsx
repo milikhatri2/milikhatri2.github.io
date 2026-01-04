@@ -4,7 +4,7 @@ import { Section } from "../types";
 type Testimonial = {
   name: string;
   role: string;
-  quote: string;
+  quote: React.ReactNode; // <-- was string
 };
 
 const clamp = (n: number, min: number, max: number) =>
@@ -27,26 +27,86 @@ const Testimonials: React.FC = () => {
       {
         name: "Denise S.",
         role: "Founder of Let Mommy Sleep",
-        quote:
-          "What I liked best about working with Mili is that while I had the 'big picture' of what the website redesign should be, I knew I could depend on Mili’s expertise to turn the big picture into a detailed project and intuitive user experience... The project result exceeded what I envisioned... On some parts of the project, Mili would present several options with a considered explanation of the logic behind each design... I appreciated Mili’s honest communication style and professionalism.",
+        quote: (
+          <>
+            What I liked best about working with Mili is that while I had the{" "}
+            &apos;
+            <span className="font-semibold not-italic">big picture</span>
+            &apos; of what the website redesign should be, I knew I could depend
+            on Mili’s expertise to turn the big picture into a detailed project
+            and intuitive user experience... The project result{" "}
+            <span className="font-semibold not-italic">
+              exceeded what I envisioned
+            </span>
+            ... On some parts of the project, Mili would present several options
+            with a considered explanation of the logic behind each design... I
+            appreciated Mili’s honest{" "}
+            <span className="font-semibold not-italic">
+              communication style and professionalism
+            </span>
+            .
+          </>
+        ),
       },
       {
         name: "President",
         role: "Be the Cause.org",
-        quote:
-          "Mili joined Be the Cause.org as a UI/UX Design Intern and quickly became an integral part of our creative process... design thinking and attention to detail, crafting accessible and visually consistent layouts that elevated our digital presence... Mili developed a comprehensive style guide defining typography, color usage, and component behavior, helping the team maintain design consistency and efficiency...eye for interaction and responsive design ensured that every element looked and functioned beautifully across devices.",
+        quote: (
+          <>
+            Mili joined Be the Cause.org as a{" "}
+            <span className="font-semibold not-italic">
+              UI/UX Design Intern
+            </span>{" "}
+            and quickly became an integral part of our creative process...
+            design thinking and attention to detail, crafting accessible and
+            visually consistent layouts that{" "}
+            <span className="font-semibold not-italic">
+              elevated our digital presence
+            </span>
+            ... Mili{" "}
+            <span className="font-semibold not-italic">
+              developed a comprehensive style guide
+            </span>{" "}
+            defining typography, color usage, and component behavior, helping
+            the team{" "}
+            <span className="font-semibold not-italic">
+              maintain design consistency and efficiency
+            </span>
+            ...
+            <span className="font-semibold not-italic">
+              eye for interaction and responsive design
+            </span>{" "}
+            ensured that every element looked and functioned beautifully across
+            devices.
+          </>
+        ),
       },
       {
         name: "Mark D.",
         role: "Founder of Starside Development",
-        quote:
-          "Mili is an absolute pleasure to work with. She’s thoughtful, a great communicator, and deeply attuned to client needs. Mili has a rare ability to blend creative design with first-class user experience, consistently delivering beautifully crafted, effective solutions.",
+        quote: (
+          <>
+            Mili is an absolute pleasure to work with. She’s thoughtful, a great
+            communicator, and deeply attuned to client needs. Mili has a rare
+            ability to <span className="font-semibold not-italic">blend creative design</span> with <span className="font-semibold not-italic">first-class user experience,</span> consistently delivering <span className="font-semibold not-italic">beautifully crafted, effective solutions.</span>
+          </>
+        ),
       },
       {
         name: "Rodney N.",
         role: "Frontend Software Engineer at HubSpot and Owner of Shoreline Web Studio",
-        quote:
-          "Mili was a fantastic UI/UX designer for Shoreline Web Studio on our project for the Angeles De Medellin Foundation... She was professional, reliable, and took full ownership of the design deliverables... Her ability to translate our vision into tangible assets was truly impressive... Mili has a clear passion for design and delivers high-quality work.",
+        quote: (
+          <>
+            Mili was a{" "}
+            <span className="font-semibold not-italic">
+              fantastic UI/UX designer
+            </span>{" "}
+            for Shoreline Web Studio on our project for the Angeles De Medellin
+            Foundation... She was <span className="font-semibold not-italic">professional, reliable</span>
+            , and took <span className="font-semibold not-italic">full ownership of the design deliverables</span>... Her ability to translate our
+            vision into tangible assets was truly impressive... Mili has a <span className="font-semibold not-italic">clear passion for design</span> and delivers high-quality work.
+          </>
+        ),
       },
     ],
     []
@@ -375,7 +435,7 @@ const Testimonials: React.FC = () => {
               ].join(" ")}
             >
               <div className="flex-1">
-                <p className="text-xl md:text-2xl text-coco-text/80 leading-relaxed max-w-2xl">
+                <p className="text-lg text-coco-text/80 max-w-2xl">
                   {active.quote}
                 </p>
               </div>
