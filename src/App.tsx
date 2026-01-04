@@ -1,0 +1,459 @@
+import React, { useEffect, useState } from "react";
+import Navigation from "./components/Navigation";
+import ProjectCard from "./components/ProjectCard";
+import { Section, type Project } from "./types";
+import { ExternalLink } from "lucide-react";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import Testimonials from "./components/Testimonials";
+import OuraRing from "./components/OuraRing";
+import HeroImage from "./assets/HeroImage.jpg";
+import AboutImage from "./assets/AboutmeImage.jpg";
+
+const mockProjects: Project[] = [
+  {
+    id: 1,
+    title: "Angeles De Medellin",
+    category: "Web Design",
+    description:
+      "The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility, aligning with the foundation’s mission.",
+    image: "../src/assets/ADMCover.png",
+    year: "2023",
+    link: "../angeles.html",
+  },
+  {
+    id: 2,
+    title: "Harmonize",
+    category: "Product Design",
+    description:
+      "A comprehensive sustainability tracking application. Conducted extensive user research to identify pain points in carbon footprint calculation.",
+    image: "../src/assets/HarmonizeCover.png",
+    year: "2023",
+    link: "../harmonize.html",
+  },
+];
+
+type ContactFormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+const App: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<Section>(Section.HERO);
+  const [showLogo, setShowLogo] = useState(true);
+
+  const [contact, setContact] = useState<ContactFormState>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const scrollToSection = (section: Section) => {
+    const el = document.getElementById(section);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(section);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = Object.values(Section) as Section[];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+          setActiveSection(section);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const heroEl = document.getElementById(Section.HERO);
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowLogo(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, []);
+
+  const onContactChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setContact((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const fullName = `${contact.firstName} ${contact.lastName}`.trim();
+    const subject =
+      contact.subject.trim() || `Website inquiry from ${fullName || "someone"}`;
+
+    const bodyLines = [
+      `Name: ${fullName || "-"}`,
+      `Email: ${contact.email || "-"}`,
+      "",
+      contact.message || "",
+    ];
+
+    const mailto = `mailto:mili@milikhatri.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+    window.location.href = mailto;
+  };
+
+  return (
+    <div className="min-h-screen pb-20 md:pb-16 selection:bg-coco-accent selection:text-white text-[14px] sm:text-[15px]">
+      <OuraRing />
+      {/* Centered logo overlay (text wordmark) - only visible on HERO */}
+      <button
+        type="button"
+        onClick={() => scrollToSection(Section.HERO)}
+        aria-label="Back to top"
+        className={[
+          "fixed top-6 left-1/2 -translate-x-1/2 z-[60]",
+          "transition-all duration-500 ease-out",
+          showLogo
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-2 pointer-events-none",
+          // prevents accidental text selection / tap highlight
+          "select-none",
+        ].join(" ")}
+      >
+        <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+          <span className="italic text-xl md:text-2xl lg:text-3xl">Mili</span>
+          <span className="text-xl md:text-2xl lg:text-3xl"> Khatri</span>
+        </span>
+      </button>
+      <Navigation
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+      />
+
+      {/* HERO (updated to match your old screenshot style) */}
+      <section
+        id={Section.HERO}
+        className="bg-center bg-cover relative min-h-screen w-full overflow-hidden"
+      >
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat"
+          style={{
+            backgroundImage: `url(${HeroImage})`,
+            backgroundPosition: "75% 20%", // shifts subject to the right
+          }}
+        />
+
+        {/* Readability overlay (soft, like your example) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-black/10" />
+
+        {/* Content */}
+        <div className="relative z-10 min-h-screen flex items-end pb-[clamp(4.5rem,14vh,8rem)]">
+          <div className="w-full max-w-7xl mx-auto px-6">
+            <div className="max-w-2xl">
+              {/* label line */}
+              <div className="flex items-center gap-4 text-white/80 mb-5">
+                <span className="h-px w-16 bg-white/50" />
+                <span className="text-xs sm:text-sm tracking-[0.18em] uppercase">
+                  UI/UX Designer &amp; Researcher
+                </span>
+              </div>
+
+              {/* name */}
+              <h1 className="font-display text-white leading-[0.95] drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+                <span className="block italic text-[clamp(3.15rem,7.2vw,6.25rem)]">
+                  Mili
+                </span>
+                <span className="block text-[clamp(3.15rem,7.2vw,6.25rem)]">
+                  Khatri
+                </span>
+              </h1>
+
+              {/* tagline */}
+              <p className="mt-5 text-white/85 text-[clamp(0.95rem,1.6vw,1.1rem)] leading-relaxed max-w-xl">
+                A designer who bridges the gap between{" "}
+                <span className="italic text-coco-accent">
+                  complex data
+                </span>{" "}
+                and{" "}
+                <span className="italic text-coco-accent">
+                  human intuition
+                </span>
+                .
+              </p>
+
+              {/* button (less “screamy”) */}
+              <div className="mt-7">
+                <button
+                  onClick={() => scrollToSection(Section.WORK)}
+                  className={[
+                    "inline-flex items-center justify-center",
+                    "px-5 py-2.5 rounded-full",
+                    "text-sm font-medium",
+                    "text-white/90 hover:text-white",
+                    "bg-white/10 hover:bg-white/15",
+                    "border border-white/25 hover:border-white/40",
+                    "backdrop-blur-sm",
+                    "transition",
+                  ].join(" ")}
+                >
+                  View Select Work
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WORK */}
+      <section
+        id={Section.WORK}
+        className="px-[clamp(1.1rem,4vw,1.75rem)] py-[clamp(2.75rem,5.5vw,5rem)] pb-24 md:pb-24"
+      >
+        <div className="max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <div className="text-center mb-[clamp(2rem,4.5vw,3.5rem)]">
+            <h2 className="font-display italic text-[clamp(2rem,4.2vw,3.1rem)] mb-3">
+              Selected Works
+            </h2>
+            <div className="w-14 h-1 bg-coco-accent mx-auto rounded-full" />
+          </div>
+
+          <div className="flex flex-col gap-[clamp(5rem,8vw,7rem)]">
+            {mockProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                totalCount={mockProjects.length}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id={Section.ABOUT} className="py-16 md:py-24 px-5 md:px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <div className="absolute -inset-4 bg-coco-sand/45 rounded-2xl transform rotate-2 -z-0" />
+            <img
+              src={AboutImage}
+              alt="Coco Portrait"
+              className="w-full h-[580px] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 relative z-10 shadow-soft"
+            />
+          </div>
+
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl font-display">
+              More than just pixels.
+            </h2>
+
+            <p className="text-coco-text/70 text-[16px]">
+              I design intuitive, experience-driven interfaces where every
+              detail has a purpose. I focus on clarity, flow, and the small
+              details that help users move effortlessly through an interface. My
+              frontend background supports close collaboration with engineering
+              and smooth execution.
+            </p>
+
+            <div className="grid grid-cols-2 gap-8 pt-6">
+              <div>
+                <h4 className="md:text-lg font-bold text-coco-accent mb-2">
+                  Services
+                </h4>
+                <ul className="text-md space-y-2 text-coco-text/70">
+                  <li>Product & UX/UI Design</li>
+                  <li>Design Systems</li>
+                  <li>Web & Mobile Experience Design</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="md:text-lg font-bold text-coco-accent mb-2">
+                  Tools
+                </h4>
+                <ul className="text-md space-y-2 text-coco-text/70">
+                  <li>Figma</li>
+                  <li>Adobe Creative Cloud</li>
+                  <li>React & Tailwind</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Resume button */}
+            <div className="pt-4">
+              <a
+                href="../src/assets/MKResume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/70 hover:bg-white transition-colors border border-white/60 shadow-soft"
+              >
+                View Resume{" "}
+                <ExternalLink size={18} className="text-coco-accent" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Testimonials />
+      {/* CONTACT (old form style, new aesthetics) */}
+      <section
+        id={Section.CONTACT}
+        className="pt-[clamp(3rem,6vw,5rem)] pb-[clamp(2.5rem,5vw,4rem)] px-[clamp(1.1rem,4vw,1.75rem)]"
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-[clamp(1.25rem,3vw,2rem)]">
+            <h2 className="font-display tracking-tight text-[clamp(2.1rem,4.2vw,3.1rem)]">
+              Get in touch
+            </h2>
+            <p className="text-coco-text/65 mt-2 text-[clamp(0.95rem,1.3vw,1.05rem)]">
+              Have a project or just want to say hi? I’d love to hear from you.
+            </p>
+          </div>
+
+          <div className="glass-panel rounded-3xl p-4 md:p-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+              {/* Left info card */}
+              <div className="rounded-2xl bg-white border border-coco-text/10 p-6 shadow-soft">
+                <div className="text-md font-bold uppercase tracking-widest text-coco-text/80 text-center">
+                  Contact
+                </div>
+                <div className="mt-4 space-y-3 text-coco-text">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-sm uppercase tracking-widest text-coco-text/50">
+                      Email
+                    </div>
+                    <div className="text-md text-coco-text text-right">
+                      mili@milikhatri.com
+                    </div>
+                  </div>
+
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="text-sm uppercase tracking-widest text-coco-text/50">
+                      Location
+                    </div>
+                    <div className="text-md text-coco-text text-right">
+                      NJ / NYC{" "}
+                      <span className="text-coco-text/60">(Flexible)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Form */}
+              <form
+                onSubmit={onContactSubmit}
+                className="lg:col-span-2 rounded-2xl bg-white border border-coco-text/10 p-5 md:p-6 shadow-soft"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-widest text-coco-text/55">
+                      First Name *
+                    </label>
+                    <input
+                      name="firstName"
+                      value={contact.firstName}
+                      onChange={onContactChange}
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-widest text-coco-text/55">
+                      Last Name *
+                    </label>
+                    <input
+                      name="lastName"
+                      value={contact.lastName}
+                      onChange={onContactChange}
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-widest text-coco-text/55">
+                      Email *
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      value={contact.email}
+                      onChange={onContactChange}
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-widest text-coco-text/55">
+                      Subject
+                    </label>
+                    <input
+                      name="subject"
+                      value={contact.subject}
+                      onChange={onContactChange}
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      placeholder="e.g., Product Design role, Freelance project…"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="text-xs font-bold uppercase tracking-widest text-coco-text/55">
+                      Message
+                    </label>
+                    <textarea
+                      name="message"
+                      value={contact.message}
+                      onChange={onContactChange}
+                      rows={6}
+                      className="mt-2 w-full rounded-2xl border border-coco-text/10 bg-white px-4 py-3 outline-none resize-none focus:border-coco-accent/60 focus:ring-2 focus:ring-coco-accent/20"
+                      placeholder="Tell me what you’re working on…"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="mt-6 w-full py-4 rounded-full bg-coco-purple text-white font-bold shadow-soft hover:opacity-95 transition"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          <ScrollToTopButton />
+          <footer className="mt-16 text-center">
+            <p className="font-display italic text-xl text-coco-text mb-2">
+              Mili Khatri.
+            </p>
+            <p className="text-xs text-coco-text/45 uppercase tracking-widest">
+              &copy; 2026. All Rights Reserved.
+            </p>
+          </footer>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default App;

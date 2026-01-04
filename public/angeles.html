@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Angeles de Medellín – Website Redesign Case Study | Mili Khatri Design
+    </title>
+    <meta
+      name="description"
+      content="Nonprofit website redesign case study for Angeles de Medellín. Heuristics, IA, responsive UI, and user testing results."
+    />
+    <meta name="author" content="Mili Khatri" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#f2e5fc" />
+    <link
+      rel="canonical"
+      href="https://milikhatri.com/projects/angeles-de-medellin"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Use the same font family as index -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome (for mobile menu icon) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./projectpages.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "url": "https://milikhatri.com/projects/angeles-de-medellin",
+        "headline": "Angeles de Medellín – Website Redesign Case Study",
+        "description": "Case study of a nonprofit website redesign focusing on heuristics, IA, accessibility, and testing.",
+        "datePublished": "2025-01-01",
+        "dateModified": "2025-01-01",
+        "author": {
+          "@type": "Person",
+          "name": "Mili Khatri",
+          "@id": "https://milikhatri.com/#mili-khatri"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Mili Khatri",
+          "@id": "https://milikhatri.com/#mili-khatri"
+        },
+        "keywords": "nonprofit redesign, UX research, information architecture, accessibility"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://milikhatri.com/#mili-khatri",
+        "name": "Mili Khatri",
+        "url": "https://milikhatri.com/",
+        "jobTitle": "UX/UI Designer",
+        "sameAs": ["https://www.linkedin.com/in/milikhatri"]
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="oura-ring" aria-hidden="true"></div>
+
+    <!-- Floating pill nav (HTML version to match React) -->
+    <div class="pill-nav">
+      <nav class="pill-nav-inner" aria-label="Project navigation">
+        <a class="pill-btn" href="../">
+          <span class="pill-ico" aria-hidden="true">
+            <!-- Home icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M3 10.5L12 3l9 7.5"></path>
+              <path d="M5 10v10h14V10"></path>
+              <path d="M9 20v-6h6v6"></path>
+            </svg>
+          </span>
+          <span class="pill-label">Home</span>
+        </a>
+
+        <a class="pill-btn" href="../angeles.html">
+          <span class="pill-ico" aria-hidden="true">
+            <!-- ADM icon (heart/mission) -->
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 21s-7-4.35-9.5-8.2C.65 9.85 2.3 6.8 5.5 6.5c1.7-.16 3.1.7 3.9 2
+             .8-1.3 2.2-2.16 3.9-2 3.2.3 4.85 3.35 3 6.3C19 16.65 12 21 12 21z"
+              ></path>
+            </svg>
+          </span>
+          <span class="pill-label">ADM</span>
+        </a>
+
+        <a class="pill-btn" href="../harmonize.html">
+          <span class="pill-ico" aria-hidden="true">
+            <!-- Music note icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M9 18a3 3 0 1 0 0 6"></path>
+              <path d="M9 21V6l12-2v15"></path>
+              <path d="M21 17a3 3 0 1 0 0 6"></path>
+            </svg>
+          </span>
+          <span class="pill-label">Harmonize</span>
+        </a>
+      </nav>
+    </div>
+
+    <main class="container">
+      <section class="hero hero--adm">
+        <p class="subtitle">UX Case Study</p>
+        <h1 class="title">Angeles de Medellín</h1>
+        <div class="pills">
+          <span class="pill">UX Research</span>
+          <span class="pill">Information Architecture</span>
+          <span class="pill">UI Design</span>
+          <span class="pill">Prototyping</span>
+          <span class="pill">Responsive Web</span>
+        </div>
+      </section>
+
+      <section class="problem">
+        <h2>Challenges</h2>
+        <p>
+          The Angeles de Medellín Foundation’s website was built on a basic
+          template with poor navigation, unclear information hierarchy, and no
+          mobile optimization. These issues made it difficult for users
+          primarily potential donors, volunteers, and community members to
+          donate, volunteer, or learn about the organization, directly limiting
+          engagement and community support (meaning financial contributions,
+          volunteer participation, and overall involvement with the foundation’s
+          mission).
+        </p>
+      </section>
+
+      <section class="two-col">
+        <div>
+          <h2>Objectives & Goals</h2>
+          <ul class="bullets">
+            <p>
+              This redesign project began when the Angeles de Medellín
+              Foundation requested an updated website to better communicate
+              their mission and encourage community involvement. As part of a
+              college capstone project, a group of us were assigned to lead the
+              redesign effort.
+            </p>
+            <br />
+            <p>Our main goals were to:</p>
+            <li>
+              Redesign the website to improve overall usability and
+              accessibility, ensuring that people of all ages and abilities can
+              easily navigate and engage with the site. These aspects were
+              identified as essential to creating a more inclusive and effective
+              user experience.
+            </li>
+            <li>
+              Simplify navigation and content structure so users can quickly
+              find key actions such as donating, volunteering, or learning about
+              the foundation.
+            </li>
+            <li>
+              Develop a visually engaging, up-to-date, and responsive website
+              that reflects current web design standards and provides a seamless
+              experience across devices, including mobile, tablet, and desktop
+            </li>
+          </ul>
+        </div>
+        <figure class="objectives-gif">
+          <img src="\assets\images\ADMOldSite.gif" alt="Description of GIF" />
+          <figcaption>
+            The original ADM website offered little guidance for users with no
+            clear calls to action, minimal transparency on how donations were
+            used, and external redirects that interrupted key user goals:
+            donating, volunteering, and learning about the organization.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section process" aria-labelledby="process-heading">
+        <h2
+          id="process-heading"
+          style="text-align: center; margin-bottom: 18px; font-size: 2.4rem"
+        >
+          Our Process
+        </h2>
+
+        <div class="process-grid">
+          <article class="process-item">
+            <div class="process-icon" aria-hidden="true">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h3>Discover</h3>
+            <p>
+              Conducted a heuristic evaluation and task-based walkthroughs to
+              identify usability pain points.
+            </p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-icon" aria-hidden="true">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <h3>Define</h3>
+            <p>
+              Analyzed insights from similar nonprofit sites to benchmark best
+              practices and prioritize requirements.
+            </p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-icon" aria-hidden="true">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <h3>Ideate</h3>
+            <p>
+              Sketched wireframes and created multiple visual iterations
+              exploring different layouts and CTAs.
+            </p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-icon" aria-hidden="true">
+              <i class="fa-solid fa-pen-ruler"></i>
+            </div>
+            <h3>Design</h3>
+            <p>
+              Created and prototyped responsive pages in Figma for testing and
+              user feedback.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="user-needs" aria-labelledby="needs-heading">
+        <h2 id="needs-heading">Discover & Define</h2>
+        <p>
+          To understand the foundation’s existing website and identify
+          improvement areas, I conducted a heuristic evaluation and task-based
+          walkthroughs with four participants representing different age groups
+          and tech familiarity levels. These methods helped uncover usability
+          issues that directly affected engagement and trust.
+        </p>
+
+        <div class="key-columns">
+          <div class="key-column">
+            <h3>Key Insights:</h3>
+            <ul class="bullets">
+              <li>
+                Navigation Confusion: 3 of 4 users struggled to find Donate or
+                Volunteer (avg. task time 45+ seconds).
+              </li>
+              <li>
+                Weak Information Hierarchy: Important actions blended with
+                general content.
+              </li>
+              <li>
+                Visual Inconsistency: Mixed fonts, colors, and button styles
+                lowered credibility.
+              </li>
+              <li>
+                Mobile & Accessibility Gaps: Layouts didn’t scale on small
+                screens; several pages failed basic WCAG 2.1 checks.
+              </li>
+            </ul>
+          </div>
+
+          <div class="key-column">
+            <h3>Key Takeaways:</h3>
+            <ul class="bullets">
+              <li>Keep navigation simple with ≤ 5 main categories.</li>
+              <li>Make Donate and Get Involved highly visible.</li>
+              <li>
+                Use impactful visuals and concise storytelling to build
+                connection.
+              </li>
+              <li>Apply consistent typography, color, and button styles.</li>
+              <li>
+                Design mobile-first and ensure accessibility compliance (WCAG
+                2.1 AA).
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          These insights shaped the redesign strategy. Prioritizing clarity,
+          inclusivity, and a trustworthy digital presence aligned with current
+          web standards.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="screens-heading" id="screens">
+        <h2
+          id="screens-heading"
+          style="text-align: center; margin-bottom: 28px"
+        >
+          Sketches
+        </h2>
+        <div class="screens-grid">
+          <div class="screen-column">
+            <figure class="screen">
+              <img alt="Screen 1" src="\assets\images\LofiHero.jpg" />
+            </figure>
+            <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+            <figure class="screen">
+              <img alt="Screen 4" src="\assets\images\ADMHero.png" />
+            </figure>
+          </div>
+
+          <div class="screen-column">
+            <figure class="screen">
+              <img alt="Screen 2" src="\assets\images\LofiContact.jpg" />
+            </figure>
+            <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+            <figure class="screen">
+              <img alt="Screen 5" src="\assets\images\ADMContact.png" />
+            </figure>
+          </div>
+
+          <div class="screen-column">
+            <figure class="screen">
+              <img alt="Screen 3" src="\assets\images\LofiTimeline.jpg" />
+            </figure>
+            <div class="arrow-down"><i class="fa-solid fa-arrow-down"></i></div>
+            <figure class="screen">
+              <img alt="Screen 6" src="\assets\images\ADMTimeline.png" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcome-ADM" aria-labelledby="outcome-heading">
+        <h2>Outcome</h2>
+        <ul class="bullets">
+          <p>
+            The redesign was built using <strong>Next.js</strong> and
+            <strong>Tailwind CSS</strong>, ensuring performance, scalability,
+            and responsiveness across devices.
+          </p>
+          <p>
+            We conducted two rounds of user testing with
+            <strong>6 participants</strong> representing a mix of ages and tech
+            familiarity. Success was evaluated by task completion rates, time on
+            key actions (Donate, Volunteer), and overall satisfaction ratings.
+          </p>
+          <br />
+          <p><b>Key Results & Feedback</b></p>
+          <li>
+            <strong>Navigation & Clarity:</strong> 100% of participants
+            completed core tasks without assistance.
+          </li>
+          <li>
+            <strong>Storytelling & Engagement:</strong> Users noted that the
+            site “feels more welcoming and easier to understand” and “makes it
+            clear how to get involved.”
+          </li>
+          <li>
+            <strong>Accessibility:</strong> Participants appreciated larger
+            buttons, clear labels, and readable text on mobile.
+          </li>
+          <p><b>Lesson Learned</b></p>
+          <p>
+            Iterating based on real user feedback highlighted the importance of
+            testing early and often, even with a small group, to catch usability
+            and accessibility issues before full-scale development. Stakeholder
+            feedback confirmed that the new site better communicates the
+            foundation’s mission and effectively encourages donations and
+            volunteer sign-ups.
+          </p>
+        </ul>
+        <br />
+        <div class="outcome-gif">
+          <img src="\assets\images\ADMLive.gif" alt="Description of GIF" />
+        </div>
+      </section>
+      <footer class="site-footer">
+        <p>© 2025 by Mili Khatri</p>
+      </footer>
+    </main>
+
+    <!-- Optional: if you use assets/js/main.js on index for the mobile menu, include it. -->
+    <!-- <script src="assets/js/main.js"></script> -->
+
+    <!-- Minimal inline toggle so the hamburger works here even without main.js -->
+    <script>
+      (function () {
+        const toggle = document.querySelector(".menu-toggle");
+        const links = document.querySelector(".nav-links");
+        if (toggle && links) {
+          toggle.addEventListener("click", () =>
+            links.classList.toggle("open")
+          );
+        }
+      })();
+    </script>
+
+    <!-- Helper: add "Replace with screen" labels if src is empty -->
+    <script>
+      (function () {
+        document.querySelectorAll(".screen img").forEach((img) => {
+          if (!img.getAttribute("src")) {
+            const parent = img.closest(".screen");
+            parent.style.position = "relative";
+            const label = document.createElement("div");
+            label.textContent = "Replace with screen";
+            Object.assign(label.style, {
+              position: "absolute",
+              inset: "0",
+              display: "grid",
+              placeItems: "center",
+              color: "#9CA3AF",
+              fontSize: "14px",
+            });
+            parent.appendChild(label);
+          }
+        });
+      })();
+    </script>
+
+    <!-- Parallax column scroller (your original) -->
+    <script>
+      (function () {
+        const hero = document.querySelector(".hero");
+        const phones = document.querySelector(".hero-phones");
+        if (!hero || !phones) return;
+
+        const cols = Array.from(phones.querySelectorAll(".col"));
+        const speeds = [-0.45, -0.35, -0.25];
+
+        function ensureFill() {
+          const phoneH = phones.clientHeight || 600;
+          cols.forEach((col) => {
+            const gap = 18;
+            const cards = Array.from(col.children);
+            const cardH = cards[0]
+              ? cards[0].getBoundingClientRect().height
+              : 320;
+            const block = cardH + gap;
+            let needed = Math.ceil((phoneH * 4) / block);
+            const current = cards.length;
+            for (let i = 0; i < Math.max(0, needed - current); i++) {
+              const clone = cards[i % current].cloneNode(true);
+              col.appendChild(clone);
+            }
+          });
+        }
+
+        function setTransforms() {
+          const y = window.scrollY || window.pageYOffset;
+          cols.forEach((col, i) => {
+            const first = col.children[0];
+            if (!first) return;
+            const GAP = 18;
+            const block = first.offsetHeight + GAP;
+            const total = block * col.children.length;
+            const v = speeds[i];
+            const s = Math.abs(v);
+            const t = (y * s) % total;
+            const dy = v < 0 ? -t : -total + t;
+            col.style.transform = `translateY(${dy}px)`;
+          });
+        }
+
+        function onResize() {
+          ensureFill();
+          setTransforms();
+        }
+
+        ensureFill();
+        setTransforms();
+        window.addEventListener("scroll", setTransforms, { passive: true });
+        window.addEventListener("resize", onResize);
+        const mo = new MutationObserver(() => requestAnimationFrame(onResize));
+        mo.observe(phones, { childList: true, subtree: true });
+      })();
+    </script>
+    <script>
+      (function () {
+        const links = document.querySelectorAll(".pill-nav .pill-btn");
+        const current = new URL(window.location.href);
+
+        links.forEach((a) => {
+          const href = a.getAttribute("href");
+          if (!href) return;
+
+          // Resolve relative href to an absolute URL
+          const target = new URL(href, current);
+
+          // Mark active if pathname matches
+          if (target.pathname === current.pathname) {
+            a.classList.add("active");
+            a.setAttribute("aria-current", "page");
+          }
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        const ring = document.querySelector(".oura-ring");
+        if (!ring) return;
+
+        const move = (e) => {
+          ring.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        };
+
+        window.addEventListener("pointermove", move, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
