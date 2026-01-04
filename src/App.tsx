@@ -8,6 +8,9 @@ import Testimonials from "./components/Testimonials";
 import OuraRing from "./components/OuraRing";
 import HeroImage from "./assets/HeroImage.jpg";
 import AboutImage from "./assets/AboutmeImage.jpg";
+import ADMCover from "./assets/ADMCover.png";
+import HarmonizeCover from "./assets/HarmonizeCover.png";
+import ResumePdf from "./assets/MKResume.pdf";
 
 const mockProjects: Project[] = [
   {
@@ -16,7 +19,7 @@ const mockProjects: Project[] = [
     category: "Web Design",
     description:
       "The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility, aligning with the foundation’s mission.",
-    image: "../src/assets/ADMCover.png",
+    image: ADMCover,
     year: "2023",
     link: "../angeles.html",
   },
@@ -26,7 +29,7 @@ const mockProjects: Project[] = [
     category: "Product Design",
     description:
       "A comprehensive sustainability tracking application. Conducted extensive user research to identify pain points in carbon footprint calculation.",
-    image: "../src/assets/HarmonizeCover.png",
+    image: HarmonizeCover,
     year: "2023",
     link: "../harmonize.html",
   },
@@ -137,10 +140,10 @@ const App: React.FC = () => {
           "select-none",
         ].join(" ")}
       >
-        <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+        {/* <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
           <span className="italic text-xl md:text-2xl lg:text-3xl">Mili</span>
           <span className="text-xl md:text-2xl lg:text-3xl"> Khatri</span>
-        </span>
+        </span> */}
       </button>
       <Navigation
         activeSection={activeSection}
@@ -301,7 +304,7 @@ const App: React.FC = () => {
             {/* Resume button */}
             <div className="pt-4">
               <a
-                href="../src/assets/MKResume.pdf"
+                href={ResumePdf}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/70 hover:bg-white transition-colors border border-white/60 shadow-soft"

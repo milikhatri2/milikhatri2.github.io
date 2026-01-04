@@ -1,10 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Section } from "../types";
+import deniseAvatar from "../assets/Denise.png";
+import presidentAvatar from "../assets/P.png";
+import markAvatar from "../assets/M.png";
+import rodneyAvatar from "../assets/Rodney.png";
 
 type Testimonial = {
   name: string;
   role: string;
-  quote: React.ReactNode; // <-- was string
+  quote: React.ReactNode;
+  avatar: string; // ✅ add this
 };
 
 const clamp = (n: number, min: number, max: number) =>
@@ -15,8 +20,6 @@ const EPS = 0.00001;
 type Metrics = {
   top: number;
   vh: number;
-  // We start locking when you've scrolled HALF a viewport into the section
-  // (feels like it "pauses in the middle", without ever scrolling above section top)
   startY: number;
   endY: number;
 };
@@ -27,6 +30,7 @@ const Testimonials: React.FC = () => {
       {
         name: "Denise S.",
         role: "Founder of Let Mommy Sleep",
+        avatar: deniseAvatar,
         quote: (
           <>
             What I liked best about working with Mili is that while I had the{" "}
@@ -51,6 +55,7 @@ const Testimonials: React.FC = () => {
       {
         name: "President",
         role: "Be the Cause.org",
+        avatar: presidentAvatar,
         quote: (
           <>
             Mili joined Be the Cause.org as a{" "}
@@ -72,7 +77,7 @@ const Testimonials: React.FC = () => {
             <span className="font-semibold not-italic">
               maintain design consistency and efficiency
             </span>
-            ...
+            ...{" "}
             <span className="font-semibold not-italic">
               eye for interaction and responsive design
             </span>{" "}
@@ -84,17 +89,30 @@ const Testimonials: React.FC = () => {
       {
         name: "Mark D.",
         role: "Founder of Starside Development",
+        avatar: markAvatar,
         quote: (
           <>
             Mili is an absolute pleasure to work with. She’s thoughtful, a great
             communicator, and deeply attuned to client needs. Mili has a rare
-            ability to <span className="font-semibold not-italic">blend creative design</span> with <span className="font-semibold not-italic">first-class user experience,</span> consistently delivering <span className="font-semibold not-italic">beautifully crafted, effective solutions.</span>
+            ability to{" "}
+            <span className="font-semibold not-italic">
+              blend creative design
+            </span>{" "}
+            with{" "}
+            <span className="font-semibold not-italic">
+              first-class user experience,
+            </span>{" "}
+            consistently delivering{" "}
+            <span className="font-semibold not-italic">
+              beautifully crafted, effective solutions.
+            </span>
           </>
         ),
       },
       {
         name: "Rodney N.",
         role: "Frontend Software Engineer at HubSpot and Owner of Shoreline Web Studio",
+        avatar: rodneyAvatar,
         quote: (
           <>
             Mili was a{" "}
@@ -102,9 +120,20 @@ const Testimonials: React.FC = () => {
               fantastic UI/UX designer
             </span>{" "}
             for Shoreline Web Studio on our project for the Angeles De Medellin
-            Foundation... She was <span className="font-semibold not-italic">professional, reliable</span>
-            , and took <span className="font-semibold not-italic">full ownership of the design deliverables</span>... Her ability to translate our
-            vision into tangible assets was truly impressive... Mili has a <span className="font-semibold not-italic">clear passion for design</span> and delivers high-quality work.
+            Foundation... She was{" "}
+            <span className="font-semibold not-italic">
+              professional, reliable
+            </span>
+            , and took{" "}
+            <span className="font-semibold not-italic">
+              full ownership of the design deliverables
+            </span>
+            ... Her ability to translate our vision into tangible assets was
+            truly impressive... Mili has a{" "}
+            <span className="font-semibold not-italic">
+              clear passion for design
+            </span>{" "}
+            and delivers high-quality work.
           </>
         ),
       },
@@ -117,17 +146,14 @@ const Testimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeIndexRef = useRef(0);
 
-  // animation + wheel smoothing
   const rafRef = useRef<number | null>(null);
   const isAnimatingRef = useRef(false);
   const lastStepAtRef = useRef(0);
   const deltaAccRef = useRef(0);
 
-  // last-step dwell gating
   const reachedLastAtRef = useRef<number | null>(null);
-  const LAST_DWELL_MS = 1000; // 800–1400 feels good
+  const LAST_DWELL_MS = 1000;
 
-  // optional: persist "completed" unlock
   const completedRef = useRef(false);
   const [completed, setCompleted] = useState(() => {
     return localStorage.getItem("testimonialsCompleted") === "1";
@@ -142,7 +168,6 @@ const Testimonials: React.FC = () => {
     activeIndexRef.current = activeIndex;
   }, [activeIndex]);
 
-  // ----- Metrics (stable, recomputed only on resize) -----
   const metricsRef = useRef<Metrics>({
     top: 0,
     vh: 0,
@@ -156,9 +181,6 @@ const Testimonials: React.FC = () => {
 
     const vh = window.innerHeight;
     const top = el.offsetTop;
-
-    // IMPORTANT:
-    // startY stays INSIDE the section, so we never "jump up" above it.
     const startY = top + vh * 0.5;
     const endY = startY + (items.length - 1) * vh;
 
@@ -167,17 +189,12 @@ const Testimonials: React.FC = () => {
 
   useEffect(() => {
     recalcMetrics();
-
-    const onResize = () => {
-      recalcMetrics();
-    };
-
+    const onResize = () => recalcMetrics();
     window.addEventListener("resize", onResize, { passive: true });
     return () => window.removeEventListener("resize", onResize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length]);
 
-  // ----- Smooth scroll animation (cancel-safe) -----
   const easeInOutCubic = (t: number) =>
     t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -212,7 +229,6 @@ const Testimonials: React.FC = () => {
 
     setActiveIndex(i);
 
-    // start dwell timer if we land on the last one
     if (i === items.length - 1) {
       reachedLastAtRef.current = performance.now();
     } else {
@@ -222,7 +238,6 @@ const Testimonials: React.FC = () => {
     animateScrollTo(startY + i * vh, duration);
   };
 
-  // ----- Sync index with scroll (stable mapping, no jitter) -----
   useEffect(() => {
     const onScroll = () => {
       const el = sectionRef.current;
@@ -253,22 +268,18 @@ const Testimonials: React.FC = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [items.length]);
 
-  // ----- Wheel lock (trackpad-friendly, no jitter) -----
   useEffect(() => {
-    const DELTA_THRESHOLD = 50; // higher = less sensitive on trackpads
-    const COOLDOWN_MS = 420; // prevents multi-step on one swipe
+    const DELTA_THRESHOLD = 50;
+    const COOLDOWN_MS = 420;
 
     const onWheel = (e: WheelEvent) => {
       const el = sectionRef.current;
       if (!el) return;
 
-      // once completed, don't lock anymore
       if (completedRef.current) return;
 
       const { startY, endY, vh } = metricsRef.current;
       const y = window.scrollY;
-
-      // Only lock when we're within the stepped region
       const inLockRange = y >= startY && y <= endY;
 
       if (!inLockRange) {
@@ -279,13 +290,11 @@ const Testimonials: React.FC = () => {
       const current = activeIndexRef.current;
       const last = items.length - 1;
 
-      // Allow leaving upward before first step
       if (current === 0 && e.deltaY < 0) {
         deltaAccRef.current = 0;
         return;
       }
 
-      // LAST STEP: require dwell time before allowing scroll down to contact
       if (current === last && e.deltaY > 0) {
         const reachedAt = reachedLastAtRef.current ?? performance.now();
         reachedLastAtRef.current = reachedAt;
@@ -297,25 +306,17 @@ const Testimonials: React.FC = () => {
           return;
         }
 
-        // unlock after dwell
         setCompleted(true);
-        // allow normal scroll down (do NOT preventDefault)
         return;
       }
 
-      // Otherwise lock and step
       e.preventDefault();
-
-      // While animating, keep the lock (prevents "fight" + jitter)
       if (isAnimatingRef.current) return;
 
-      // cooldown
       const now = performance.now();
       if (now - lastStepAtRef.current < COOLDOWN_MS) return;
 
-      // accumulate delta so tiny trackpad movement doesn't instantly step
       deltaAccRef.current += e.deltaY;
-
       if (Math.abs(deltaAccRef.current) < DELTA_THRESHOLD) return;
 
       lastStepAtRef.current = now;
@@ -325,7 +326,6 @@ const Testimonials: React.FC = () => {
 
       const next = clamp(current + dir, 0, last);
 
-      // if we land on last, start dwell timer
       if (next === last) reachedLastAtRef.current = performance.now();
 
       setActiveIndex(next);
@@ -347,11 +347,8 @@ const Testimonials: React.FC = () => {
         sectionRef.current = node;
       }}
       className="relative px-6"
-      // Extra 1 viewport total gives: ~0.5vh "lead in" + ~0.5vh "lead out"
-      // (pairs with startY = top + 0.5vh)
       style={{ height: `${(items.length + 1) * 100}vh` }}
     >
-      {/* Sticky panel */}
       <div className="sticky top-0 h-screen flex items-center">
         <div className="w-full max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-start">
@@ -404,18 +401,32 @@ const Testimonials: React.FC = () => {
                         aria-hidden="true"
                       />
 
-                      <span>
-                        <div
+                      {/* ✅ avatar + text */}
+                      <span className="flex items-start gap-3">
+                        <img
+                          src={t.avatar}
+                          alt={`${t.name} profile`}
                           className={[
-                            "font-semibold leading-tight",
-                            isActive ? "text-coco-text" : "text-coco-text/70",
+                            "mt-0.5 h-8 w-8 rounded-full object-cover",
+                            "border border-white/70 shadow-soft",
                           ].join(" ")}
-                        >
-                          {t.name}
-                        </div>
-                        <div className="text-sm text-coco-text/45 leading-tight">
-                          {t.role}
-                        </div>
+                          loading="lazy"
+                          decoding="async"
+                        />
+
+                        <span>
+                          <div
+                            className={[
+                              "font-semibold leading-tight",
+                              isActive ? "text-coco-text" : "text-coco-text/70",
+                            ].join(" ")}
+                          >
+                            {t.name}
+                          </div>
+                          <div className="text-sm text-coco-text/45 leading-tight">
+                            {t.role}
+                          </div>
+                        </span>
                       </span>
                     </button>
                   );
@@ -423,14 +434,13 @@ const Testimonials: React.FC = () => {
               </div>
             </div>
 
-            {/* RIGHT (pushed down more to align bottoms better) */}
+            {/* RIGHT */}
             <div
               className={[
                 "lg:col-span-6",
                 "lg:pt-44",
                 "pb-8",
                 "flex flex-col",
-                // holds layout steady so short quotes don't pull everything upward
                 "min-h-[clamp(420px,60vh,560px)]",
               ].join(" ")}
             >
@@ -441,7 +451,14 @@ const Testimonials: React.FC = () => {
               </div>
 
               <div className="mt-10 flex items-center gap-5">
-                <div className="h-14 w-14 rounded-full bg-coco-text/10 border border-white/60 shadow-soft" />
+                {/* ✅ swap circle for real image */}
+                <img
+                  src={active.avatar}
+                  alt={`${active.name} profile`}
+                  className="h-14 w-14 rounded-full object-cover border border-white/70 shadow-soft"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <div className="font-semibold text-coco-text">
                     {active.name}
@@ -470,18 +487,6 @@ const Testimonials: React.FC = () => {
                   {activeIndex + 1} / {items.length}
                 </div>
               </div>
-
-              {/* Dev reset (optional) */}
-              {/* <button
-                type="button"
-                className="mt-8 text-xs underline text-coco-text/50"
-                onClick={() => {
-                  localStorage.removeItem("testimonialsCompleted");
-                  setCompleted(false);
-                }}
-              >
-                Reset lock
-              </button> */}
             </div>
           </div>
         </div>
