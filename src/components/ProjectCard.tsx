@@ -80,7 +80,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
             <p
               className={[
-                "text-coco-text/70 leading-relaxed max-w-xl",
+                "text-coco-text/70 leading-relaxed max-w-xl text-[16px]",
                 "[display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden",
               ].join(" ")}
             >
