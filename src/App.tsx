@@ -101,25 +101,44 @@ const App: React.FC = () => {
     setContact((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onContactSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+
+  const onContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === "sending") return;
 
-    const fullName = `${contact.firstName} ${contact.lastName}`.trim();
-    const subject =
-      contact.subject.trim() || `Website inquiry from ${fullName || "someone"}`;
+    setStatus("sending");
+    try {
+      const formData = new FormData();
+      formData.append("first", contact.firstName);
+      formData.append("last", contact.lastName);
+      formData.append("email", contact.email);
+      formData.append("subject", contact.subject);
+      formData.append("message", contact.message);
 
-    const bodyLines = [
-      `Name: ${fullName || "-"}`,
-      `Email: ${contact.email || "-"}`,
-      "",
-      contact.message || "",
-    ];
+      // optional honeypot:
+      formData.append("_gotcha", "");
 
-    const mailto = `mailto:mili@milikhatri.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      const res = await fetch("https://formspree.io/f/mblonnzn", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
 
-    window.location.href = mailto;
+      if (!res.ok) throw new Error("Bad response");
+      setStatus("success");
+      setContact({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -193,13 +212,9 @@ const App: React.FC = () => {
               {/* tagline */}
               <p className="mt-5 text-white/85 text-[clamp(0.95rem,1.6vw,1.1rem)] leading-relaxed max-w-xl">
                 A designer who bridges the gap between{" "}
-                <span className="italic text-coco-accent">
-                  complex data
-                </span>{" "}
+                <span className="italic text-coco-accent">complex data</span>{" "}
                 and{" "}
-                <span className="italic text-coco-accent">
-                  human intuition
-                </span>
+                <span className="italic text-coco-accent">human intuition</span>
                 .
               </p>
 
@@ -372,6 +387,7 @@ const App: React.FC = () => {
                       First Name *
                     </label>
                     <input
+                      type="text"
                       name="firstName"
                       value={contact.firstName}
                       onChange={onContactChange}
@@ -385,6 +401,7 @@ const App: React.FC = () => {
                       Last Name *
                     </label>
                     <input
+                      type="text"
                       name="lastName"
                       value={contact.lastName}
                       onChange={onContactChange}
@@ -412,6 +429,7 @@ const App: React.FC = () => {
                       Subject
                     </label>
                     <input
+                      type="text"
                       name="subject"
                       value={contact.subject}
                       onChange={onContactChange}
@@ -437,10 +455,22 @@ const App: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="mt-6 w-full py-4 rounded-full bg-coco-purple text-white font-bold shadow-soft hover:opacity-95 transition"
+                  disabled={status === "sending"}
+                  className="mt-6 w-full py-4 rounded-full bg-coco-purple text-white font-bold shadow-soft hover:opacity-95 transition disabled:opacity-60"
                 >
-                  Submit
+                  {status === "sending" ? "Sending…" : "Submit"}
                 </button>
+
+                {status === "success" && (
+                  <p className="mt-4 text-sm text-coco-text/70">
+                    Thanks! I’ll get back to you soon.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="mt-4 text-sm text-red-600">
+                    Something went wrong—please try again.
+                  </p>
+                )}
               </form>
             </div>
           </div>
