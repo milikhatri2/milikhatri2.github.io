@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import ProjectCard from "./components/ProjectCard";
 import { Section, type Project } from "./types";
