@@ -24,3 +24,12 @@
     display: none;
   }
 }
+
+:root {
+  --bottom-nav-h: 76px;
+}
+
+/* helpers */
+.safe-pt { padding-top: env(safe-area-inset-top); }
+.safe-pb { padding-bottom: env(safe-area-inset-bottom); }
+

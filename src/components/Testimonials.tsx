@@ -9,7 +9,7 @@ type Testimonial = {
   name: string;
   role: string;
   quote: React.ReactNode;
-  avatar: string; // ✅ add this
+  avatar: string;
 };
 
 const clamp = (n: number, min: number, max: number) =>
@@ -346,32 +346,42 @@ const Testimonials: React.FC = () => {
       ref={(node) => {
         sectionRef.current = node;
       }}
-      className="relative px-6"
+      // ✅ mobile-only top padding creates “breathing room” after About (prevents overlap)
+      className="relative px-6 pt-14 sm:pt-0"
       style={{ height: `${(items.length + 1) * 100}vh` }}
     >
-      <div className="sticky top-0 h-screen flex items-center">
+      <div
+        className={[
+          "sticky top-0 h-[100svh]", // better than h-screen on mobile
+          "flex items-start lg:items-center", // top-align on mobile, keep center on desktop
+          "pt-8 sm:pt-10 lg:pt-0", // give the heading breathing room
+          "pb-[calc(var(--bottom-nav-h)+env(safe-area-inset-bottom)+1rem)] lg:pb-0", // avoid bottom nav overlap
+        ].join(" ")}
+      >
         <div className="w-full max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-10 gap-12 items-start">
+          {/* ✅ tighter gap on mobile only */}
+          <div className="grid grid-cols-1 lg:grid-cols-10 sm:gap-10 lg:gap-12 items-start">
             {/* LEFT */}
             <div className="lg:col-span-4">
-              <h2 className="font-display italic text-5xl md:text-6xl leading-[0.95] text-coco-text">
+              {/* ✅ smaller heading on mobile only */}
+              <h2 className="font-display italic text-[clamp(2.25rem,10vw,3.25rem)] sm:text-5xl md:text-6xl leading-[0.95] text-coco-text">
                 What people
                 <br />
                 are saying
               </h2>
 
-              <div className="mt-6 text-xs text-coco-text/50 uppercase tracking-widest">
+              <div className="mt-4 sm:mt-6 text-[10px] sm:text-xs text-coco-text/50 uppercase tracking-widest">
                 Scroll to read each testimonial
               </div>
 
               {/* Dot list */}
               <div
                 className={[
-                  "mt-8 lg:mt-10",
+                  "mt-3 sm:mt-8 lg:mt-10",
                   "flex lg:block",
                   "gap-3 lg:gap-0",
                   "overflow-x-auto lg:overflow-visible",
-                  "pb-2 lg:pb-0",
+                  "lg:pb-0",
                   "lg:space-y-7",
                   "[-webkit-overflow-scrolling:touch]",
                 ].join(" ")}
@@ -384,16 +394,22 @@ const Testimonials: React.FC = () => {
                       type="button"
                       onClick={() => goToIndex(i, 650)}
                       className={[
-                        "group flex items-start gap-4 text-left w-full",
-                        "transition-opacity duration-200",
+                        // ✅ mobile: compact “avatar chips”; desktop unchanged
+                        "group text-left transition-opacity duration-200",
+                        "flex items-center gap-3 lg:items-start lg:gap-4",
+                        "w-auto lg:w-full",
+                        "shrink-0 lg:shrink",
+                        "px-1 py-1 lg:px-0 lg:py-0",
                         isActive
                           ? "opacity-100"
-                          : "opacity-65 hover:opacity-85",
+                          : "opacity-70 hover:opacity-90",
                       ].join(" ")}
+                      aria-label={`Read testimonial from ${t.name}`}
                     >
+                      {/* ✅ hide dots on mobile to save space */}
                       <span
                         className={[
-                          "mt-1.5 inline-block shrink-0 h-2.5 w-2.5 rounded-full border transition-all duration-200",
+                          "hidden lg:inline-block mt-1.5 shrink-0 h-2.5 w-2.5 rounded-full border transition-all duration-200",
                           isActive
                             ? "bg-coco-purple border-coco-purple"
                             : "bg-transparent border-coco-text/20 group-hover:border-coco-text/35",
@@ -401,20 +417,24 @@ const Testimonials: React.FC = () => {
                         aria-hidden="true"
                       />
 
-                      {/* ✅ avatar + text */}
+                      {/* avatar + (desktop) text */}
                       <span className="flex items-start gap-3">
                         <img
                           src={t.avatar}
                           alt={`${t.name} profile`}
                           className={[
-                            "mt-0.5 h-8 w-8 rounded-full object-cover",
+                            // ✅ slightly smaller on mobile, your desktop stays same
+                            "mt-0.5 h-9 w-9 sm:h-8 sm:w-8 rounded-full object-cover",
                             "border border-white/70 shadow-soft",
+                            // ✅ active state ring for mobile so you can tell selection
+                            isActive ? "ring-2 ring-coco-purple/70" : "ring-0",
                           ].join(" ")}
                           loading="lazy"
                           decoding="async"
                         />
 
-                        <span>
+                        {/* ✅ hide name/role on mobile (avatars only) */}
+                        <span className="hidden sm:block">
                           <div
                             className={[
                               "font-semibold leading-tight",
@@ -439,35 +459,40 @@ const Testimonials: React.FC = () => {
               className={[
                 "lg:col-span-6",
                 "lg:pt-44",
-                "pb-8",
+                "pt-4 sm:pt-6 lg:pt-44",
+                "pb-2 lg:pb-8",
                 "flex flex-col",
-                "min-h-[clamp(420px,60vh,560px)]",
+                "min-h-[clamp(380px,56vh,560px)] sm:min-h-[clamp(420px,60vh,560px)]",
               ].join(" ")}
             >
               <div className="flex-1">
-                <p className="text-[17px] text-coco-text/80 max-w-2xl">
+                {/* ✅ smaller quote text on mobile only */}
+                <p className="text-[13px] sm:text-[16px] leading-[1.75] text-coco-text/80 max-w-2xl">
                   {active.quote}
                 </p>
               </div>
 
-              <div className="mt-10 flex items-center gap-5">
-                {/* ✅ swap circle for real image */}
+              {/* attribution */}
+              <div className="mt-7 sm:mt-10 flex items-center gap-4 sm:gap-5">
                 <img
                   src={active.avatar}
                   alt={`${active.name} profile`}
-                  className="h-14 w-14 rounded-full object-cover border border-white/70 shadow-soft"
+                  className="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover border border-white/70 shadow-soft"
                   loading="lazy"
                   decoding="async"
                 />
                 <div>
-                  <div className="font-semibold text-coco-text">
+                  <div className="font-semibold text-coco-text text-[14px] sm:text-[16px] leading-tight">
                     {active.name}
                   </div>
-                  <div className="text-sm text-coco-text/50">{active.role}</div>
+                  {/* ✅ keep role here (as requested), but smaller on mobile */}
+                  <div className="text-[12px] sm:text-sm text-coco-text/50 leading-snug">
+                    {active.role}
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-10 flex items-center gap-4">
+              <div className="mt-6 sm:mt-10 flex items-center gap-4">
                 <div className="flex gap-2">
                   {items.map((_, i) => (
                     <span
@@ -483,7 +508,7 @@ const Testimonials: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="text-sm text-coco-text/55">
+                <div className="text-xs sm:text-sm text-coco-text/55">
                   {activeIndex + 1} / {items.length}
                 </div>
               </div>
