@@ -12,25 +12,24 @@ const ScrollToTopButton: React.FC = () => {
   }, []);
 
   const scrollToTop = () => {
-  const start = window.scrollY;
-  const duration = 350; // fast but not jarring (try 250–450)
+    const start = window.scrollY;
+    const duration = 350;
 
-  const startTime = performance.now();
+    const startTime = performance.now();
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = easeOutCubic(progress);
 
-  const tick = (now: number) => {
-    const elapsed = now - startTime;
-    const progress = Math.min(1, elapsed / duration);
-    const eased = easeOutCubic(progress);
+      window.scrollTo(0, Math.round(start * (1 - eased)));
 
-    window.scrollTo(0, Math.round(start * (1 - eased)));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
 
-    if (progress < 1) requestAnimationFrame(tick);
+    requestAnimationFrame(tick);
   };
-
-  requestAnimationFrame(tick);
-};
 
   return (
     <button
@@ -38,6 +37,8 @@ const ScrollToTopButton: React.FC = () => {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       className={[
+        // ✅ hide on mobile only; desktop unchanged
+        "hidden md:flex",
         "fixed bottom-8 right-8 z-50",
         "h-16 w-16 rounded-full",
         "bg-coco-purple text-white shadow-soft",

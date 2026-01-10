@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Navigation from "./components/Navigation";
 import ProjectCard from "./components/ProjectCard";
 import { Section, type Project } from "./types";
@@ -46,6 +46,8 @@ type ContactFormState = {
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>(Section.HERO);
   const [showLogo, setShowLogo] = useState(true);
+  const [showTop, setShowTop] = useState(false);
+  const [aboutInView, setAboutInView] = useState(false);
 
   const [contact, setContact] = useState<ContactFormState>({
     firstName: "",
@@ -58,7 +60,9 @@ const App: React.FC = () => {
   const scrollToSection = (section: Section) => {
     const el = document.getElementById(section);
     if (!el) return;
-    el.scrollIntoView({ behavior: "smooth" });
+
+    // Use scrollIntoView but sections have scroll-margins so they don't tuck under top UI.
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     setActiveSection(section);
   };
 
@@ -81,6 +85,28 @@ const App: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const aboutEl = document.getElementById(Section.ABOUT);
+    if (!aboutEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setAboutInView(entry.isIntersecting),
+      {
+        // triggers when ~35% of the ABOUT section is visible
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(aboutEl);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 300);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   useEffect(() => {
     const heroEl = document.getElementById(Section.HERO);
     if (!heroEl) return;
@@ -105,6 +131,26 @@ const App: React.FC = () => {
     "idle" | "sending" | "success" | "error"
   >("idle");
 
+  const scrollToTop = () => {
+    const start = window.scrollY;
+    const duration = 350;
+
+    const startTime = performance.now();
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = easeOutCubic(progress);
+
+      window.scrollTo(0, Math.round(start * (1 - eased)));
+
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
   const onContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === "sending") return;
@@ -128,6 +174,7 @@ const App: React.FC = () => {
       });
 
       if (!res.ok) throw new Error("Bad response");
+
       setStatus("success");
       setContact({
         firstName: "",
@@ -141,76 +188,99 @@ const App: React.FC = () => {
     }
   };
 
+  const bottomReserve =
+    "pb-[calc(var(--bottom-nav-h)+env(safe-area-inset-bottom)+0.75rem)]";
+
   return (
-    <div className="min-h-screen pb-20 md:pb-16 selection:bg-coco-accent selection:text-white text-[14px] sm:text-[15px]">
+    <div
+      className={[
+        "min-h-[100dvh]",
+        "text-[14px] sm:text-[15px]",
+        "selection:bg-coco-accent selection:text-white",
+        // reserve space for fixed bottom nav + iPhone home bar
+        bottomReserve,
+      ].join(" ")}
+    >
       <OuraRing />
-      {/* Centered logo overlay (text wordmark) - only visible on HERO */}
+
+      {/* Centered logo overlay (optional) */}
       <button
         type="button"
         onClick={() => scrollToSection(Section.HERO)}
         aria-label="Back to top"
         className={[
-          "fixed top-6 left-1/2 -translate-x-1/2 z-[60]",
+          "fixed top-[calc(1.25rem+env(safe-area-inset-top))] left-1/2 -translate-x-1/2 z-[60]",
           "transition-all duration-500 ease-out",
           showLogo
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none",
-          // prevents accidental text selection / tap highlight
           "select-none",
         ].join(" ")}
-      >
-        {/* <span className="font-display leading-[0.95] text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
-          <span className="italic text-xl md:text-2xl lg:text-3xl">Mili</span>
-          <span className="text-xl md:text-2xl lg:text-3xl"> Khatri</span>
-        </span> */}
-      </button>
+      />
+
       <Navigation
         activeSection={activeSection}
         scrollToSection={scrollToSection}
+        showTop={showTop}
+        onTopClick={scrollToTop}
       />
 
-      {/* HERO (updated to match your old screenshot style) */}
+      {/* HERO */}
       <section
         id={Section.HERO}
-        className="bg-center bg-cover relative min-h-screen w-full overflow-hidden"
+        className={[
+          "relative w-full overflow-hidden",
+          "min-h-[100dvh]", // real phone viewport
+          "bg-center bg-cover",
+        ].join(" ")}
       >
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
             backgroundImage: `url(${HeroImage})`,
-            backgroundPosition: "75% 20%", // shifts subject to the right
+            backgroundPosition: "75% 20%",
           }}
         />
 
-        {/* Readability overlay (soft, like your example) */}
+        {/* overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
         <div className="absolute inset-0 bg-black/10" />
 
         {/* Content */}
-        <div className="relative z-10 min-h-screen flex items-end pb-[clamp(4.5rem,14vh,8rem)]">
-          <div className="w-full max-w-7xl mx-auto px-6">
+        <div
+          className={[
+            "relative z-10",
+            "min-h-[100dvh]",
+            "flex items-end",
+            // keep content safely above bottom nav + home indicator
+            "pb-[calc(var(--bottom-nav-h)+env(safe-area-inset-bottom)+1.25rem)]",
+            // move content UP on small screens so it doesn't feel too low
+            "pt-[calc(1rem+env(safe-area-inset-top))]",
+          ].join(" ")}
+        >
+          <div className="w-full max-w-7xl mx-auto px-5 sm:px-6">
             <div className="max-w-2xl">
               {/* label line */}
-              <div className="flex items-center gap-4 text-white/80 mb-5">
-                <span className="h-px w-16 bg-white/50" />
-                <span className="text-xs sm:text-sm tracking-[0.18em] uppercase">
+              <div className="flex items-center gap-4 text-white/80 mb-4 sm:mb-5">
+                <span className="h-px w-12 sm:w-16 bg-white/50" />
+                <span className="text-[10px] sm:text-xs tracking-[0.18em] uppercase">
                   UI/UX Designer &amp; Researcher
                 </span>
               </div>
 
               {/* name */}
               <h1 className="font-display text-white leading-[0.95] drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
-                <span className="block italic text-[clamp(3.15rem,7.2vw,6.25rem)]">
+                <span className="block italic text-[clamp(2.65rem,9.5vw,6.25rem)]">
                   Mili
                 </span>
-                <span className="block text-[clamp(3.15rem,7.2vw,6.25rem)]">
+                <span className="block text-[clamp(2.65rem,9.5vw,6.25rem)]">
                   Khatri
                 </span>
               </h1>
 
               {/* tagline */}
-              <p className="mt-5 text-white/85 text-[clamp(0.95rem,1.6vw,1.1rem)] leading-relaxed max-w-xl">
+              <p className="mt-4 sm:mt-5 text-white/85 text-[clamp(0.95rem,3.6vw,1.1rem)] leading-relaxed max-w-xl">
                 A designer who bridges the gap between{" "}
                 <span className="italic text-coco-accent">complex data</span>{" "}
                 and{" "}
@@ -218,8 +288,8 @@ const App: React.FC = () => {
                 .
               </p>
 
-              {/* button (less “screamy”) */}
-              <div className="mt-7">
+              {/* button */}
+              <div className="mt-5 sm:mt-7">
                 <button
                   onClick={() => scrollToSection(Section.WORK)}
                   className={[
@@ -244,7 +314,12 @@ const App: React.FC = () => {
       {/* WORK */}
       <section
         id={Section.WORK}
-        className="px-[clamp(1.1rem,4vw,1.75rem)] py-[clamp(2.75rem,5.5vw,5rem)] pb-24 md:pb-24"
+        className={[
+          "scroll-mt-10",
+          "px-[clamp(1.1rem,4vw,1.75rem)]",
+          "py-[clamp(2.75rem,5.5vw,5rem)]",
+          "pb-24 md:pb-24",
+        ].join(" ")}
       >
         <div className="max-w-5xl lg:max-w-6xl 2xl:max-w-7xl mx-auto">
           <div className="text-center mb-[clamp(2rem,4.5vw,3.5rem)]">
@@ -268,19 +343,27 @@ const App: React.FC = () => {
       </section>
 
       {/* ABOUT */}
-      <section id={Section.ABOUT} className="py-16 md:py-24 px-5 md:px-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section
+        id={Section.ABOUT}
+        className="scroll-mt-10 py-16 md:py-24 px-5 md:px-6"
+      >
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className="relative">
             <div className="absolute -inset-4 bg-coco-sand/45 rounded-2xl transform rotate-2 -z-0" />
             <img
               src={AboutImage}
               alt="Coco Portrait"
-              className="w-full h-[580px] object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700 relative z-10 shadow-soft"
+              className={[
+                "w-full h-[420px] sm:h-[520px] md:h-[580px] object-cover rounded-xl",
+                "transition-all duration-700 relative z-10 shadow-soft",
+                aboutInView ? "grayscale-0" : "grayscale",
+                "hover:grayscale-0",
+              ].join(" ")}
             />
           </div>
 
           <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-display">
+            <h2 className="text-[clamp(2.1rem,4.2vw,3.2rem)] font-display">
               More than just pixels.
             </h2>
 
@@ -292,7 +375,7 @@ const App: React.FC = () => {
               and smooth execution.
             </p>
 
-            <div className="grid grid-cols-2 gap-8 pt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4 sm:pt-6">
               <div>
                 <h4 className="md:text-lg font-bold text-coco-accent mb-2">
                   Services
@@ -316,8 +399,7 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Resume button */}
-            <div className="pt-4">
+            <div className="pt-2 sm:pt-4">
               <a
                 href={ResumePdf}
                 target="_blank"
@@ -331,11 +413,18 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
+
       <Testimonials />
-      {/* CONTACT (old form style, new aesthetics) */}
+
+      {/* CONTACT */}
       <section
         id={Section.CONTACT}
-        className="pt-[clamp(3rem,6vw,5rem)] pb-[clamp(2.5rem,5vw,4rem)] px-[clamp(1.1rem,4vw,1.75rem)]"
+        className={[
+          "scroll-mt-10",
+          "pt-[clamp(3rem,6vw,5rem)]",
+          "pb-[clamp(2.5rem,5vw,4rem)]",
+          "px-[clamp(1.1rem,4vw,1.75rem)]",
+        ].join(" ")}
       >
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-[clamp(1.25rem,3vw,2rem)]">
@@ -349,7 +438,6 @@ const App: React.FC = () => {
 
           <div className="glass-panel rounded-3xl p-4 md:p-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-              {/* Left info card */}
               <div className="rounded-2xl bg-white border border-coco-text/10 p-6 shadow-soft">
                 <div className="text-md font-bold uppercase tracking-widest text-coco-text/80 text-center">
                   Contact
@@ -376,7 +464,6 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Form */}
               <form
                 onSubmit={onContactSubmit}
                 className="lg:col-span-2 rounded-2xl bg-white border border-coco-text/10 p-5 md:p-6 shadow-soft"
@@ -474,7 +561,9 @@ const App: React.FC = () => {
               </form>
             </div>
           </div>
+
           <ScrollToTopButton />
+
           <footer className="mt-16 text-center">
             <p className="font-display italic text-xl text-coco-text mb-2">
               Mili Khatri.
