@@ -18,7 +18,7 @@ const mockProjects: Project[] = [
     title: "Angeles De Medellin",
     category: "Web Design",
     description:
-      "The redesign was built using Next.js and Tailwind CSS for performance and scalability. Two rounds of user testing confirmed improved clarity and navigation. The new design highlights storytelling and accessibility, aligning with the foundation’s mission.",
+      "An intentional redesign aimed at strengthening connection, clarity, and community support through thoughtful UX.",
     image: ADMCover,
     year: "2023",
     link: "../angeles.html",
@@ -28,7 +28,7 @@ const mockProjects: Project[] = [
     title: "Harmonize",
     category: "Product Design",
     description:
-      "A comprehensive sustainability tracking application. Conducted extensive user research to identify pain points in carbon footprint calculation.",
+      "This project explores a mobile app concept that transforms music learning into an interactive, beginner-friendly, and motivating experience through gamification.",
     image: HarmonizeCover,
     year: "2023",
     link: "../harmonize.html",
