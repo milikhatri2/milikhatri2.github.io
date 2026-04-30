@@ -1,0 +1,7 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="48" fill="#F7F2FF"/>
+  <rect x="80" y="80" width="1440" height="840" rx="36" fill="#FFFFFF" stroke="#DEC5F8" stroke-width="4"/>
+  <rect x="200" y="190" width="1200" height="620" rx="28" fill="#F3EBFF" stroke="#DEC5F8" stroke-width="3" stroke-dasharray="18 14"/>
+  <text x="800" y="470" text-anchor="middle" fill="#2F355B" font-family="Montserrat, Arial, sans-serif" font-size="76" font-weight="700">CHAW image placeholder</text>
+  <text x="800" y="550" text-anchor="middle" fill="#776C92" font-family="Montserrat, Arial, sans-serif" font-size="34" font-weight="500">Replace this cover in src/assets/CHAWCover.svg later</text>
+</svg>
