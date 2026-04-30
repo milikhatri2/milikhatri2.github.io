@@ -307,26 +307,9 @@ body {
   overflow: hidden;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(247, 242, 255, 0.96) 0%,
-    rgba(247, 242, 255, 0.82) 30%,
-    rgba(247, 242, 255, 0.18) 64%,
-    rgba(247, 242, 255, 0) 100%
-  );
-  pointer-events: none;
-}
-
 .hero > .subtitle,
 .hero > .title,
 .hero > .pills {
-  position: relative;
-  z-index: 1;
   max-width: 34rem;
 }
 
