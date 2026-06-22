@@ -4,7 +4,7 @@ import HeroImage from "../assets/HeroImage.jpg";
 import AboutImage from "../assets/AboutmeImage.jpg";
 import ADMCover from "../assets/ADMCover.png";
 import CHAWCover from "../assets/CHAWCover.png";
-import ResumePdf from "../assets/MKResume.pdf";
+import ResumePdf from "../assets/MiliKhatriResume.pdf";
 import { Section, type Project } from "../types";
 import Navigation from "./Navigation";
 import OuraRing from "./OuraRing";
